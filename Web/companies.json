@@ -1,0 +1,47 @@
+[
+  {
+    "ticker": "AAPL",
+    "company_name": "Apple Inc.",
+    "category": "Technology",
+    "price": 214.32,
+    "change": 1.85,
+    "change_percent": 0.87,
+    "volume": 48213500,
+    "avg_volume_3m": 52340000,
+    "market_cap": 3320000000000,
+    "pe_ratio": 32.1,
+    "week52_change_percent": 18.4,
+    "week52_low": 164.08,
+    "week52_high": 237.23
+  },
+  {
+    "ticker": "MSFT",
+    "company_name": "Microsoft Corporation",
+    "category": "Technology",
+    "price": 447.67,
+    "change": -2.14,
+    "change_percent": -0.48,
+    "volume": 19870000,
+    "avg_volume_3m": 21450000,
+    "market_cap": 3330000000000,
+    "pe_ratio": 35.6,
+    "week52_change_percent": 12.9,
+    "week52_low": 366.50,
+    "week52_high": 468.35
+  },
+  {
+    "ticker": "TSLA",
+    "company_name": "Tesla, Inc.",
+    "category": "Consumer Cyclical",
+    "price": 248.09,
+    "change": 6.42,
+    "change_percent": 2.66,
+    "volume": 98230000,
+    "avg_volume_3m": 87650000,
+    "market_cap": 792000000000,
+    "pe_ratio": 68.4,
+    "week52_change_percent": -5.2,
+    "week52_low": 138.80,
+    "week52_high": 299.29
+  }
+]

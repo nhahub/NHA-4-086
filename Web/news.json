@@ -1,0 +1,35 @@
+[
+  {
+    "article_id": "1001",
+    "ticker": "AAPL",
+    "related_tickers": ["MSFT"],
+    "related_tickers_count": 1,
+    "title": "Apple unveils updated lineup ahead of fall event",
+    "description": "Apple previewed several product updates expected to ship later this year, with analysts watching for impact on services revenue.",
+    "publisher_name": "MarketPulse",
+    "source_url": "https://example.com/news/apple-fall-event",
+    "published_at": "2026-07-03T14:20:00Z"
+  },
+  {
+    "article_id": "1002",
+    "ticker": "MSFT",
+    "related_tickers": [],
+    "related_tickers_count": 0,
+    "title": "Microsoft cloud unit posts steady growth",
+    "description": "Microsoft's cloud division continued to expand, with enterprise demand for AI-linked services cited as a key driver.",
+    "publisher_name": "FinWire",
+    "source_url": "https://example.com/news/msft-cloud-growth",
+    "published_at": "2026-07-02T09:05:00Z"
+  },
+  {
+    "article_id": "1003",
+    "ticker": "TSLA",
+    "related_tickers": [],
+    "related_tickers_count": 0,
+    "title": "Tesla deliveries beat estimates for the quarter",
+    "description": "Tesla reported delivery numbers ahead of analyst expectations, sending shares higher in early trading.",
+    "publisher_name": "AutoMarkets",
+    "source_url": "https://example.com/news/tesla-deliveries",
+    "published_at": "2026-07-01T18:45:00Z"
+  }
+]
