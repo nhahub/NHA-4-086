@@ -32,4 +32,4 @@ resources:
         - task_key: NewsPolygon
             
           notebook_task:
-            notebook_path: ../ELT/transformation_layer/03_transformation_news.ipynb
+            notebook_path: ../ELT/transformation_layer/03_Transformation_and_NLP_of_News.ipynb

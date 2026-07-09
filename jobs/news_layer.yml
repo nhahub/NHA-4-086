@@ -1,0 +1,39 @@
+resources:
+
+  jobs:
+
+    news_layer_job:
+
+      name: news_layer_job
+
+      tasks:
+        - task_key: Init_db
+
+          notebook_task:
+            notebook_path: ../ELT/extraction_layer/00_Init_Catalog.ipynb
+
+        - task_key: extract_news
+
+          depends_on:
+            - task_key: Init_db
+
+          notebook_task:
+            notebook_path: ../ELT/extraction_layer/04_extract_news_polygon.ipynb
+
+        - task_key: transform_news
+
+          depends_on:
+            - task_key: extract_news
+
+          notebook_task:
+            notebook_path: ../ELT/transformation_layer/03_Transformation_and_NLP_of_News.ipynb
+
+        - task_key: serving_news
+
+          depends_on:
+            - task_key: transform_news
+
+          notebook_task:
+            notebook_path: ../ELT/serving_layer/03_fact_news.ipynb
+            
+

@@ -8,3 +8,6 @@
 
 #databricks
 .databricks/
+
+*.db
+__pycache__/
