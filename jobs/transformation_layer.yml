@@ -1,0 +1,35 @@
+resources:
+
+  jobs:
+
+    financehub_transformation_job:
+
+      name: financehub_transformation_job
+
+      tasks:
+
+        - task_key: companies
+
+          notebook_task:
+            notebook_path: ../ELT/transformation_layer/01_transformation_companies.ipynb
+            
+        - task_key: StockInfo
+            
+          depends_on:
+            - task_key: companies
+
+          notebook_task:
+            notebook_path: ../ELT/transformation_layer/02_transformation_stocksInfo.ipynb
+        
+        - task_key: Stocks
+          
+          depends_on:
+            - task_key: companies
+
+          notebook_task:  
+            notebook_path: ../ELT/transformation_layer/04_transformation_stocks.ipynb
+
+        - task_key: NewsPolygon
+            
+          notebook_task:
+            notebook_path: ../ELT/transformation_layer/03_transformation_news.ipynb

@@ -1,0 +1,31 @@
+resources:
+
+  jobs:
+
+    financehub_serving_job:
+
+      name: financehub_serving_job
+
+      tasks:
+
+        - task_key: companies
+
+          notebook_task:
+            notebook_path: ../ELT/serving_layer/01_dim_companies.ipynb
+            
+        - task_key: Prices
+            
+          depends_on:
+            - task_key: companies
+
+          notebook_task:
+            notebook_path: ../ELT/serving_layer/02_fact_stockPrices.ipynb
+        
+        - task_key: News
+          
+          depends_on:
+            - task_key: companies
+
+          notebook_task:  
+            notebook_path: ../ELT/serving_layer/03_fact_news.ipynb
+  

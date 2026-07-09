@@ -1,0 +1,35 @@
+resources:
+
+  jobs:
+
+    financehub_job:
+      name: financehub_job
+
+      schedule:
+        quartz_cron_expression: "0 0 0 * * ?"
+        timezone_id: "Africa/Cairo"
+        pause_status: "UNPAUSED"
+
+
+      tasks:
+
+        - task_key: extract_layer
+
+          run_job_task:
+            job_id: ${resources.jobs.financehub_extract_job.id}
+
+        - task_key: transformation_layer
+
+          depends_on:
+            - task_key: extract_layer
+
+          run_job_task:
+            job_id: ${resources.jobs.financehub_transformation_job.id}
+
+        - task_key: serving_layer
+  
+          depends_on:
+            - task_key: transformation_layer
+
+          run_job_task:
+            job_id: ${resources.jobs.financehub_serving_job.id}

@@ -1,0 +1,47 @@
+resources:
+
+  jobs:
+
+    financehub_extract_job:
+
+      name: financehub_extract_job
+
+      tasks:
+
+        - task_key: Init_db
+
+          notebook_task:
+            notebook_path: ../ELT/extraction_layer/00_Init_Catalog.ipynb
+            
+        
+        - task_key: StockInfo
+          
+          depends_on:
+            - task_key: Init_db
+
+          notebook_task:  
+            notebook_path: ../ELT/extraction_layer/02_extract_StocksInfo.ipynb
+
+        - task_key: StockPrices
+            
+          depends_on:
+            - task_key: Init_db
+
+          notebook_task:
+            notebook_path: ../ELT/extraction_layer/03_extract_StockPrices.ipynb
+
+        - task_key: NewsPolygon
+            
+          depends_on:
+            - task_key: Init_db
+
+          notebook_task:
+            notebook_path: ../ELT/extraction_layer/04_extract_news_polygon.ipynb
+
+        - task_key: ExchangeRates
+            
+          depends_on:
+            - task_key: Init_db
+
+          notebook_task:
+            notebook_path: ../ELT/extraction_layer/05_extract_exchangeRates.ipynb

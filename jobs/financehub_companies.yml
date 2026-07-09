@@ -1,0 +1,39 @@
+resources:
+
+  jobs:
+
+    financehub_companies_job:
+      name: financehub_companies_job
+
+      schedule:
+        quartz_cron_expression: "0 0 0 ? * MON"
+        timezone_id: "Africa/Cairo"
+        pause_status: "UNPAUSED"
+
+
+      tasks:
+
+        - task_key: extract_companies
+
+          notebook_task:
+            notebook_path: ../elt/extraction_layer/01_extract_companies.ipynb
+
+        - task_key: transformation_companies
+
+          notebook_task:
+            notebook_path: ../elt/transformation_layer/01_transformation_companies.ipynb
+
+          depends_on:
+            - task_key: extract_companies
+
+        - task_key: dim_companies
+
+          notebook_task:
+            notebook_path: ../elt/serving_layer/01_dim_companies.ipynb
+
+          depends_on:
+            - task_key: transformation_companies
+
+
+
+

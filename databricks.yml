@@ -1,0 +1,13 @@
+bundle:
+  name: "finance_intelligence_hub"
+
+include:
+  - jobs/*.yml
+
+targets:
+  main:
+    mode: production
+    workspace:
+      host: https://dbc-f88d29c6-4087.cloud.databricks.com
+    run_as:
+      user_name: "omarwahby35@gmail.com"
