@@ -1,0 +1,272 @@
+table 01_Measures
+	lineageTag: 128636ca-59d3-40bd-a5c9-e66ae06a6621
+
+	measure BearishCandle = ```
+			
+			VAR _Diff = ABS(MAXX(fact_stock_prices, [close_price]-[open_price]))
+			RETURN
+			        IF(MAXX(fact_stock_prices, [close_price]-[open_price]) < 0, _Diff)
+			
+			
+			```
+		lineageTag: 8081644f-f211-488e-a83e-c1f9efeaa88b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure BullishCandle =
+			
+			VAR _Diff = ABS(MAXX(fact_stock_prices, [close_price]-[open_price]))
+			RETURN
+			            IF(MAXX(fact_stock_prices, [close_price]-[open_price]) > 0, _Diff)
+		lineageTag: bec02c73-2048-438c-bfb1-9abbfe97a2ca
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure High = ```
+			AVERAGE( fact_stock_prices[high_price] )
+			
+			```
+		lineageTag: b0dc82d1-9fc2-47b4-9393-983907e0581a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Low = ```
+			AVERAGE(fact_stock_prices[low_price])
+			
+			```
+		lineageTag: a947aab5-46e7-4c1f-94fa-abd6a92ed9a8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure MaxY = ```
+			MAX(fact_stock_prices[close_price]) + 5 
+			
+			```
+		lineageTag: fc0c6c75-7f42-416d-960f-71317124f664
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure MinY = ```
+			MIN(fact_stock_prices[close_price]) - 5
+			
+			```
+		lineageTag: 3136c86c-6c51-4f8a-8983-a0bf28538810
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure HighDistance = ```
+			
+			VAR _MaxValue = IF(MAXX(fact_stock_prices, [close_price]-[open_price]) > 0, MAXX(fact_stock_prices, [close_price]), MAXX(fact_stock_prices, [open_price]))
+			VAR _High = MAXX(fact_stock_prices, [High])
+			RETURN
+			ABS(_High - _MaxValue) * - 1 -- I multiply by -1 to reverse the direction (Up to Down)
+			
+			```
+		lineageTag: 30c7f1eb-98e2-4797-9ba9-87238147f803
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure LowDistance = ```
+			
+			VAR _MinValue = IF(MAXX(fact_stock_prices,[close_price]-[open_price]) < 0, MAXX(fact_stock_prices, [close_price]), MAXX(fact_stock_prices, [open_price]))
+			VAR _Low = MAXX(fact_stock_prices, [low_price])
+			RETURN
+			ABS( _Low - _MinValue )
+			
+			```
+		lineageTag: af3cef97-b2d1-4f1d-8cb2-cfb8af24f815
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Last Close Price' =
+			
+			VAR _LastDate = CALCULATE(MAX(fact_stock_prices[trade_date]), ALLSELECTED(fact_stock_prices))
+			RETURN
+			CALCULATE( AVERAGE( fact_stock_prices[close_price] ), fact_stock_prices[trade_date] = _LastDate)
+		lineageTag: 4aca6492-4b6d-4d95-8129-f974692fc305
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure BeginingPeriodPrice = ```
+			
+			VAR _Price = CALCULATE( MAX( fact_stock_prices[close_price] ), dim_Date[Date] = MAX( dim_Period[StartDate] ) )
+			VAR _AjustedPrice = CALCULATE( MAX( fact_stock_prices[close_price] ), dim_Date[Date] = MAX( dim_Period[StartDate]) + 1 )
+			RETURN
+			IF( _Price = BLANK(), _AjustedPrice, _Price )
+			
+			```
+		lineageTag: b31f00f6-7577-409e-8db9-a08821874131
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure DateFilter = ```
+			IF( MAX( fact_stock_prices[trade_date]) >= MAX( dim_Period[StartDate] ), 1 )
+			
+			```
+		formatString: 0
+		lineageTag: 37cfde3b-f298-47c5-9114-306195b9ee7c
+
+	measure 'Moving average' = ```
+			
+			VAR _Period = SELECTEDVALUE(tParameter[NumberOfDays])
+			VAR _Numerator = CALCULATE(
+			                             SUM(fact_stock_prices[close_price]), DATESINPERIOD(fact_stock_prices[trade_date],LASTDATE(fact_stock_prices[trade_date]), - _Period, DAY )
+			)
+			VAR _Denominator = CALCULATE(
+			                             COUNT(fact_stock_prices[trade_date]), DATESINPERIOD(fact_stock_prices[trade_date],LASTDATE(fact_stock_prices[trade_date]), - _Period, DAY )
+			                            )
+			RETURN
+			DIVIDE(_Numerator, _Denominator)
+			
+			```
+		lineageTag: ccbc466f-7755-46c8-9a74-fa88150df924
+
+	measure 'Variation #' = ```
+			
+			VAR _Delta = [Last Close Price] - [BeginingPeriodPrice]
+			VAR _Period = MAX(dim_Period[Period])
+			VAR _Arrow = IF(_Delta > 0, UNICHAR( 129033 ) , UNICHAR( 129035 )) & " "
+			RETURN
+			_Arrow & FORMAT(ABS(_Delta), "0.00") & "  " & _Period
+			
+			```
+		lineageTag: aee555c5-ec1a-4481-9456-ca31993a4de1
+
+	measure 'Variation %' =
+			
+			VAR _Variation = DIVIDE([Last Close Price], [BeginingPeriodPrice]) - 1
+			VAR _Arrow = IF(_Variation > 0, UNICHAR( 129033 ) , UNICHAR( 129035 )) & " "
+			RETURN
+			_Arrow & FORMAT(ABS(_Variation), "0.00%")
+		lineageTag: 0bd90f3a-0b20-475a-99e6-f8c8660b1376
+
+	measure 'Variation Curr Vs Prec' = ```
+			
+			VAR _PrevClose  = AVERAGE( fact_stock_prices[previous_close_price] )
+			VAR _CurrClose = AVERAGE( fact_stock_prices[close_price] )
+			VAR _Variation = DIVIDE( _CurrClose , _PrevClose ) - 1
+			RETURN
+			 _Variation 
+			
+			```
+		lineageTag: 01221e40-7a12-4596-9c80-8afd8b7c2d57
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Variation Indicator' =
+			
+			VAR _Variation = DIVIDE([Last Close Price], [BeginingPeriodPrice]) - 1
+			RETURN
+			IF( _Variation >= 0, 1, 0 ) -- 1 = green ; 0 = red
+		formatString: 0
+		lineageTag: 12453190-1f34-43a5-ab45-10e17981d1cb
+
+	measure 'At Close' =
+			
+			VAR _MaxDate = MAX( fact_stock_prices[trade_date] )
+			VAR _Market =  MAX(dim_companies[exchange])
+			VAR _MarketRef = " · USD · "
+			RETURN
+			"At close: " & FORMAT( _MaxDate, "d mmmm yyyy", "en-CA") & _MarketRef & _Market
+		lineageTag: faea24f8-f6e0-449f-8f2b-b2115e6cd538
+
+	measure CompanyName = ```
+			MAX(dim_companies[company_name])
+			
+			```
+		lineageTag: c1030a52-48f1-443b-83ac-dfb6d206bfe1
+
+	measure 'Green Volume' = ```
+			
+			VAR _PrevClose  = CALCULATE( AVERAGE( fact_stock_prices[close_price] ),
+			                            OFFSET(-1, 
+			                                    ALLSELECTED (fact_stock_prices[trade_date],fact_stock_prices[ticker] ),
+			                                    ORDERBY( fact_stock_prices[trade_date] ),KEEP,
+			                                    PARTITIONBY(fact_stock_prices[ticker] ) 
+			                                  )
+			                                )
+			VAR _CurrClose = AVERAGE( fact_stock_prices[close_price] )
+			VAR _Volume = AVERAGE( fact_stock_prices[volume] )
+			RETURN
+			IF( _CurrClose > _PrevClose, _Volume )
+			```
+		lineageTag: 67a150fd-0f1d-4cea-b4c7-4968f54bb4df
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Red Volume' = ```
+			
+			VAR _PrevClose  = CALCULATE( AVERAGE( fact_stock_prices[close_price] ),
+			                            OFFSET(-1, 
+			                                    ALLSELECTED (fact_stock_prices[trade_date],fact_stock_prices[ticker]),
+			                                    ORDERBY( fact_stock_prices[trade_date] ),KEEP,
+			                                    PARTITIONBY(fact_stock_prices[ticker] ) 
+			                                  )
+			                                )
+			VAR _CurrClose = AVERAGE( fact_stock_prices[close_price] )
+			VAR _Volume = AVERAGE( fact_stock_prices[volume] )
+			RETURN
+			IF( _CurrClose < _PrevClose, _Volume )
+			
+			```
+		lineageTag: a361080a-778e-49aa-9ce8-513dd1775164
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure MaxVolume = ```
+			MAX( fact_stock_prices[volume] ) 
+			
+			```
+		formatString: 0
+		lineageTag: 817411fe-3331-4504-b070-4c22b23528b3
+
+	measure ToolTips = ```
+			
+			VAR _Date = FORMAT(MAX(fact_stock_prices[trade_date]), "d MMMM yyyy", "en-CA")
+			VAR _OpenText = "Open"
+			VAR _HighText = "High"
+			VAR _LowText = "Low"
+			VAR _CloseText = "Close"
+			VAR _VolumeText = "Volume"
+			VAR _PercChangeText = "% Change"
+			VAR _Open = FORMAT( MAX(fact_stock_prices[open_price]), "0.00" )
+			VAR _High = FORMAT( MAX(fact_stock_prices[high_price]), "0.00" )
+			VAR _Low = FORMAT(  MAX(fact_stock_prices[low_price]), "0.00" )
+			VAR _Close = FORMAT( MAX(fact_stock_prices[close_price]), "0.00" )
+			VAR _Volume = FORMAT( MAX(fact_stock_prices[volume] ), "0,,.00M")
+			VAR _Variation =  FORMAT( [Variation Curr Vs Prec], "0.00%" )
+			VAR _Espace =  "‎ " -- white space
+			VAR _BeforeEspaceNumber = 15
+			VAR _Lenght = 10
+			VAR _TotalLenght = _BeforeEspaceNumber + _Lenght
+			VAR _LenghtOfDashLine = REPT("-", _TotalLenght ) 
+			VAR _CenteredText = ROUND(DIVIDE(_TotalLenght - LEN(_Date),2),0)
+			RETURN
+			_LenghtOfDashLine & UNICHAR( 10 ) & REPT(_Espace, _CenteredText) & _Date & UNICHAR( 10 ) & _LenghtOfDashLine & UNICHAR( 10 ) &
+			_OpenText  & REPT(_Espace, _BeforeEspaceNumber - LEN( _OpenText ))  & REPT(_Espace, _Lenght - LEN(_Open))  & _Open  & UNICHAR( 10 ) &
+			_HighText  & REPT(_Espace, _BeforeEspaceNumber - LEN( _HighText ))  & REPT(_Espace, _Lenght - LEN(_High))  & _High  & UNICHAR( 10 ) &
+			_LowText   & REPT(_Espace, _BeforeEspaceNumber - LEN( _LowText ))   & REPT(_Espace, _Lenght - LEN(_Low ))  & _Low  & UNICHAR( 10 ) &
+			_CloseText & REPT(_Espace, _BeforeEspaceNumber - LEN( _CloseText )) & REPT(_Espace, _Lenght - LEN(_Close)) & _Close & UNICHAR( 10 ) &
+			_VolumeText & REPT(_Espace, _BeforeEspaceNumber - LEN( _VolumeText )) & REPT(_Espace, _Lenght - LEN(_Volume)) & _Volume & UNICHAR( 10 ) & 
+			_PercChangeText & REPT(_Espace, _BeforeEspaceNumber - LEN( _PercChangeText )) & REPT(_Espace, _Lenght - LEN(_Variation)) & _Variation
+			
+			```
+		lineageTag: aadd67a5-4ace-40c3-b2b6-984cb71163c3
+
+	measure 'category & country & industry' = MAX(dim_companies[country]) & " . " & MAX(dim_companies[industry])  & " . " & MAX(dim_companies[category])
+		lineageTag: efe982c0-70d5-4ebf-80d8-e95da46cea7c
+
+	partition 01_Measures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

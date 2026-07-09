@@ -1,0 +1,191 @@
+table dim_companies
+	lineageTag: 1a9bb20d-edcc-452f-a17b-0da76c579c00
+
+	column ticker
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 6b5a6b6b-41cc-415a-a791-1ac890f1bf30
+		summarizeBy: none
+		sourceColumn: ticker
+
+		annotation SummarizationSetBy = Automatic
+
+	column company_name
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: a8714e47-3fb4-4f87-8c93-d39158b49054
+		summarizeBy: none
+		sourceColumn: company_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column short_name
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 6dd426f1-b6cf-4cbe-8003-72f38c1332c5
+		summarizeBy: none
+		sourceColumn: short_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column exchange
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 82de1b0d-622d-418c-93ed-12b8797e9d87
+		summarizeBy: none
+		sourceColumn: exchange
+
+		annotation SummarizationSetBy = Automatic
+
+	column currency
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 9041a2e4-7b70-4ad2-a911-d496c0bade22
+		summarizeBy: none
+		sourceColumn: currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: f0ea7eb6-9a2c-4a59-aae2-57ca6d8cd566
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column sector
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 4bc6f6f3-394a-4dfb-acc3-a5e6e3f338f6
+		summarizeBy: none
+		sourceColumn: sector
+
+		annotation SummarizationSetBy = Automatic
+
+	column industry
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 1d27eb9c-fabc-44fa-a3bd-39870dc37147
+		summarizeBy: none
+		sourceColumn: industry
+
+		annotation SummarizationSetBy = Automatic
+
+	column quote_type
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 89ecfab1-4fdc-46f1-a1f6-67296f4a3766
+		summarizeBy: none
+		sourceColumn: quote_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column shares_outstanding
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 72d39378-59b5-413b-8327-8d40ee089b14
+		summarizeBy: sum
+		sourceColumn: shares_outstanding
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column category
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: 552db030-f5d7-4e57-b392-9afb5e1e7634
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_cap_usd
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 411140c6-b68c-4009-b695-7f12a1051e2f
+		summarizeBy: sum
+		sourceColumn: market_cap_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pe_ratio
+		dataType: double
+		sourceProviderType: double
+		lineageTag: e4866eef-f7f6-4f4e-9e2d-96b6e8e2b6e9
+		summarizeBy: sum
+		sourceColumn: pe_ratio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column week52_change_percent
+		dataType: double
+		sourceProviderType: double
+		lineageTag: d2678f3c-3c17-4ac8-b1be-d7c0d837951f
+		summarizeBy: sum
+		sourceColumn: week52_change_percent
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column week52_low
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 26cdce85-a4e2-4653-be9b-648b9a98f059
+		summarizeBy: sum
+		sourceColumn: week52_low
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column week52_high
+		dataType: double
+		sourceProviderType: double
+		lineageTag: dae0ade2-e8cc-48fa-b2e6-ec87a1f4aacc
+		summarizeBy: sum
+		sourceColumn: week52_high
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column market_cap_reference_raw
+		dataType: double
+		sourceProviderType: double
+		lineageTag: b1a07663-7a61-4b27-af20-d0c257c087df
+		summarizeBy: sum
+		sourceColumn: market_cap_reference_raw
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column gold_loaded_at
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 07afbf07-aea3-4eda-a68e-447b59431c8b
+		summarizeBy: none
+		sourceColumn: gold_loaded_at
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_companies = m
+		mode: directQuery
+		source =
+				let
+				    Source = DatabricksMultiCloud.Catalogs("dbc-f88d29c6-4087.cloud.databricks.com", "/sql/1.0/warehouses/f482bdcca461ed4f", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0", Protocol=null]),
+				    finance_intelligence_hub_Database = Source{[Name="finance_intelligence_hub",Kind="Database"]}[Data],
+				    gold_Schema = finance_intelligence_hub_Database{[Name="gold",Kind="Schema"]}[Data],
+				    dim_companies_View = gold_Schema{[Name="dim_companies",Kind="View"]}[Data]
+				in
+				    dim_companies_View
+

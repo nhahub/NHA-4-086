@@ -33,3 +33,12 @@ resources:
 
           run_job_task:
             job_id: ${resources.jobs.financehub_serving_job.id}
+
+        - task_key: Prediction_layer
+  
+          depends_on:
+            - task_key: serving_layer
+
+          run_job_task:
+            job_id: ${resources.jobs.financehub_NlpMl_job.id}
+

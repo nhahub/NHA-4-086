@@ -1,0 +1,40 @@
+table tParameter
+	lineageTag: 99bc25a1-b79a-4652-a2eb-b2ba5902aaec
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 84f15aaf-eb02-4397-92c4-3d56a2c68f86
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column NumberOfDays
+		dataType: int64
+		formatString: 0
+		lineageTag: 502ba96d-a60e-4faf-848d-f1b947281408
+		summarizeBy: sum
+		sourceColumn: NumberOfDays
+
+		annotation SummarizationSetBy = Automatic
+
+	column PeriodName
+		dataType: string
+		lineageTag: a4426758-39f0-48f5-9e67-42091fa3b951
+		summarizeBy: none
+		sourceColumn: PeriodName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition tParameter = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlTSUTIyABMpSrE60UpGQLYJSMAYKmAMZoNFIQImQLapAZgACsQCAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [id = _t, NumberOfDays = _t, PeriodName = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"id", Int64.Type}, {"NumberOfDays", Int64.Type}, {"PeriodName", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

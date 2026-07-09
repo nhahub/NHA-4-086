@@ -1,0 +1,122 @@
+table fact_stock_prices
+	lineageTag: e0fb3c4b-ed59-4003-841f-19d3009bc71d
+
+	column ticker
+		dataType: string
+		sourceProviderType: nvarchar(max)
+		lineageTag: f53ee90b-755c-4ced-b4c2-4e1af0324612
+		summarizeBy: none
+		sourceColumn: ticker
+
+		annotation SummarizationSetBy = Automatic
+
+	column trade_date
+		dataType: dateTime
+		formatString: Long Date
+		sourceProviderType: date
+		lineageTag: a356dad3-1106-42b6-8618-b4042b727473
+		summarizeBy: none
+		sourceColumn: trade_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column open_price
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 6d80cb86-ddc4-4e2c-86b6-d7192094a8a7
+		summarizeBy: sum
+		sourceColumn: open_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column high_price
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 8dcb1182-78a4-4b81-8dd4-1227928c247d
+		summarizeBy: sum
+		sourceColumn: high_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column low_price
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 66acf0b3-ffa1-4654-9dbf-aea88cb7790c
+		summarizeBy: sum
+		sourceColumn: low_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column close_price
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 0df005b9-b4ee-4096-8ede-86195ff78d02
+		summarizeBy: sum
+		sourceColumn: close_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column adjusted_close_price
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 9f64ebce-67b4-47b5-8941-bbadf0094b08
+		summarizeBy: sum
+		sourceColumn: adjusted_close_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column volume
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 174af031-05aa-441c-b883-55a232dab0ae
+		summarizeBy: sum
+		sourceColumn: volume
+
+		annotation SummarizationSetBy = Automatic
+
+	column Index
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: e85d3b26-1c51-4418-bfc4-12c368a72c28
+		summarizeBy: sum
+		sourceColumn: Index
+
+		annotation SummarizationSetBy = Automatic
+
+	column previous_close_price
+		dataType: double
+		sourceProviderType: double
+		lineageTag: 2be26313-4525-4cf1-8022-4629c2cbca07
+		summarizeBy: sum
+		sourceColumn: previous_close_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fact_stock_prices = m
+		mode: directQuery
+		source =
+				let
+				    Source = DatabricksMultiCloud.Catalogs("dbc-f88d29c6-4087.cloud.databricks.com", "/sql/1.0/warehouses/f482bdcca461ed4f", [Catalog=null, Database=null, QueryTags=null, EnableAutomaticProxyDiscovery=null, Implementation="2.0", Protocol=null]),
+				    finance_intelligence_hub_Database = Source{[Name="finance_intelligence_hub",Kind="Database"]}[Data],
+				    gold_Schema = finance_intelligence_hub_Database{[Name="gold",Kind="Schema"]}[Data],
+				    fact_stock_prices_View = gold_Schema{[Name="fact_stock_prices",Kind="View"]}[Data]
+				in
+				    fact_stock_prices_View
+

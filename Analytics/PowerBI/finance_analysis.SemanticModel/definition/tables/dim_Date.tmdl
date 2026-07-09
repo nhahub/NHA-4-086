@@ -1,0 +1,26 @@
+table dim_Date
+	lineageTag: bd6ad1cb-6bf8-4509-891a-1d7f77ef20cb
+
+	column Date
+		formatString: General Date
+		lineageTag: c59d117e-095f-4892-9d2b-973c1c4e4778
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: 1498157c-96a2-40be-8a18-06ba00aa50eb
+			defaultHierarchy: LocalDateTable_c5ca9364-8d5b-4d45-8e19-538476c4cf18.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_Date = calculated
+		mode: import
+		source = ```
+				CALENDAR(MIN(fact_stock_prices[trade_date]), MAX(fact_stock_prices[trade_date]))
+				
+				```
+
+	annotation PBI_Id = 279fa6577fa34f7a812b12ab1dc91127
+

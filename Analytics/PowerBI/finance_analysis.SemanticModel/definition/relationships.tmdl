@@ -1,0 +1,35 @@
+relationship 3b602d46-f5c3-49ab-98f6-eaf9f68e3e83
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_Period.StartDate
+	toColumn: LocalDateTable_630a207b-4052-4faa-9984-b226a54aa2b6.Date
+
+relationship 3534b603-dd36-4ccd-b681-432514393575
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_Period.EndDate
+	toColumn: LocalDateTable_63ce4140-4309-444a-9c01-f831151e0934.Date
+
+relationship 1498157c-96a2-40be-8a18-06ba00aa50eb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_Date.Date
+	toColumn: LocalDateTable_c5ca9364-8d5b-4d45-8e19-538476c4cf18.Date
+
+relationship 196ce0ec-f95a-1a43-b877-29a5313794ac
+	fromColumn: dim_Period.Date
+	toColumn: dim_Date.Date
+
+relationship a9333758-1aa4-e89c-aa88-b7b3f54689a1
+	fromColumn: fact_stock_prices.trade_date
+	toColumn: dim_Date.Date
+
+relationship 88b630df-cb73-f34c-4790-be77eb052f51
+	fromColumn: fact_stock_prices.ticker
+	toColumn: dim_companies.ticker
+
+relationship 462ec409-0b8b-9643-0af0-c8c403731b9a
+	fromColumn: fact_news.ticker
+	toColumn: dim_companies.ticker
+
+relationship ce787abb-53dd-8357-9fb2-7b8c745bdc17
+	fromColumn: fact_news.published_at
+	toColumn: dim_Date.Date
+

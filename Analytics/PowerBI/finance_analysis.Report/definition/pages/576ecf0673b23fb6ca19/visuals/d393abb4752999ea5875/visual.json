@@ -1,0 +1,144 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "d393abb4752999ea5875",
+  "position": {
+    "x": 9.9727611656395041,
+    "y": 170.78353496157649,
+    "z": 0,
+    "height": 549.74845925587761,
+    "width": 1270.2804534733318,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "candlestick95C27C147643B5E840B1D29AC39783F7",
+    "query": {
+      "queryState": {
+        "col_1": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_stock_prices"
+                    }
+                  },
+                  "Property": "open_price"
+                }
+              },
+              "queryRef": "Sum(fact_stock_prices.open_price)",
+              "nativeQueryRef": "open_price"
+            }
+          ]
+        },
+        "col_2": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_stock_prices"
+                    }
+                  },
+                  "Property": "high_price"
+                }
+              },
+              "queryRef": "Sum(fact_stock_prices.high_price)",
+              "nativeQueryRef": "high_price1"
+            }
+          ]
+        },
+        "col_3": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_stock_prices"
+                    }
+                  },
+                  "Property": "low_price"
+                }
+              },
+              "queryRef": "Sum(fact_stock_prices.low_price)",
+              "nativeQueryRef": "low_price"
+            }
+          ]
+        },
+        "col_4": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_stock_prices"
+                    }
+                  },
+                  "Property": "close_price"
+                }
+              },
+              "queryRef": "Sum(fact_stock_prices.close_price)",
+              "nativeQueryRef": "close_price1"
+            }
+          ]
+        },
+        "col_0": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_stock_prices"
+                    }
+                  },
+                  "Property": "trade_date"
+                }
+              },
+              "queryRef": "fact_stock_prices.trade_date.Variation.Date Hierarchy.Year",
+              "nativeQueryRef": "trade_date Year",
+              "active": true
+            }
+          ]
+        },
+        "col_5": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_stock_prices"
+                    }
+                  },
+                  "Property": "volume"
+                }
+              },
+              "queryRef": "Sum(fact_stock_prices.volume)",
+              "nativeQueryRef": "volume"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "hiddenProps": [
+        {
+          "properties": {
+            "dataVersion": {
+              "expr": {
+                "Literal": {
+                  "Value": "'5.1.0.0'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

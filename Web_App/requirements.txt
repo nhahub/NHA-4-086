@@ -1,0 +1,20 @@
+# --- Web & Server ---
+fastapi
+uvicorn[standard]
+python-dotenv
+pydantic>=2.0
+pydantic-settings
+
+# --- HTTP Client (Required for LangChain/Gemini streaming) ---
+httpx
+
+# --- Database ---
+databricks-sql-connector
+
+# --- Chatbot & Orchestration (LangGraph + Gemini) ---
+langchain-core>=0.3
+langchain-google-genai>=2.0
+langgraph>=0.2.0
+
+# --- State Management / Persistence ---
+langgraph-checkpoint-sqlite>=2.0.0

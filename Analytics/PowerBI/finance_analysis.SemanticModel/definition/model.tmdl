@@ -1,0 +1,28 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["fact_stock_prices","fact_news","dim_companies","01_Measures","tParameter"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table fact_stock_prices
+ref table fact_news
+ref table dim_companies
+ref table dim_Period
+ref table DateTableTemplate_dc80834a-bc9c-44ec-ae59-8a7288af6b90
+ref table LocalDateTable_630a207b-4052-4faa-9984-b226a54aa2b6
+ref table LocalDateTable_63ce4140-4309-444a-9c01-f831151e0934
+ref table dim_Date
+ref table LocalDateTable_c5ca9364-8d5b-4d45-8e19-538476c4cf18
+ref table 01_Measures
+ref table tParameter
+
+ref cultureInfo en-US
+

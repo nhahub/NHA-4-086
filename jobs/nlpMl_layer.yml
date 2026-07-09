@@ -1,0 +1,17 @@
+resources:
+
+  jobs:
+
+    financehub_NlpMl_job:
+      name: financehub_NlpMl_job
+
+      tasks:
+        - task_key: ML
+
+          notebook_task:
+            notebook_path: ../machine_learning_and_nlp/ML.ipynb
+            
+        - task_key: NLP
+            
+          notebook_task:
+            notebook_path: ../machine_learning_and_nlp/NLP.ipynb

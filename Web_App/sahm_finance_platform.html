@@ -1,0 +1,2969 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<!-- Favicon: the user's own logo image, embedded as a base64 PNG data URI
+     (resized/optimized to 64x64) so it doesn't depend on an external
+     favicon.png file living next to the HTML — it just works wherever this
+     file is opened or hosted from. The same source image (at a slightly
+     larger size) is reused for the header/sidebar logo — see
+     <template id="logoTpl"> below — so both stay in sync. -->
+<link id="faviconLink" rel="icon" type="image/png" href="data:image/png;base64,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">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAIA — Stock And Arrows Investing App</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Anton&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://accounts.google.com/gsi/client?hl=en" async defer></script>
+<style>
+  :root{
+    --bg: #0a0e1a;
+    --bg-2: #070a13;
+    --panel: #10182b;
+    --panel-2: #141d34;
+    --border: #223057;
+    --text: #eef2fb;
+    --text-dim: #93a1c2;
+    --text-dimmer: #5f6d8f;
+    --green: #3ecf7a;
+    --green-soft: rgba(62,207,122,0.14);
+    --rose: #e2566d;
+    --rose-soft: rgba(226,86,109,0.14);
+    --indigo: #6b7cf0;
+    --indigo-soft: rgba(107,124,240,0.14);
+    --grey: #9aa5bd;
+    --grey-soft: rgba(154,165,189,0.14);
+    --radius: 14px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    min-height:100vh;
+    overflow-x:hidden;
+  }
+  .num{font-family:'IBM Plex Mono',monospace;}
+  .hidden{display:none !important;}
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;cursor:pointer;}
+
+  /* ---------- LOGO ---------- */
+  .logo-mark{display:block;flex-shrink:0;line-height:0;}
+  .logo-mark .logo-img{display:block;width:100%;height:100%;border-radius:50%;object-fit:cover;}
+
+  /* ---------- LANDING ---------- */
+  #landing{
+    position:relative;
+    min-height:100vh;
+    background: var(--bg-2);
+  }
+  .l-nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:26px 6vw;position:relative;z-index:2;
+  }
+  .brand{display:flex;align-items:center;gap:11px;font-family:'Fraunces',serif;font-size:26px;font-weight:700;letter-spacing:0.3px;}
+  .l-nav-links{display:flex;gap:34px;color:var(--text-dim);font-size:16.5px;font-weight:500;}
+
+  .hero{
+    position:relative;
+    min-height:82vh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;
+    padding:20px 6vw 60px;
+    overflow:hidden;
+  }
+  .hero-bg-arrows{position:absolute;inset:0;pointer-events:none;z-index:0;}
+  .hero-chart{position:absolute;inset:0;width:100%;height:100%;opacity:0.5;}
+  .dash-flow{animation:dashMove 2.2s linear infinite;}
+  @keyframes dashMove{ to{ stroke-dashoffset:-36; } }
+  .float-arrow{position:absolute;animation:floatY 6s ease-in-out infinite;opacity:0.9;}
+  @keyframes floatY{
+    0%{transform:translateY(0) rotate(0deg);}
+    50%{transform:translateY(-20px) rotate(-5deg);}
+    100%{transform:translateY(0) rotate(0deg);}
+  }
+  .float-pill{
+    position:absolute;font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:700;
+    background:var(--panel);border:1px solid var(--border);border-radius:999px;
+    padding:10px 20px;animation:floatY 7s ease-in-out infinite;
+    box-shadow:0 8px 24px -8px rgba(0,0,0,0.5);
+  }
+  @media (max-width:960px){ .float-arrow, .float-pill{ display:none; } }
+
+  .hero-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    border:1px solid var(--border);
+    padding:8px 18px;border-radius:999px;
+    color:var(--green);font-size:13.5px;font-weight:700;letter-spacing:1.8px;
+    margin-bottom:34px;
+    background:rgba(62,207,122,0.06);
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);}
+  h1.headline{
+    font-family:'Anton','Fraunces',serif;
+    font-weight:400;
+    text-transform:uppercase;
+    font-style:italic;
+    font-size:clamp(46px,7.4vw,96px);
+    line-height:1.03;
+    letter-spacing:0.5px;
+    margin:0 0 30px;
+    max-width:980px;
+  }
+  h1.headline .accent-up{color:var(--green);}
+  h1.headline .accent-down{color:var(--rose);}
+  .sub{
+    color:var(--text-dim);
+    font-size:clamp(17px,1.8vw,21px);
+    max-width:640px;
+    line-height:1.75;
+    margin-bottom:46px;
+  }
+  .cta-row{display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:center;}
+  .btn-primary{
+    background:linear-gradient(90deg,var(--green),#2fa864);
+    color:#06170d;font-weight:800;font-size:17.5px;
+    padding:17px 42px;border-radius:11px;border:none;
+    box-shadow:0 10px 30px -8px rgba(62,207,122,0.5);
+    transition:transform .15s ease, box-shadow .15s ease;
+    font-family:'Inter',sans-serif;
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 34px -6px rgba(62,207,122,0.65);}
+  .btn-ghost{
+    background:transparent;border:1px solid var(--border);color:var(--text-dim);
+    padding:16px 28px;border-radius:11px;font-size:16.5px;font-weight:600;
+  }
+  .btn-ghost:hover{border-color:var(--text-dimmer);color:var(--text);}
+
+  .stat-strip{
+    display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:48px;position:relative;z-index:2;
+  }
+  .stat-card{
+    background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+    padding:20px 26px;min-width:150px;text-align:left;
+  }
+  .stat-card .lbl{color:var(--text-dimmer);font-size:11.5px;letter-spacing:1.2px;margin-bottom:7px;text-transform:uppercase;font-weight:600;}
+  .stat-card .val{font-family:'IBM Plex Mono',monospace;font-size:30px;font-weight:700;}
+
+  /* ---------- ABOUT / WHAT IS SAIA ---------- */
+  .about{
+    background:var(--bg);
+    border-top:1px solid var(--border);
+    padding:80px 6vw 70px;
+  }
+  .about-inner{max-width:1100px;margin:0 auto;text-align:center;}
+  .about .eyebrow{margin-bottom:20px;}
+  .about h2{
+    font-family:'Anton','Fraunces',serif;font-size:clamp(34px,4.6vw,54px);font-weight:400;text-transform:uppercase;font-style:italic;letter-spacing:0.5px;margin:0 0 22px;
+  }
+  .about p.lead{color:var(--text-dim);font-size:18.5px;line-height:1.8;max-width:740px;margin:0 auto 50px;}
+  .about p.lead b{color:var(--text);}
+  .feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;text-align:left;}
+  .feature-card{
+    background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+    padding:26px;
+  }
+  .feature-card .f-icon{width:40px;height:40px;border-radius:10px;background:var(--panel-2);display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:18px;}
+  .feature-card h3{font-size:17px;margin:0 0 9px;font-weight:800;}
+  .feature-card p{color:var(--text-dim);font-size:14.5px;line-height:1.65;margin:0;}
+
+  /* ---------- FAQ ---------- */
+  .faq{background:var(--bg-2);border-top:1px solid var(--border);padding:90px 6vw;}
+  .faq-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1.3fr;gap:60px;align-items:start;}
+  .faq-left .eyebrow{margin-bottom:22px;}
+  .faq-left h2{
+    font-family:'Anton','Fraunces',serif;font-weight:400;text-transform:uppercase;font-style:italic;
+    font-size:clamp(32px,4vw,48px);line-height:1.05;margin:0 0 20px;letter-spacing:0.3px;
+  }
+  .faq-left h2 .hl{color:var(--green);}
+  .faq-left p{color:var(--text-dim);font-size:16px;line-height:1.7;max-width:400px;margin:0 0 26px;}
+  .faq-support{display:flex;align-items:center;gap:12px;}
+  .faq-avatars{display:flex;}
+  .faq-avatars span{
+    width:34px;height:34px;border-radius:50%;background:var(--panel-2);border:2px solid var(--bg-2);
+    display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-left:-10px;
+  }
+  .faq-avatars span:first-child{margin-left:0;}
+  .faq-support .txt{font-size:14px;color:var(--text-dim);line-height:1.5;}
+  .faq-support .txt a{color:var(--green);font-weight:700;}
+  .faq-right{display:flex;flex-direction:column;gap:14px;}
+  .faq-item{
+    background:var(--panel);border:1px solid var(--border);border-radius:14px;
+    overflow:hidden;
+  }
+  .faq-q{
+    display:flex;align-items:center;justify-content:space-between;width:100%;
+    padding:20px 24px;background:none;border:none;color:var(--text);
+    font-size:16.5px;font-weight:700;text-align:left;font-family:inherit;
+  }
+  .faq-q .chev{transition:transform .2s ease;color:var(--text-dim);flex-shrink:0;margin-left:16px;}
+  .faq-item.open .faq-q .chev{transform:rotate(180deg);color:var(--green);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+  .faq-a p{margin:0;padding:0 24px 20px;color:var(--text-dim);font-size:14.5px;line-height:1.7;}
+
+  /* ---------- FINAL CTA ---------- */
+  .final-cta{padding:70px 6vw 90px;background:var(--bg);}
+  .final-cta-card{
+    max-width:1100px;margin:0 auto;position:relative;overflow:hidden;
+    background:radial-gradient(circle at 30% 20%, rgba(62,207,122,0.14), transparent 55%),
+               radial-gradient(circle at 75% 80%, rgba(226,86,109,0.12), transparent 55%),
+               var(--bg-2);
+    border:1px solid var(--border);border-radius:28px;
+    padding:70px 6vw;text-align:center;
+  }
+  .final-cta .eyebrow{margin-bottom:28px;}
+  .final-cta h2{
+    font-family:'Anton','Fraunces',serif;font-weight:400;text-transform:uppercase;font-style:italic;
+    font-size:clamp(34px,5.4vw,66px);line-height:1.05;margin:0 0 22px;letter-spacing:0.3px;
+  }
+  .final-cta h2 .hl{color:var(--green);}
+  .final-cta p{color:var(--text-dim);font-size:17px;line-height:1.7;max-width:620px;margin:0 auto 40px;}
+
+
+  .ticker-tape{
+    width:100%;overflow:hidden;
+    border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+    background:var(--panel);
+    padding:14px 0;
+  }
+  .ticker-track{display:flex;gap:46px;width:max-content;animation:scrollTape 90s linear infinite;}
+  @keyframes scrollTape{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  .tick-item{display:flex;align-items:center;gap:9px;font-family:'IBM Plex Mono',monospace;font-size:15px;font-weight:500;white-space:nowrap;}
+  .tick-sym{color:var(--text);font-weight:600;}
+  .tick-up{color:var(--green);}
+  .tick-down{color:var(--rose);}
+
+  .l-footer{text-align:center;color:var(--text-dimmer);font-size:12.5px;padding:22px;background:var(--bg);}
+
+  /* ---------- APP SHELL ---------- */
+  #app{display:flex;min-height:100vh;background:var(--bg);}
+  .sidebar{
+    width:250px;flex-shrink:0;background:var(--bg-2);
+    border-right:1px solid var(--border);
+    padding:22px 16px;display:flex;flex-direction:column;gap:6px;
+  }
+  .sidebar .brand{padding:6px 8px 22px;font-size:22px;}
+  .nav-item{
+    display:flex;align-items:center;gap:12px;
+    padding:12px 14px;border-radius:10px;color:var(--text-dim);
+    font-size:15.5px;font-weight:600;background:transparent;border:none;width:100%;text-align:left;
+  }
+  .nav-item .ic{width:24px;text-align:center;font-size:20px;}
+  .nav-item .ic.svg-ic{display:inline-flex;align-items:center;justify-content:center;}
+  .nav-item .ic.svg-ic svg{width:21px;height:21px;color:inherit;}
+  .nav-item:hover{background:var(--panel-2);color:var(--text);}
+  .nav-item.active{background:var(--green-soft);color:var(--green);}
+  .nav-label{color:var(--text-dimmer);font-size:11.5px;letter-spacing:1.2px;padding:14px 14px 4px;text-transform:uppercase;font-weight:700;}
+
+  .main{flex:1;min-width:0;display:flex;flex-direction:column;}
+  .topbar{
+    display:flex;align-items:center;gap:14px;
+    padding:18px 28px;border-bottom:1px solid var(--border);
+    background:var(--bg-2);
+  }
+  .search-box{
+    flex:1;display:flex;align-items:center;gap:10px;
+    background:var(--panel);border:1px solid var(--border);border-radius:10px;
+    padding:11px 16px;color:var(--text-dim);
+  }
+  .search-box input{
+    background:transparent;border:none;outline:none;color:var(--text);width:100%;font-size:15.5px;font-family:inherit;
+  }
+  .topbar .user-chip{
+    display:flex;align-items:center;gap:8px;background:var(--panel);
+    border:1px solid var(--border);border-radius:999px;padding:9px 16px;font-size:14.5px;font-weight:500;color:var(--text-dim);
+  }
+
+  .ticker-strip-app{overflow:hidden;background:var(--panel);border-bottom:1px solid var(--border);padding:9px 0;}
+  .view{padding:26px 28px;}
+  .filter-bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:14px 0 18px;}
+  .filter-bar select{
+    background:var(--panel);border:1px solid var(--border);border-radius:8px;
+    color:var(--text);font-size:13.5px;font-family:inherit;padding:8px 10px;cursor:pointer;outline:none;
+  }
+  .filter-bar select:focus{border-color:var(--green);}
+  .filter-search{
+    background:var(--panel);border:1px solid var(--border);border-radius:8px;
+    color:var(--text);font-size:13.5px;font-family:inherit;padding:8px 12px;outline:none;
+    min-width:220px;
+  }
+  .filter-search:focus{border-color:var(--green);}
+  .filter-bar .search-box{flex:none;width:300px;padding:9px 14px;}
+  .filter-bar .search-box input{font-size:14px;}
+
+  .section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:18px;}
+  .section-head h2{font-family:'Anton','Fraunces',serif;font-size:32px;font-weight:400;text-transform:uppercase;font-style:italic;letter-spacing:0.3px;margin:0;}
+  .section-head .meta{color:var(--text-dimmer);font-size:14px;font-weight:500;}
+
+  .grid-stocks{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:16px;}
+
+  .stock-card{
+    background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+    padding:18px;cursor:pointer;transition:border-color .15s, transform .15s;
+    position:relative;
+  }
+  .stock-card:hover{border-color:var(--green);transform:translateY(-3px);}
+  .stock-card .row1{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
+  .stock-card .sym{font-weight:800;font-size:17.5px;}
+  .stock-card .name{color:var(--text-dimmer);font-size:13px;margin-top:2px;}
+.badge {
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  letter-spacing: .4px;
+  font-weight: 600;
+  white-space: nowrap;
+  
+  display: inline-flex;   
+  align-items: center;     
+  gap: 6px;               
+  width: max-content;      
+}  .stock-card .price-row{display:flex;align-items:flex-end;justify-content:space-between;margin-top:12px;}
+  .price{font-family:'IBM Plex Mono',monospace;font-size:23px;font-weight:700;}
+  .chg{font-family:'IBM Plex Mono',monospace;font-size:14.5px;font-weight:700;}
+  .up{color:var(--green);} .down{color:var(--rose);}
+  .spark{margin-top:10px;}
+  .star-btn{
+    position:absolute;top:14px;right:14px;background:none;border:none;
+    font-size:18px;color:var(--text-dimmer);line-height:1;padding:2px;z-index:2;
+  }
+  .star-btn.active{color:#f5c542;}
+  .star-btn:hover{color:#f5c542;}
+
+  /* predictions table */
+  .pred-table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+  .pred-table th{text-align:left;color:var(--text-dimmer);font-size:12px;letter-spacing:1px;font-weight:700;padding:15px 16px;border-bottom:1px solid var(--border);text-transform:uppercase;}
+  .pred-table td{padding:15px 16px;border-bottom:1px solid var(--border);font-size:15px;}
+  .pred-table tr:last-child td{border-bottom:none;}
+  .pred-table tr:hover{background:var(--panel-2);cursor:pointer;}
+
+  /* news */
+  .home-dashboard{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start;}
+  @media (max-width:1080px){ .home-dashboard{grid-template-columns:1fr;} }
+  .home-col-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px;}
+  .home-col-head h3{font-size:18px;font-weight:800;margin:0;}
+  .link-btn{background:transparent;border:none;color:var(--green);font-size:13px;font-weight:700;padding:0;}
+  .link-btn:hover{text-decoration:underline;}
+  .filter-bar .clear-btn{
+    background:var(--rose-soft);border:1px solid rgba(226,86,109,0.35);color:var(--rose);
+    font-size:13px;font-weight:700;padding:9px 16px;border-radius:10px;
+    display:inline-flex;align-items:center;gap:6px;transition:background 0.15s,border-color 0.15s,transform 0.1s;
+  }
+  .filter-bar .clear-btn:hover{background:rgba(226,86,109,0.24);border-color:var(--rose);}
+  .filter-bar .clear-btn:active{transform:scale(0.97);}
+  .home-col .grid-news, .home-col .grid-stocks{grid-template-columns:1fr;}
+
+  .grid-news{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+  .news-card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:18px;cursor:pointer;transition:border-color .15s ease, transform .15s ease;position:relative;}
+  .news-card .star-btn{top:16px;right:16px;}
+  .news-card:hover{border-color:var(--green);transform:translateY(-2px);}
+  .news-card .src{color:var(--green);font-size:12px;letter-spacing:.5px;margin-bottom:8px;font-weight:600;}
+  .news-card h3{font-size:16.5px;font-weight:700;margin:0 0 10px;line-height:1.5;padding-right:26px;}
+  .news-card .news-desc{color:var(--text-dim);font-size:13px;line-height:1.55;margin:0 0 12px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+  .news-card .meta{color:var(--text-dimmer);font-size:12.5px;display:flex;justify-content:space-between;}
+  .news-sentiment{display:flex;gap:6px;margin:0 0 12px;flex-wrap:wrap;}
+  .sent-pill{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;
+    border-radius:999px;padding:3px 9px;display:inline-flex;align-items:center;gap:5px;
+    border:1px solid transparent;
+  }
+  .sent-pill.pos{background:var(--green-soft);color:var(--green);border-color:rgba(62,207,122,0.3);}
+  .sent-pill.neg{background:var(--rose-soft);color:var(--rose);border-color:rgba(226,86,109,0.3);}
+  .sent-pill.norm{background:var(--grey-soft);color:var(--grey);border-color:rgba(154,165,189,0.3);}
+
+  /* AI chat */
+  .chat-shell{display:flex;gap:18px;max-width:1080px;margin:0 auto;height:calc(100vh - 200px);}
+  .chat-sidebar{width:230px;flex-shrink:0;display:flex;flex-direction:column;gap:10px;border-right:1px solid var(--border);padding-right:14px;overflow-y:auto;}
+  .new-conv-btn{background:var(--green-soft);color:var(--green);border:1px solid rgba(62,207,122,0.35);border-radius:10px;padding:11px 12px;font-weight:700;font-size:14px;cursor:pointer;text-align:center;}
+  .new-conv-btn:hover{background:var(--green);color:#06170d;}
+  .conv-list{display:flex;flex-direction:column;gap:6px;overflow-y:auto;}
+  .conv-item{display:flex;align-items:center;gap:6px;border-radius:9px;padding:2px;transition:background .15s;}
+  .conv-item:hover{background:var(--panel);}
+  .conv-item.active{background:var(--green-soft);}
+  .conv-item.active .conv-title{color:var(--green);font-weight:700;}
+  .conv-title{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:none;border:none;color:var(--text-dim);font-size:13.5px;text-align:left;padding:10px 8px;cursor:pointer;font-family:inherit;}
+  .conv-delete-btn{flex-shrink:0;background:none;border:none;color:var(--text-dimmer);font-size:14px;padding:8px;cursor:pointer;border-radius:7px;line-height:1;}
+  .conv-delete-btn:hover{background:var(--rose-soft);color:var(--rose);}
+  .conv-confirm{display:flex;align-items:center;gap:6px;padding:6px 8px;font-size:12px;color:var(--text-dim);background:var(--rose-soft);border-radius:9px;width:100%;}
+  .conv-confirm span{flex:1;}
+  .conv-confirm button{border:none;border-radius:6px;padding:5px 9px;font-size:12px;font-weight:700;cursor:pointer;}
+  .conv-confirm .confirm-yes{background:var(--rose);color:#fff;}
+  .conv-confirm .confirm-no{background:var(--panel-2);color:var(--text-dim);}
+  .conv-empty{color:var(--text-dimmer);font-size:12.5px;padding:10px 8px;}
+  .chat-wrap{display:flex;flex-direction:column;flex:1;min-width:0;margin:0;}
+  .chat-log{flex:1;overflow-y:auto;padding:6px 4px 16px;display:flex;flex-direction:column;gap:14px;}
+  .msg{max-width:78%;padding:14px 18px;border-radius:14px;font-size:15.5px;line-height:1.7;}
+  .msg.user{align-self:flex-end;background:var(--green-soft);border:1px solid rgba(62,207,122,0.35);border-bottom-right-radius:4px;}
+  .msg.bot{align-self:flex-start;background:var(--panel);border:1px solid var(--border);border-bottom-left-radius:4px;}
+  .msg.bot.thinking{color:var(--text-dimmer);font-style:italic;display:flex;align-items:center;gap:8px;}
+  .typing-dots{display:inline-flex;gap:4px;}
+  .typing-dots span{width:6px;height:6px;border-radius:50%;background:var(--text-dimmer);display:inline-block;animation:typing-bounce 1.2s infinite ease-in-out;}
+  .typing-dots span:nth-child(2){animation-delay:0.15s;}
+  .typing-dots span:nth-child(3){animation-delay:0.3s;}
+  @keyframes typing-bounce{0%,60%,100%{transform:translateY(0);opacity:0.4;}30%{transform:translateY(-5px);opacity:1;}}
+  .msg.bot p{margin:0 0 10px;}
+  .msg.bot p:last-child{margin-bottom:0;}
+  .msg.bot ul{margin:0 0 10px;padding-inline-start:22px;}
+  .msg.bot ul:last-child{margin-bottom:0;}
+  .msg.bot li{margin:4px 0;}
+  .msg.bot strong{font-weight:700;color:var(--text);}
+  .chat-input-row{display:flex;gap:10px;border-top:1px solid var(--border);padding-top:14px;}
+  .chat-input-row input{flex:1;background:var(--panel);border:1px solid var(--border);border-radius:11px;padding:14px 16px;color:var(--text);font-size:15.5px;font-family:inherit;outline:none;}
+  .chat-input-row input:focus{border-color:var(--green);}
+  .chat-input-row input:disabled{opacity:0.55;cursor:not-allowed;}
+  .send-btn{background:var(--green);color:#06170d;border:none;border-radius:11px;padding:0 24px;font-weight:800;font-size:15px;cursor:pointer;transition:opacity .15s;}
+  .send-btn:disabled{opacity:0.5;cursor:not-allowed;}
+  .send-btn.stop-btn{background:var(--rose);color:#fff;}
+  .disclaimer{color:var(--text-dimmer);font-size:12px;text-align:center;margin-top:10px;}
+
+  /* detail view */
+  .back-btn{display:inline-flex;align-items:center;gap:6px;color:var(--text-dim);font-size:14.5px;font-weight:500;margin-bottom:16px;background:none;border:none;}
+  .back-btn:hover{color:var(--text);}
+  .detail-head{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;margin-bottom:22px;}
+  .detail-title{display:flex;align-items:center;gap:12px;}
+  .detail-title .sym-badge{width:54px;height:54px;border-radius:12px;background:var(--panel-2);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:15px;white-space: nowrap;}
+  .detail-price{font-family:'IBM Plex Mono',monospace;font-size:38px;font-weight:800;text-align:right;}
+  .stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin:22px 0;}
+  .stat-box{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:15px 16px;}
+  .stat-box .lbl{color:var(--text-dimmer);font-size:11.5px;margin-bottom:6px;letter-spacing:.5px;font-weight:600;}
+  .stat-box .val{font-family:'IBM Plex Mono',monospace;font-size:15px;font-weight:700;}
+  .chart-panel{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:20px;}
+  .chart-panel h3{font-family:'Fraunces',serif;font-size:19px;margin:0 0 14px;font-weight:700;}
+  .pred-callout{
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
+    background:linear-gradient(90deg, rgba(107,124,240,0.1), rgba(62,207,122,0.08));
+    border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;
+  }
+  .pred-callout .p-lbl{color:var(--text-dim);font-size:14px;margin-bottom:6px;font-weight:500;}
+  .pred-callout .p-val{font-family:'IBM Plex Mono',monospace;font-size:29px;font-weight:800;}
+
+  /* watchlist detail action */
+  .detail-watch-btn{
+    display:inline-flex;align-items:center;gap:8px;margin-top:10px;
+    background:var(--panel);border:1px solid var(--border);border-radius:10px;
+    padding:9px 16px;font-size:14px;font-weight:600;color:var(--text-dim);
+  }
+  .detail-watch-btn.active{color:#f5c542;border-color:#f5c542;}
+
+  .add-btn{background:var(--green);color:#06170d;border:none;border-radius:9px;padding:11px 22px;font-weight:800;font-size:14.5px;}
+
+  /* ---------- interactive price line chart ---------- */
+  .price-chart-wrap{position:relative;margin-bottom:22px;}
+  .price-chart-svg{display:block;width:100%;height:auto;cursor:crosshair;}
+  .price-chart-tooltip{
+    position:absolute;pointer-events:none;opacity:0;transform:translate(-50%,-100%);
+    background:var(--panel-2);border:1px solid var(--border);border-radius:9px;
+    padding:8px 12px;font-family:'IBM Plex Mono',monospace;font-size:13px;white-space:nowrap;
+    box-shadow:0 8px 20px -6px rgba(0,0,0,0.55);transition:opacity .1s ease;z-index:3;
+  }
+  .price-chart-tooltip .t-date{color:var(--text-dimmer);font-size:11px;margin-bottom:2px;}
+  .price-chart-tooltip.show{opacity:1;}
+
+  /* ---------- spinner ---------- */
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .spinner{
+    display:inline-block;width:15px;height:15px;border-radius:50%;
+    border:2px solid rgba(255,255,255,0.28);border-top-color:currentColor;
+    animation:spin .7s linear infinite;vertical-align:-3px;margin-right:8px;
+  }
+  .nav-item[disabled]{opacity:0.65;cursor:default;}
+
+  /* ---------- download-duration modal ---------- */
+  .modal-overlay{
+    position:fixed;inset:0;background:rgba(4,6,12,0.65);backdrop-filter:blur(2px);
+    display:flex;align-items:center;justify-content:center;z-index:80;
+  }
+  .modal-box{
+    background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
+    padding:26px 26px 22px;width:min(380px,90vw);
+  }
+  .modal-box h3{margin:0 0 6px;font-family:'Fraunces',serif;font-size:19px;font-weight:700;}
+  .modal-box p{margin:0 0 18px;color:var(--text-dim);font-size:14px;line-height:1.6;}
+  .modal-options{display:flex;flex-direction:column;gap:9px;}
+  .modal-option{
+    background:var(--panel-2);border:1px solid var(--border);border-radius:10px;
+    padding:12px 16px;font-size:14.5px;font-weight:600;color:var(--text);text-align:left;
+  }
+  .modal-option:hover{border-color:var(--green);}
+  .modal-cancel{margin-top:16px;background:none;border:none;color:var(--text-dimmer);font-size:13.5px;width:100%;text-align:center;}
+  .modal-cancel:hover{color:var(--text-dim);}
+
+  @media (max-width:880px){
+    .sidebar{width:70px;padding:16px 8px;}
+    .sidebar .brand span.txt, .nav-item .txt, .nav-label{display:none;}
+    .sidebar .brand{justify-content:center;}
+    .nav-item{justify-content:center;}
+  }
+</style>
+</head>
+<body>
+
+<!-- reusable logo template — the user's own logo image (embedded as base64
+     so the header/sidebar logo never depends on an external file). Cloned
+     into every .logo-mark element by injectLogos() below. -->
+<template id="logoTpl">
+  <img class="logo-img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAABg0klEQVR42u29d7xeV3Xn/V37nKffpnrVi9UlW25yL3KNIQQIBtl0CLyTzCSZBGYmpEE8ZCYZCEkImUYSMoReBMSmGxuwbFwkS7Ylq/euqy7d8tRz9nr/OG2fRyJjEhjgfefyASTd9jxnr73Kb/3Wbwk/fx8CqwwrTwhr1gTdn5ywaFFvuV2YK8a7JFS70AhzFZktlkEVOw6kV4SqKkUE3yCABKBtkLqKHQE5K8hxVXtAxOxD2ame2dsjlX07djw1csErWrnSZ81khdUW0J+zh/lzdOgArA7dTwwuXD5XrF4tlutV7RUeZiGGKYgUxJjoPDR6m2pt9GeJzkhEQAQ0PjMRlBAjHoKkX6oKiu0IMgTsRPQFsfIMxm44uHPTvvxLXeXFr/Pnwhh+1g3AsHKlcW/6+Pnz+0pB6XqMuUfV3iYiy8R4JRHAKiKCRUFVRbCanDWgiggS/w8gxjl8QFVVQUxsIVgFARUjRqJv8wxE/4q12hJrt6jwmKr3cAnvmd271w3nPcMaC9j/awA/2ocX3x4LMHv27HLT671TRF+Hyt0GmS4S3W5FsVZDiY5XJPoEYkQ0Pj9Jr7JEh2fct665x6Aa/V1MYjUSfY1I/BlsZCkIYjyTWpNisUdE5RGM+ZI0er574MCaZmrIrJJu7/V/DeCCj1We6zoH5y1ZJpg3Y3WV8bx5ogarFrAWxRoRoyKiqiIi6VVXNP4RJjre5FDj/1XJ3n1017sfg6bhQRwTURybib5NsaqIWBGMGGNEDCoWDe0ekNVq7KcPbdu4JR/KfnYMQX6Gbnz6UCbPv/RuCe2vi+EVnucXNFQUtaqqAiY+uvTVCyBisOhF31BkG5HHiLyBoGoRFUQkMhjV9MAxknoDI9IVyBXBZBahCiYxFFU0ihsixhjPYMOwA+YbKvyPQ9s3PNJl7OH/3w0gTuwiVz/lkmX3IvJuEbkZFKwFIVAVIxJF4egZ599AkuzFATyO65lrFzI3HVtD/iYnXyuZMSmahY3486LxnyQ+7tTA0uOP3pQxqKpF1QriixdFNLX8AJEPH9i+/isXe///fzKAnCuccsmSlyPyh0b8m1QVNLRIfNVUBOtk7KgTlg3i+mPR2OVL5J3j+G+IY7mASuQFNLnxaXYYeQNRou/jYnYS/VyNjy4KMtHPiowztiPJDDL+V6uIGGNMbMNPKvzJgW3rvxU5g1Ueq386VYP8NN39pDnLLvcM7xeRVyOCWmvjvCtywskNtMntdAwAMFE2h8auX+OgHpVukUEYBDGS1HLpW9b00MGq4pkoX0A1iQaxq3cMTG2SZESOJs0s0pQj9TlqE2PQ6HUKhIG1RkA83yBKqPYh07EP7N/1wsafVljw/s8a20ofDoSTli7tGeiZ/Mfiyccw5lLU2vhiGSQqt9JT1uT2CkacuC+S/rt7cbKyPjpcEYlCRFeyJ04oMGLSGxyXgWlIyL5P0z8aLzPINMhI3kjT0OOZ7CVGNaioWquKep63BJG390+a2lucPO6Z+sk1LVau9DlwQP+/5gFMEuemzll2D0Y+bIxZEoYhioYi4olGzlUkTeWzc02upEnvOWJMHOo1ye+yN5WU9sbE3iFxz0oSTtR9ACL5LF/y1aGSpQ8ShxrJGRPZjXfKSRETvWaN3xdOrhC9nlBEPOP5WBtuQzrv3r9l08Pdz+zn3ANEt37GjBmV2sRZfyZi/jswydowiKO4yR4O6YNK/kklif/q3LDsZCL33l3CmfjfJXdQGQLkpn5JLRh/JjWe7IuS9CMGkbL6USWHMqXhQQRjxAkf2R9VnPeFMSKoqg3FmEHBe/PA5Gn9PSXz+PDwcCf2Bvbn1QAkimnfDCfNXnqFFioPGePdG4ahBVUR8XKnLnEi5dTrWYmXXK3YAxiT/obkorp3OrIVc1H/JnGsJr7FRiR/dVNbdHyEcVx7kuSpxt7FxEbkfKsTQhLDIXlv4pamcfAQYzQOg8Z4N0qx+vL+SZPXnV+/9iirVnls3fpzFwJSTzhlztK3YfjvIl5NrQ0Q/ARKVXFR2OThRLW3VYkPSy9IjaOL5txlzQ5NETxA1MQ/P0nqhFw0F4kSP9UU/VP3p4pTRsYhQ9DYpTsIYdxrSH6uMYLBYJNyVaLKAUneo6QIZoQ/xGVjUlGggRjja6hjiP7G/q0bPtEFW/7Me4AkIsvk2Uv/TMR8CKUINkQkPfwLLSbO1sU55QtibXTfUsAmq87i8zfxfZQ0qUv+nKQWSGwQaX4nDl4QG5ZkPzRNFjXJJTQGkPJGlYAEkXdy8QdNQ02a48SfNyShQjBZW8JoGIbGmJLxvF8eP35a7eypo49mdcaP1wh+zAawyoOtdnBwea1n4oQveuK9Q60NoyifL5zUBV+6YnyaMGuWAySHr9KN3sffGh+yiXF8TVEdp843SagxiDH5AiJCeOL6U9MkUhDEkn59EqaSo0hzkvjni2ZGrBLlKCZBHo1J350RkyagEULpvBcjxqqqqFrj+TcPTJx6RXHqxK+NHT/ejkOC/iyGAA8IJ85aPNXzzJeN8W4IgyAwIn4GuCSPNrqFxkianKdx1maJknsvcwherjAQx4fks/Y01DjfL0kXMHkxjifP8ktJcSgMqFXnBkuuX6CahZgk/muc9asbSZxaMEle1WrOCN2Q6LzPwPM8P7T2aWv1tQe3bzj248QLzI/v5hNOnrXgEs+Yx8SYG8IwCIwRP3lgKQ6T1OjJ4TtuWAH1usqvOD9A8w8ndaWazwMSJDB3+MZ9qrGPUedFaZaZp4knUZmpcYtZkziexO7EuYtEuED8omL0L05GIzPS2Lcn5V9UNmrq89UNg07HIf6ZfmjDwPO8GwqePDZrwWWXwOqQVau8nxEPEFnjpJnL5nm+Pooxc2wQBiLqR7iOQURT5C1t0Dv1dz4tlqQ1n90qjW6WVcWoXBgGxTEQt1pQBzl0S8C4gZPlewk0TAbpdj2hNHmzXdiBU1UkyWDaMnJCm1qnqFBxOwlO99HNKx2ziAwv8Izvh2G4PxC969CWDXtiCDn8aRqAB4SDsxbOFc//HmLmqLWhgKdu18zx4jZ1vUmilh10dpk1TfbyiE1yu51yzG0B54wjn/WnpaO6xb7zNVkZ7wBHrvuO28pJ7E7dhqYAlXZVj4mrF5HUk2QeJwshWR6R9Dki76BduIWIhMYYz1rd73vcsXPTun3/0nAg/8LwYWfPXjqlBY+LMQus2kAEP3kQRhxaFbknnEKwFpsmcW5zrrv2T72DdZI0MSlgkzxI7TqACDeIX26Sqbsoj+YbvZIl9F2xO24Px4khaUiIEk/r/CATp/RWNe1XXFCx5n5xLvbkcgKBrCUd5RuB5/u+huGuQLn1wNZnh/4lqKH5FxiOzphxfaVheNB4ZoFqGBAfvuS9cuqCc2/SbaiKZDlCagFJfa5pPZ+dbvw9ERsoiqe5Bi3p14pnUkg4+kEmTdyyXoIgYjCxV1Jxr0aWoXvGZCVfF64gEh28SdvRkm9W5VrP0eetJXr94v6701twcx40gqBF/DDsBOJ5C4zhwRnXX1/hwsLoJ2oAKUGz453/vGf86wIbBiriZzl+kiV3H5qTLScgiNtISRKoFG51cHi6wHrNP6huWlf6pWHcxnV+b/rnixcYzt8lzeJThpCT1KaJa+q1bY4X4J63jf+QC1JJeSvkMAcx6qSBUe6jmnmxxAg8419XGA0/H7eUzT/HCP4ZBrDSg9Xh4Nylf2aM/yobBB0R8dNsPZeRSxonVfIYfOoa45gujidISyW3J+DEyRzs6hiVmMzDpIYhmjJ+svieufTEAmyCCGr+yagIajQF8zXlBeRy9bgLqZEfTnIScRJLN/wntb9EpXAUNpzw5aCIUeOJHEQepUDGt0HQ8TzvVXMvvfrP5EtfClc+8ID3z0nifsTGzppg0qwlb/F8/0PWhoEIhe4SLX25Il2Qaga45ArlJNgl3D2RrBljnS81ThQxJkX1EgpXxBvIjEaMpN04VHIt4PQWGqfSkK4rIQnWYDKjFKd8TQ4thntFnaTUqoP9d4MCCX6hXV6MXEjMvFacdcTPyqRJFJ4qgaq5OWx4e3d+56sv/KgNJPOjeYs1wbgZiy8Vz/yNWmtTA3IbHEbSA07ibK6ci5OmxIUnXkPiOJxakRUn0dZcg8gtm0S4oHUsTnkp6nbxnIPlIriCZBm6CwqppjYUv5YYDYh4PpmBpJC0dh2q5uDotOklcqHTNqREFYldv7qdSyPgGcT3CALLWH3UC3s79qp/dcPf/Pvv/9WlrFkTPKAPvORz9X+EpE9mz55drsNnjFJR1RBJWjWSy6Jdg1C6ExyTuuQMZ89uYAKlanzlhTAP+KTsHHUo/Zo/WXEKytT4XC8T/dWLuX9Jb0BU8jkMmcsRzecg6fsUmwDQcZkruVmDPPgtEY5hnHsd8UgjHqJqzjDdpFhRfDwMhlarTUva9MzpY/Ety2TatbNtdfa4ypm95z8DXLf1vq2dC37EvywERD394sDUP/e8wqs1DANMFPeRjGKVB00ubPZk5U6WDGU3OW6MJEyeLrNKv96Ic4Nc9o7LF5a0lk96C4mRmRhuFtfHp689ywrVunlE/n2lIUnyHAYXvla1cYMro5qloY+uppFIPjl1X7PE1YSFZqNFQ1v0LOnn0vsu54o3XM2Ua2cRFNS02q2gcWxk6tALx3vXP/GDb73UUCAvMU8IJ8xacqdn5FGshmLEyxeEGaCj4mTR6kDuJr4sSWKj5ON18qal22g0B9mn5E0h177V/HeR4Skau1MHVxAHlOkGcZwWgTg3VS+S6GT1eQ5pTplKKfhExlsUJ9mT1Pgk14G28VeXEDpBSL3ZQCsw+bJpzL19AZOvnEZlfBVbDzn87D7GRsdYcs9lHFl3IHz2Q497A6bvrhdf/MF3XwpS6L8EA9HBweW1kPZHQbIJDNcdClmWnxxm8i41KWskd+ES61aJ+PkRo1cyw0hvg0lzvMRAPCO5G6maoQAR/m4d8ofECZmmxA1xWRnqoG+xEZqu2KxZY8EpC+OSzP4QP+s2hXLIJ3F5LGRd5+jfrYmMxMcnCENGWmN4/R7Tb5rD3NsXMHHJVLxageaZOvse3snhJ3Zz5PlDzL5jPsVXFWm32qKKtul8dHD58iuOL13a+N+Fgv+NAUTU7bDUep8x/nxsGGrM38thqHQRLuJYptptEJIWAdG/2/hBSuba41tr1WLDEGshtKHTUArT5Csp4yTNnsDzoqTMiMEzHsYYPM9LZ/qSA0+MwkGWIwhaxEEMs9ermkcpM/hYclhHYoyZUTttZImMM6mQrNq0fBQxeAhhK2DMNihNrTL/pmVccusCeuaMQw2MHh7hyNe3sP/xndT3naYsZSpapNJTJcQSNDpGgzD0yoX5Pa3wfcff//7fW7Vqlbf6n/AC/j+d9a+242ctXSqE70bDMJ6YcKqaOF6mMS5udKiB2JrTzFkEYzxMTMO2oaUddGi32nQ6AVZDjDH4vk+hXKJarVHp66VULlOplClXypRKJQpFH88UIriVaOK302nT6XRotzu02m2ajSatepNWs0Gz1aI92iIMOlhrMeLhF3yKpSJFvxBNAnvRwUQdOsmBUQlRIzmo1B253iEJRuLA2C5n2O2Fp14/g7MB2q02bWnTP3eABbcuZdaNc+mdMRB5ggPnOPDEXvY/tpv6oWFKxRKVSj+eMTRGRgg9paUhnbEOKCYIw1CM/+75S6/95OrVq7f9U1DxP2EAqwRWW4/wQ+J5RbEaZj7Muc0udq9ZjE1uhxdP7QRBQLNZp9VqIaKUyxUGxo9ncPpUpkydxoyZs5g6fToTpwwyftIkJgz009fXS7Wnj3K5SNEHL2rPp91d64B9IRBYCANotjs06w1GR4Y5f36Ys6dOceL4EEePHOXY4UMcPXyE48eOcPb0OerD58EqxVKJSrlMsVDEeIYwtNE4eVzP5+DhhAfgxsrIsp1homzYJCsMYs+iGlUgVqmPjREWLQNLJnPZ7fOZecNcqpN6COsdhl4YYt/jOxlaf4jOqTaVQoX+/nGEGmKTNrUopuxhUZr1FjZQsdbi+X5RhQ8Br1i1apVZvXr1j+IBog7T5FlL7lIjvxixeoznlmCZUbvzeNE/GhPh751Wi+FGA2OECRMmcumVy1l22aUsWrqYWXPnMWXmHCZOHqDmQTH+CQHQAdoWWmMhjUad4bOnaTcbtNttgk5IEIbOAUT9eN/3KRaLlMtlypUa1VqNceP7mO9DgWzcOADGLJw+OczRQwfYu3s3OzZvZtf27Rw8cJAzp05DqFQqZUrFYoQQWssFfUaR7L1HQy3pSJnGjbAL+KZxpRN2LKOjY2hVGbxxOnNvX8jEK6ZRHijTOttk73d3cWDNLk5uPo40lEqxQrFajMKihqDRZRAMYjz8SgELhK0gwU+8IOiEnuf/4oLLrr9r9erVj/6wUPBDDGB1RMcM7Z+I8cmPOyRuLCPCazzIbfyo998YG6MTBsycPZNfuvFGrr/5Ri6/+mpmzZ1Jf1yt1YHTYwEHd+/n8OHDHDpwkGOHD3JiaIizZ84yfPYMI8MjjDUadFptwiCIGidqMyJnPL0TTd94eH6BQtFQKJYolSv01Cr09Q8wbsJEJk2ZwpRpU5k2cwbTZs1m+vQZXLfiMu5ccRnKazgfwuGDR3jh+edY++RTPPfsBg4fPISHUOvtQS1oGEaDSm5FkBsesSktLPEYCRApxqCBMlofwx/nM+eOecy+bREDiyciJZ/60BiHvr+FfY9t59yu05TDErVSGS3FTa8wJMXJJEsqjW8oV0t4IgTNIIbD4waZUVTtnwDfW716tb5EDxDd/gkzF71KjHctEafPw2mBds+/gOL5HmP1MVqtJldcs4LXveE+7nrZPcydMpEyMAIcPnaKx7ZsZevmF9m5bTu7t+/g5PHjnB8eod1upa1aYwTfK+B5URJnPIMxHr7xorucjG2h+aEOgVarQ7PR4vyZcwyFIZ2ggw1tNMVthILvUe3pZfKUKcyddwmLlyxm6fJLWbxkGXPnTufyudO5/95XcuD4WZ564nEe/OKXWffkU3jGo6evLxpYdfBkm0cpnLGy7EWZuNcQ9MOiuy5nzi2X0Dd7AM/3GT50lv1P7GHv93ZR33+WslehrzIQeUMNwcY8Q6NZr4WM7IrnUSwXMaqEQYgxHoLBiHo2DEPxvGvnXXbdL+15ce1XL1YWyg9j9U6atehpEe86IDIAB9a3MTaaZMKeMZw5e4ZFSxbxr//du7jt5b/ExJrHaAjbN29l/ZM/YMPaZ9m2eQsnTpwgaAV4nkexWMAvFPA9PyZHJHzBiBiY/H9ashuHuZON8mah2cTUa1xU0RkrS1Dm0NIOWnTaHTpBiF8sMH7SBBYvWsTV167gmhtvYuGyyxgow9kOPP7Io/ztR/6aLRtfZPLEiSmrKTmIZCw9YyNlYJYieMZjtDXGbe/5Baa/bC4nz5yhNTTGga9v4/iGIzSONSj7FQoFDysaP18Hy7bOfCOCeAke4lEP6lz3nluZcsNMnvov3+X0E8cplUuxcdrQeMazgV27Z8u6G7pSp4shgTGrd9bSOzDmD1StFcHrxt3dN2qM4ezZs7zm/vv4i7/9KNdccwWj7ZCvfvmrfOiB9/PRD3+E7337EQ7uO4gNQ8qlCtVKlVKphPH8DNa1SW8/jMu9jFiZNHbUmdpJm4YurSvXbs3g4iRkJCOIIoJfKFAqlalWKhR9n3a9zYG9+3jyscf5xoNf5ak1j3FutMnMOXNYccVS7nr1a2g1Wzy3di2lYin+OaarI5kfFxOn8WOtRft8JiwexBaUzliL/Y/v5NSLJ6hV+vBLBcK4neyCStlxuRyECGE0QIeAWbfNpTbYw8Hv7aV5pIHnewml3qhV63nezP4J0x4/e/LI3m5WcZcBbBVAqwPjPiKYRaiGIsaIOo0YBxYt+AWGR0Z4w1veyIf+259TrpV59OHv897f+m0+8/cf49jhw5RKZXpqPRRLpZRhmyRWLhqL5qeBEpZwbjIoBxE7oSgWcnCRO+I5AXfiyOUbqo3xBmtjL+ZRKhWpVqsYMRw9dITHv/soax55hGK1xpLLl3PHXbcyVm/x7FNPU6tWU3RQXETQQUJTvASl4Pkc33qMIy/uZ9L0CfTPH8/smxbQP6Wfo7uO0DndolIsZQMlOUuSTOTChd4RQi9k9p0LKPdXOPj93XROtCIDyOYjQ/E8o2rHnz1x5HOsWiWsWXNRAzCAnTBn0SJR+UtQgxgjybSuyZA0NLr57Xab2XNm8Vd/8z+oVkp88m8/zu/+1rs4c+oMAwP9lMrlyOVq7NadwxGX0BEjiZK4PkOOhp2OeOcClyPoYDKYN+NSSo6EAt1DAHSxbxIvFH1psVSkVqsxfPYc3/ra19Gww7U33MDVK67hB088zumTpykUfOdOaMp2dkGkhENsVSkWfJpHxtj39B58NYybP4lxyyYz46pZjJ49x9l9Jyh4xQzydjgAkhqwM+SiivrK7LsX4td8Djy6C3smiDESyVqvahE1l/QNzvriuS9++pQ7YOK0DVdG0kmWtxvjFVANI6GtDARRyWKTMYZ6o87Nt97CtHG9PLP2eT74Jx+gt7efnt4eQmtjBm3Xm3Bct0o3dTPLrDVtAonDqpUuTlm33Ft+HiDXmnR7a+ri8U771zjJm1XCMKRSrTJ1cCof/58f44nvrWFaT5Frrl1Bq92Mm1eam2xK6Wl64QiUVaVUq9BjK2z91As888HvMbrtLP7kEjf8zt0svHc5jVY9nhZyyYnZ8EymgxD9LjWCFISwE2DbYfb8klZ2iKjV0PheoWCDtwOsXLnSdPMBBNYEs2evLKPyemvjvpuTjBgMhA6EqpYwCCiUijGTJspCszavQ6Fy8O6kF5skfGlJZbtcfAo0OBQrlW6ScDwzIFmsjLuCyWtK2WdOY12c4RTnS/IeI2HzQgzZCr6JZv56emop4QOHEiYJATVx0zYeI4tnBExM77ICvbVeRjad43sf/CbtoTqmDJPmDiK+F2Xy8TNSJ/wZd8xNQUPF+IIpeISdENvJRuFNQm6JXo9Ra8GY189eubK8JpLdE8cAIo7fWHDidiMyJ86WTDp/7xB5kCyOh2FIaENGRbjsqiv5w//0APVmg+Hzw/iej+/76WhUEr66B2VEY6avM06VGxjJtWQ1Y+GZ/DSQO/uXI9s6nD7NcQbyU8jdswDGRL2E+ugYp06f4tf+7W9w7c23MCqC8TyX3+WwnSTrBDozhy7lyDglnCVkzop5jJs+nvBkmxf+8VnKfjkbMXeSzOxax/MOMd3aK/r4RZ8wsISdkEQZTTNuLSJiFGuN580pnQlujyiEq8yFjCCx98ccD5vEmyzLdtgp8Y02JivRxtrKG9/xFv7ms5/i6uuv5fzwMOfPnceGiucV8IwfETyEtFuXuHqr1iHauuRN8qQRB31R69C4cgyczNOknVa5kI6dGVjkRaKmUfQwAUZGRjh55iSz58/lQx/97/yrf/9vGetAU6EThNgwjAEwTfMZdTxWBNVmnUYxkopfiAhBu0Nheokl912O+sLWr2ykcWAMv+DnYGRjTOR9k9drMzdmFbyyh18qoB2LDcJYUskFqhIau1gRUSS4vxsIElgdTpq0tEc1uEexknQoxJO8Ilb6QCVtZNj4Mu7etZ1arYc7V97ANdffwNPffZSvfvkrPPPUM5w5fQZPDKVyEb9QxHheVOEkYzYOEydpkqQh1Gier+G03cSYXIRP3HDS5zc4lDIr+bk/z8RlbETPDsIO7XqbThjQ19fLdTffwD2vfAUr73k5g+Oq7Dp4kvPnzrHssgV0QgeNdG64dpWBuXJQsx4CwKgd44Y33Ik/WOXIU4fY+a2t1Eo9dIIQL7kosdV6CEEQEHYCSqVS9H49D88LKVRKeAUPQsWG4LkxTXJopVG1AuaepUtX9qxevXoUED9V6yqFNxnxpmgEfJtsTCubi8PkaL0AdAJLCdi8YT3/8798gH//H/+IV/7yq7n/F+/ilb94F1t3HeDJJ57gycefYMumFzl+bIh2qxMDQUUKpQK+50XuLiV6ahoeIhAne7Tq0KxSuZbYOhOmcUoeNQ59vBCHrtAS2IB2s0On3Sa0lkKpyMTByVy9dAnXXX89N9x8I8suXUwvcLwN33n4e/zn9z3AW97xK1yzfAFh3IuwMSxtpDspdalrpKxfq4oxHiMjI8x82XwGb5hF42idTZ9cR6Hjo34IalK1swhD8GgFAdVZPRT7SwxtPEKv3xuLWgl+0cfzTZQAhprOvTpJUpKkGrVqRcyUll+/CXiYVauMDyeSL32ZiFG1cVcjR2++GE3E4hJe+3p6OXHqFA/8zu/z2Y9/gle/5tXcdc/LuGThHJYumM0b3/FmDh89w94d29m9bSs7t+9g3549HD16jPNnz9FsNLChTQcsfD9CCD3PS+liaVs1jnNughe1cm308NRiA0uoFmvjWj8OJ4WiT39vHzMmT2L6rNksWLqYpZctZ/6iJcyaNYlxccNo36Ehnlizhm9//Vs8v+E5zp05S39/fzZnKoqReOzAxoynZNQtZRDFZWzKKxCCVofy9ApL7rsKi7Lti8/R2DdCraeHMLTZdFPibUOLHVBu+A+3U5vew85vbGbL6o0Uxwr4xmBKBitK0A4Qqxgv8sr5qiet5KwxiFH/ZcDDK0+cEB/WhDFmcbt2c6dt1v8WxydpnLLHAh5RHFGlXK4xbmAce3fu5j/90R/z0f/6P7j6umu4/taVXHXdtSxcuJDFt99I4fYbaQKnW3DixHGGDh/l8MEDnDh6lNMnTnDuzGnOD49y/vw56qNjNFstWq0WQbtNGAZYG0TkDQvE/Xzf9/G9IoVSkXK5RF9fH/0DA4wf38eEiZMZP2kSkyZPYnDaNKZMnc6EwcnUKh7FuAAZbsPOHft5cf06nnniSZ5fv57jQycol0r09vbS6QQUPEMp5oGKCywlKiHdpW03kwmfhoxx7VtupTazl2OP7efAozvpq/VirXUqJU0nlM+NneXKt9+EmVlkLGww/7XLGL9wAhs/sZ6htQfp8QYQTyCwqI35g6JOdaMuaSVir6veDsiaNWtCH9DBWQvnWpUl0cGqySVbqmkS4raBxR3KjF2zDUM6nTbFUpFJlTLnz57lq5//It/+2jeYNGWQuXMvYdmlS1m8fDmz581j2sxZTBocZP7MQco3XIkfP6wQaANjHRirN2g0OrTbLTqtqCUchgGEkQeyRjB+gVKxSKFQplAqUS4WqNaqVMtQImo1e/FBB8BYCKdOD7Nr22H27N7Fti2b2brpRfbt2s3Z02fxMFR7qowfNz7yJtbGGgFRFPS8KE3SeKwrVgZN63aVLCQlz8cTn7H6KHN+cSHTV86leWyMLZ9bT9mWSDTyUvetYDzD6Mgok6+bwYxfWEj9ZJ0dX1nP/NuX0btsItf+/h1s+fQ66q1mZJE2C80J6KZ0D6CqCcIAEbNk4fJb5uzc9MQ+PyrBZYUYr6g2CAEPG9fSzlQLVp1SUJz4JmkCZh20b3RkjLtedg+vv++1fOgv/pqDe/ezbfNWNqx7lkajwbhx/YyfMJHJ06YyfeYMpk2bxtTpM5g4eRL948bR0zdAraeHak9P1Nrt76FYMHgeeF1scqsQBGADaLbbtBpNzh0dYmR0hOGzZxg+e4ZzZ84wdPQIJ4ZOcPzYUU4cP8nZM6cZGx0h6FiKhYhLMGH8hCjZDkKCTpCVkGoJrE2ZycaLZglz5WPiBRKN4Tgf9QwErRaVOT1c+vqrwRh2/uMm6vtHqVarhBo6oFeUoGqo+FNKXPErN2BKhiMP72L3F7Zy8uljLLnvCmbcNZ/L//WNnB86S6PdpNMOsDbEik0nkU3aOzDJfKKAhJ7nFYMwWAHsi0e69DqR2JE5Dzd90MlgRhfd24hcZOo1uhGBBrx61b3c/8qX8/SG5/jY1i0M9A9QrpSYM28ue3btZvj8MGfOnGPLCy8SxjmFMZFLL8Xkjkq5QqlaoVQuUSwWMZ6Pb7yoAoil4EIbRJhEJ6DeHKPdbNJqtmg0WrSbTYIgSD2ZGI+C71Mo+hT8AuP6xkfeS6Oeuw2DCNEzsWWpYK0ShAGBVTrWpt1F43kxdq9pOZowoazzzMQKLa/JDW+9hdLUGkOPHWDvwzvp6ekhtHELVyFEI3aSJ4zYMa5+401MWDiRE88dY9dDm5k0fhA7omz86DpObhli+RuvoW9aP82gRafZwQYRB8AdYcvV0NFlVkQw6HXA6pgPIFdmaauQ0+DqQsq6DD43kInJtHc8MTRabYbDkHYQWeeZM6f417/92/zxH/0u7/mDB/jcP3ya/oFx2DBMy7VkyFKAoNVhuNEmPHMObIglSupccqZJ6Vox/cxEo1zGeHjGUKvU4vGvmHDqqL8qSmBtKjaZNFwkxTtsJOTkRSFw5PwwZWMiYzVxr8JktPgMgNG0QjFiOD86wrxfXsKk62dSPzzKC59ZS9mWcgl2MkbvGcPo8AgTb57OjNvn0z7XYdPn1lHolJCywSj0F8Zx4snjfH/Xt7js/quZc8dCTo8cRazmZhXEbSxpNlsa5xhXAviTJi3tUQkXxNi7SSTYcjpueQKwMwKVTceaeMo1U7rQiKfneREoEidNM+fMwgCTBgej2jYMCYNOXkMnxhg8z6BeFL+FYjooKWrSFnFK1nRHfV3QIq7Xrc1o55JrLsX8AhvHT0cMQvAIgg7Ndotx48bz8Y/+Dddft4LBieMIbIARIUwuv8mkaXA4C+1mi8qsKvNfsxwNo6y/vneYWm8fasMoT4jTdCMGOiFmsMiyN1xFWFR2fmkj5zeeoq9ngMAGiAihWmqVGq1TLdb/tyc4tGYf9ZMNSsVyWqGrw01MY3dErzAaVUULli5d2WOkFM5VmKKaUaRz2glxcqMXjrBfMEuZHoKSTtuqM6NvjB/RqoBmqxntfVCbm+Fz58rSXn6aaWvKFYi6d1GCZpOaHKK/W3sBcoiJS8kLoN/85HDShfM9DxuEjLt0EkvuvZy2adOqt3jPu/4Dmze8SLXaQxiGaRkq6s7+kUrcNWhw2ZuupTytyrHH97Ln4e3Uar0Z1d3hfXjGY1SbLH/TNYxbNIGRLSfZ+eAmKsUqYRDEeVbMRApD/IJHb7GPMxtP0TnZxPO9tL2dvjVX70BI5xrBTAm91lwfT+YbpKCq7hgbudkI7dJ5STs3WSmUNa6SpNBB8JwBTXf86UI0X1MkL6f95Yg/55m5Nt9lzBmopPN86kzsiiNLl3qOmKZtbYwuimBDRcfBNb9+E/0LJmIGPLZ88jnOnz/P9773fYrFUnyI+TU0yWCL8QzDwyPMecViBm+cRevQGBs//QwlW4pivWYtcFXwCx71+hjTVs5mzh0LsOcCNn9uA8WGj6nEXsI600smm6Yql0vp53PTRqnwoGSYDiKqqp7xCqjMN6GyMGV5al4li5yQk8ZWrbkmh3Fdadz3l1Q9U7s6dxdbu5IpbqXTxJAftkggYZMxfRK8SnMKDV3Qq6saol1iEjaHHzu9+4jVPNoZ49L7r6Y4u8ap0TMsXLWchfdeyujoMOViOb79zu+xcSIZy8iE7YC+hQMsf8MKPCPs+NILNA/UKZcKmTi6JnJ5hqATYKYUuPz1K5CiYfc3NnP2hePUKpW432Diy5Ph4mkCqhlzSCU3vJi105XUuI0YGzWj7EIjMDfzXS7cqumyJZcBp+Ls3XHEtmy8IMFl7JIBirmFDLg9K3W7Vo4YRDoinaAXpJAvTqcsNU+3E+gis4lknHtYyaErOUPReHh0dHSMSSumMOdli2meqTP02B4a9QaL3nIls+9ZwNmzp2MoVlNHaNU6/lmpmyZXvOVaylMqnNlwjIOP7aa3t59QE56DcfofwkgwxqWrrqRnTh/ntpxi51e3US31MNps4FIhUsHKJNm0Wc+ArAjIe8rkeVjNKZOgMteoMiuelpXuiRcVEJuhXYm1ZbaS8fbanTBV91KbACECYRhr53RPD2TMhdxn1KGJJRO/jrzGxTSIuulXKRcg1RhSbPImJRNv9Rzhh0T9s9NuY2shl75+BZQ9hh4/wJMfeJQD/7gNK5Zlv3ods+64hNHzwxTSUQmJwbLoPZ8fOcfs2+cz4eqpNIeabPzcBipaBU/SWyiplJxhZHiYyddOZ8qtc2mcbrDxM+uQuk8fAa+dMcg4BKsmwmKcAJ9GxGSsXLvEOCTjQSRJb2ToKiqK8ZhlQAfTRYrOoZpk7YnQ7chxt25YCw1g5py5cXMowPej1m9vtcx4z6NSKoF4ePFQcUKRctK7KPt2GD2ZWzdpBaHOQdt0ll7zTLFEZDqjRCFdk78mJlSqgPhJRaB4GOrNMZasuora4omc2XScFz+/nqk9U9n8yWc5+JWt+FWfq951G4O3zmasUcfzC7EcXnS4rUaL8swaC163nFZg2fy59dR3n8cvFhwFlGjAVQSCTgcz0WPp/VdhfWH7VzZxasMQvlruGxzPH1wyg5lC2ifIzyB2qV4YyWSoNS9vn4y7CxI3sUBDBg0wLuM2Osoe0jWqLdlcfqKOEU3DCHULV1y7gj/8T++n0WwyWq9TrVb51te+xcNPPsMzTz5NpVKOIFxjaIZhOrWr6pI5EjfnuG/JjESSuGedSsPJ/jSnSBb35cNYjMrLEM3Ep6ZdQwXf82g2GkxeMY3Zr1hKONph4yeexJ4OwEBvuY+NH1/Hse/spThQ5Pp3raTv8km06w18Y9Kav+MFXPHWG6hM7+HkkwfY/50dVAsVwrDjtI+jZ1wQj2bY5LLXX0Pv/HGce36IHQ9upFws4wctbuzvpzQyQtEoVgMntGlUpsqFFLqcM03CjeMN4sRXNKpgxhlBel3RJIlvkOtqujX1NC0NIw/hG9BQ+LV/804+8YXPsPyK5bRbbR784pe5/763sGv7DkrFIp2gzZnTp+n3PJr1el5eII0IbpLplJKZr89pBKS8nqTXnmteajrHEJWJcbdQNPUMJpF/C0HG+Vz9zhupjCtx+FvbOPXcMWrVGqGCGkNPsZf1f/Mkx588jEwscu1v3UpxZonG6BgFv0C90WD+y5cya+VcwqEGWz6/gYpUUq5/whayGnXtmo06M2+bw9xfWAjnOmz+7HqKrQLieahCs9HGqOAbV0Mxzl+MOMuzJM3bUsZD8vtELhTXTi60kV4DWs3omJn+rbgtRaM5jR91hBqNGKrAvl1b2bn3ML+48kY++cXP8cH/+mFuuf1Wip7h/LmznDlzhkqlwuc/8Wne8Rv/jm8/9HX6BvpTxbBEZ8c4HDjt3t6R6O0l5Eib+YbcPB6uNpFb8sXZMxq1ipN34hlGOnWufOO1TLp0kNaOs2z/x430VfriIZBMA7jWKfLUXzzK2bXHkaklrnrXSnSyx+i5EWrzelh2/5V4CLsf2kL7SJNiuYSajLKoANYStNswWODSN1yNXymw/5s7Gd1+nmqthgChCs0gxLNQlKwj6yqtiIPQuXzBFKMxJt6XnORAiSxdWrpVDUIRh8KcE2FKSyYhD7ZFWayJFyL1Aluff443vurVfOpLDxKi3P+6V/G3qz/D363+Ar/1u+9hxc03UOvv49ChQ3zyb/8XR48cjWptFOOD7xl838Pz43EwE+/bMREkSywgoQ4CKUJeSDCOw2IE8RKaVzRy7vt+9LM9g6gSdgLURr+iPjbKtBtncMkrltAZDXjuk2uREYMU/KhWNwmHz6K+wR/1ePLPv0Nz63mqi8dx3b+7g87EDkvvu4rC1ApH1x5iz3d20FvtQdXiYfAcoSwjhpHWCEvuu5LKrD7ObjzBjq9vpq/Skw6cWAMtVXxjKHuxkIbjBV1Ooo3H5PNimxmknvLDXe2dqHlX9CNWEGntnjxIlW6w31GxwlEAjyHfSq2XI4cO8+7feBeX/s3f8er77uO2l72c6667gpuvu4JzIRzed5i927aye8c2dmzeyv79+zlx/CT10VE6nQ7RBLrBMz6+bzCej/E8jCheQi513b9INguk2TKmhAQSakgYRtPENmbxiGeo9fTQ19/LyMgwNgDtg8veeC1aEXZ+ZgvH1x2ht9ZLENpsB2CsCqJWKRSLdM40eeZDj3Dz+15Bddl4bv3jV1KaVKVxeITn/uEpip0CQTHM08NU8I3H8Ngw01fOY9qt86ifaLDh40/hDYOtaCxHK4QitASMUaoxjGsTNROy6igVtSAnQ0x+s2r8n7ijGy/XphW0fT89eGdNWqaUkUCxjmuVCG5VL3LHoVVaQKvTwfc8+np72bJpC88/+7tM/+u/5rpbb+HG227n6muvZcH8GayYPwN55S/QAM6MtBg6coRDBw5w4NAhjh08wPHjpzh96iTD584xNlanUa/TabfptDsEQYi1YSqiaOPOnJgoAfONj18qUK1VKFdr9NR66O3vZeLEiUyeMomJg1OZMGUqixcu4C//5E9Z+8QThISs+FcrqSwc4ORzR9n0+XVUS7Wo4ePU0pkOQlT/l6sVGkMNnv6L73Dre19BeU4flbDIxo89QX3PCL29fVHmHhupIOAJYRBSnF7h0jdejVf22PHZ5zi36QT9fQORwZmEhmdoxS6qVvCzWJ9MZetF5HgSP67JvoOkenI2rqrFGMPI2Cj3/NIr8FUJJJkS7l6Vlrx528UHJDMUtTa33c1aS09PD6avj+PHhvjcR/+eB7/wFWbOmsH8xYu4dPllLF66lLnz5zNt+jQWLL6EZYsvSX90JyaDtFrQrDdpjA3TajSojzVoNRt02i3CsEMYhrHOrmA8n0KxTLlcoVQp0VOr0tvbT7VapVIRKmT6A1Xgv372yzz5+A8oGo/J105l5ssW0Dnb5PmPP4UZEbSWwdf5/cGSHlCIpdJbpX6gztN/8Sg3/ebdHNm0m/3f3cNATy+hRhRtbKT9g0DBGM4zyoo33UTvvAFObRhi9ze20Ffto2MD1EjExY+T4aaNuGY130fE0q2Ub61iuhUBuxROUuVRjShsKlF7u1AsMnT0aOAD7WSRUybqlLgCyTV+UiDIiKN2IWmmlsRKEajXx1h5xx28+lWv5L//z48ydOQYzzz+JGu++z3UKhMmjGf8hAlMmT6dqTNmMHnqVKZMm8akKVPpGz+Ogf4Bent7GZgwiXJZKMdW6uenWVKWT2I4bQtBU2k225w8fZrR4fOMnDvH6ZMnOHlsiONHjvCNr32TWrmGDoRc9c6bKNQKbP2H9ZzeeJz+3vGENozYyfFCyRTgSirJGB21NurK1Xee59Hf/0dsO6Sn1BO5WMmUxZIE9fzICFPvmsO0W+cQnG2y+bPrKLWLhOVoSVakOp78DhiNy90ed/FULlwnOIlmoqtkU0FR9MqIPK5MbaVcYcumF9s+UEepZnT/uM8dY89W7UUkNiUWZshKDBPHSBHB8w1BGPDaN9zHO17zSrbs3Mk//N3HGTdhHNUgYGDcOIaOHuHQwTH27d5DGEYdPM8z+MUChWKRWq1KpValUqlRq1Upl8sUSyX8QpFioZBSy0OrhEFAu9Oi1WxRb9Rp1us06g3arRbNZjNSFgkCNIyS24H+cTS1yXVvvImJiwc59cIQOx/cRF+tL50CSq6aTXr7McM43e4Vx+UQS6VUwbZDFN+hybnykBG3wRsssOi+ywk9Ydc/bubc5lP0V/toq812EDsTSfUwCgEVz3PUVV3cxzgqqo40jbseF4nbw5phA9GuQqmUK3UfGBGRidrN+kjVs6IMNN2WHO/DdSd1Ek1744g4GmPoBAGNMIwOS+DcmbO8+Z2/wu++5138h9/5A771jw8xMDDOWeumqQpIq9miMdZE7alozlDDrOxzFi643i4SR5BUiiXiFPiUiyVMqYzxPDzPZ2RkhBm3zGbuPUvonOvw3CeeptDw8Cp+NKKd7B5OBjQUmmMNiuVSuuINZ5optLar905OMs+IYcTWufbNt1Gd3cepdUfY+eBmeks9BBpixMuTQzR6snUbtZuLRnJihElOlutpcBGRzoTUq5oT0bCxRlGIHfEVzmJkLtaq7ZLUzVas5XfqqbOePVltYlzR47grqCKEnkcnCAg7HawqcxfMp6+3h0vmzSPoROhYkiylDQ0vooB4njORnO7gsZmhSaarqZpt8koHNG1c/yJxZRDQbrRgAC570zVQMex6aDMnNx2nr9ZPEITppLEhnulHaYR1Ji0f5MzeUxRaBfx4HtLdf3bB0GL8/57vMTZWZ84vRGTQ1sk2Wz+1gWLLRyvxwgxHXzgyuuhgG2GAWkvV+BjN81zSJlosFNXN1XDH1tMVNyl5JrYh5axBOZ4zXE3EFvIivikNOt3K6S5LdmVLsumeUJUgTlaSOJQYQqfTSXfmpWvfNBuqdDuLVm1EeNQQq5YgDAnCgNBGVUFoIyMKgzAmg2iaxBlMbiP4WGuEy994LcVLejm96RgbP7+OWqmHMAiz9bDxW/cKBcYao8z+xfnc8mev5orfuJmGNAjbYdoBtN1yQdYZRkUI2yHlmWUuff0KCsUC+76xhfquYQqVCq2Y4ZPK06rN5O0RGqHFqqXqGQpxCdrdsnN1FUj3EroSuUm+ormBVsEgKseNGDmY37Lg7luTdEdPJM5ku3AB7UIHNZ0pSQdIu3hyxkgEiiRdMWe0O9qIkW3YEBWnZRtbunUs3drsYUt+a0jC7jFelLkb36M+OsqMW+Yx4xcWEZ7t8NzHnsKetXHoiZk0SWPM8+i0OgxcOonL33o9JztnmHTHLK781RsZaZ9Hw8gw00UmCZ5tsgcvKox2Rrnsvqupzezl5PNH2f2NbVQqVab7lnmVUiwHk18ph0aYRz20tAUqvonKtORYrOZpcDbfY7iQwJk9H2xWFCp60Ajsy1rpDq9dMzpYDl2XTPQg8QLG0cfRJH7aWIXDsblE695LGMeJpzFOyHFm7S+QfbeSa0pJMiGk+fepNtnrG3PyY2WSwtQal7/9ekzFZ99XXuT080ep9lQJw8x4bCIrKyGdSptrf+UmCuPKhLtGaAyNMOuVi7n0zVdxbuwsBbxoGsmhv5l4m7ARj5GR88y4bTaTbplJfWiE5z/+NH7dY0A7/NlVS3nHvFkE7XbkTWyioJ6JXzWiZQBUTGQAYU4djZR6nqyzTUOzy1SOn70XCQvlvbawz4SWnfEcete25dza7DTD75LJdEW645sfOuILJq+RL+T3sxjJEz3cnn7CFxTyfQlXIxhymsQXUhMTvoFPq9PgmrfewITFE6hvPs7Wh56nVhuIaWDO99iIDHp+bJQFr7iUSVdMQ0+0efavHmP7363HtkLmvf4KFtx7GWeHoyGSXKmsiidEg5zTKyx9wwqsJ2xd/QLD204TGrisp8o1pSLV+liqX5iieSlHUmhZpWOhKAY/mdByCH424Tski6xdPYGuD+vuXBIx8ffsND66W23YEZen4egC5HYnONHBpMKHsdRpJ4xjcjSAmaaMccs4wQ4S4CjZu521gCVHDE3jnbvPLfX8Nq15Ja8tH9/+LCx5nqHeGGP2HfOYe/d87Lk2Gz/9LIVWMZqqdZlDMR2sUa/TO6+fxfcux1rLli8+jx4OOLX2CNs+sY6C57H8ndcx++ULGBkbphAnrZnOvaHptbjqHTdQndPLmWePsucbW+mt9tIJOphOgI7U8a3kRaaMyfVd2tbSUaUo4Bt3NsO54Tn1vgvX7+UqAnX09612jGW30Za3D2FIvG6F7HyodysDYgJHAsQ0gIlTpxEGEd4eZfFQq1boM4ZioRCLQrlLEdRRv5BsI0diHp7Jw5Jd3iedt9euvatxPR1qxFBqN5v4g0Uuf/MKpGzY9uAmTrwwRKVaxWpUUZhkKhmF0NLxWlz5tuvxJhQ4+tQBtn/zRcqlMj2lGnse3MaeL26iVC1yzW+sZMbd86k36pR8D43r+dHRUebcOZ9Zt86FMxG5sxxEXUFEqHcCwmZAUTWa2bEJiUPjLaTRM2pZSztUyiIUXTn9tOcRXyaTD9MJZiAOVzKaYUiUKwWEIS8s7TMnT24dBXbFGgIW427tzm++SEigGi9E0DgJG7Fw5fXX8W/e/S7OnD1Ds9mgWCzy6De/xVPPb2LD2nVUytVYWcwgYRj14ONpStU83SyReFHt6mSrM+9m88rdmWFaxKGZj3bqXPGm66jM6ePEc8fYvPoFeku1mNFrsphLNFgyPHaeha9azsQV02kdHOO5v3+CUttDRag3mvQV+9j82efY/7XtFHsLrPj1mxm4ehJjY3WKvk+n3cabVmT+vZfTFtj2pY2M7hymVKvEcKyhodDRgFLS3lZ3WMWmeU5HlVbsAYomcfnWWYyV0KvyCm4J9OyytjNlS7UiBmvZtXXrmtEkgD2PGlRFu2VUXIKukHXfEhZsolsbqsdv/dF7+Mu/+xsmTJ7E6MgIX/rcF7n3Va9j+9at9PT1ogLtdpuq52GDDtaGUSbv1lJpEmm755AcanNGJ7tgm0z8ZLyiz9joCHNum8fUOy6hfnyM9X/7BMW6ScEdcVbDeL6h0wroXzyRhasux1p48TPPMrp3mEKlTLPZZPHSZVDwKFPhub9/mqEn9lOcUOS631pJYV6VeqNFy+9wxVuvpTKzh5NrD7HzoY30lKrRXGHs8ZoaQddVY/A1WRChqVpJMnbXVmioUhKPctKOzolQuPzCpFJL9i1luwrVXYlrk8kK+zxZKNe18Q0UuYh+qDiLHtP1as4BGODg3l0cOXKGVatexSe//jXe8/4HWH7lcmwY0mg0GRkdpVar8rlPfY7/8Mf/hW889E2q1Vok/JwjdUaHY0yyHctd7Z00ZtyRdTerlTTfCFptvMkFlrz5aigZtq/eyOnNp/DLpWgczJWLiad6OuWAa95xI5WpNY4/sZc9j2yj1tePIgwPD/Pq+17HH/zxAzRaDSphiR/81fc5/vRhCtMq3PDu22j01pl521xm3j4fPd3ihU8+g9/2UZPtUPREaNuQjpJm9xoT/cUpeQVoK4yFIQVjKBkvvicXiCV26RXH1Y9IpKp7YXMv6WSsTQ3AoOvVhm0hxiTFBRkctU5nNj7xCkFoKQPPPfUEv/qqV/CdR77P4OA43vPuX+eL3/gaf/uJv+ft/+odLFy8EM/z2PriJv7iP32A/Xv3piGl4BfwC3662EGczWPOqE1OKCnxQu7SCHFW0o4Fda582/X0zR/HmbWH2Pbgc9RqvQRqHUKqpMOsI806S151GdOvn0V4uMHGT62lamppTe/7BToo977yHl5572s4d+48xUaBxz/wTc69cJzKgnHc/L67mfu6xRjPsOvBFxnZM0ypVstT1RTaYUjLRuVdwcSXUqxDcom+OFChYRXfg4oviNh0hjG5HDbBBIzDBI5/kbUZDS1RMBIRT9W2jbA+1Qg6fnDn/omzFm3DcLmiVlQ8TZMJvbBFnNDBbSYc1dPbx7Yt2/i3b3sn199yI6te/3puveMOXnn3bbz87tsYqlt2bNvG5o3Ps2PLVnZu38bxI0cZHh5hdHQ0gmEhEoj24wlerxANZibAkdv0cAgsCVooIhHWPzrM7DvnM/uuhQTHGzz39z/Abxehlq2DT2Kb8QyNZov+peNZ9rqr0Y7w4mfX0T7coFrrTXWMkmHLprVMmDyZ0AYUSgU6wz5PfPDb3PbHr6Z36RSMwPH1R9j19W301/oIEgmZBCcwhlYY0lBL2QjF+D5qHAqMMzEVYGloiGeEismGYGxMAcvvr8hN6jq4jTMLgFojnqc23LZ907r9kUbQypUea9YECt83xizXMFTtWuKkqQqXZj2BZGOXKF4cs3r6B+jp7eOpx3/Ak2ueYMGiRdx+551ce+vNLLxsOVdevYwbr15GCIyGcOrYSY4cOsiB/Qc5dPAgRw8e4sSJ4wyfP0d9ZJhmvUUz7uQFnSY2DFKLT/vbRDN1vT09WLW0Wh0KU4pc9qYVSMFjx5c3cWbbGXr7+iMJmq7ZN1XolDtc89brKE4scuiRPex5dCe9PX0E8fxebqbBmOjfxWCtUqpWaB4f46kPPszK9/4SxXKZH3z8acodHy1ajOZ3FHlAx4Y0woA+vxS7douKwRMvRRclFspoqsUXoWwEY+O9B46yqrjSsZol8KoXqsOrouIZtTb8PqArV670fdZMTniK3zZi34Vi8rRiZ7lSunk7QZuiVmMRKPpeOhff29OP8YRd23fy3A+eonfiBGbOmc2y5cu5/OorWbpsKTPmXMKEKYPMnDGJW264OvUwbaDVgdZYnbGxMUbGRhkbG2V0dIx6vUm7Hcm/i9qI0VvwKaJ8+AN/xomh4zTaI1z/hjsoze7j1LNH2PbQRnp6+rObLxltzPc9husjLLl/OZOunEb90AgbPrOWilTTJo0YScmvxpGmTR68DS3lao3WgQZr3vt1/GKR4FidUjFS/jBGHOnX6KMjhnoYHWzJ89BOGAk9kS2NRCK9gEZgMVbBhpxv1glVsaKpNI8X53yeX8RP+PTqRs0MXkbVhDYUCL4NMHnyZPVhtQXwW96TthwMGTFTIhEgNZqpH124Py8RSRBxoOCEOKE0Gk2WXraMm2+9hS9/4YscO3yYg/sO8s0Hv4Zf8JgwYQKTBqcwbdYMps+cxYxZs5g6fRqDg4OMGz+eWk+N3vHjGTd1EgWT6tlhyIghAtSAD/+vz3D4yFE8gbl3LWLWLywiON3m+Y8/hd/y8aommg+QvD5wc6xBz/x+lrz2CmygvPDZZ2keqFPrqREGgcOnyyZrvPi2pPBv3F6tlCsEp0NatkGh4NMJLW0NccU2U/yy2aQRdCgZj6pnkEBjQE2xSRs6FqMYbbYImi2uKhXoTOhnfKVK0YNe49NrDH3GcBb49PEzHLaaMp+ShNiZkrKIMWEYDBXD6pMAq1evtrEszyrv5MnVoxNnLHpYxLw1lYrTfIYpkg0jdMPC6ixSMEZo1Md449vfzq+/eRWnzp5l9Sc/y4SJE2i1WvjFIqdPnub0idNsfuEF1EbbvgqlIqVymWKpTKVSolypUKn1UuupUC4VKRaL+MVivPCpSLlYpNNu8/C3HsY3Bm/Q56q33US5UuKFT23g3NbT9Pb2E9gwJ98eraqDlqlz3ZtupzCxzKFv72b/ozvorfZFg58p71DTXQbSVVMneEOkNWjBjzZ/BdZSDtosr5WYUChQ8zyqRqh6hqox1OwAM4qRpHtfoQAd62wg12wZl0KbqFJ4/fhxvG16Laq5vRgtbbXQZpNmTz/PDDfYPzxKueBnq25VXfKu9TwjBOHDW7euGU1WyPhdQeILoG+Lxeq6ZeqzNXBKbu9tmCCNyUqXMA44nsfJMKRarYKGnDt7hl++/35+53d+mz963x+z5pHvMmHcpIxcoUpoLe16g/roKGEYZCJN8buyDjjkmWgT2UD/AKPS4ta33MK4uf2c3HCMnV/fTF9PX0zvclQXY9bt8Mh5Fv3yZUy+biaj+86z4ZNPUdRyzOUTJ0dQhwDjTOY4CuQ2GVO3UcLXbHe4d8okHpg3C1qjlP0SJd/gZm0aBIyUqrRcCXsn5Fq1+L7HEyMjLB3oRdoBY2NnaBM1iUbqo9zS38uSWg9PnB/muXPnKZXKqU6CKzKdDsmpihG+cJGVMVEYqPmt74+Fpf3GeHNUY0ZibszOONs9swmdRKjJhmG2PCluahQ8L1XYCoKQK665moWzZrBs+WU8+s1vYwFrO9FEUhxkxfcoiRdTOSUtC+UCJfDIc4yMjDD3ngXMumMe7TNN1n/qGaTuQdlE4okKIhFUKwLNeou++eOjRk0YsvVzz1I/MEZvby8aajy2ZiPJGXcvoGZduK79pplCWDwefqxep9lu019vsbdTZ+1InaBYoK6WjkIgcCSwbBlrUvJ8R9hBU53gYqHE+lbIxu378UTpxEBPIwy5oaDcO2MqZ4pFPrnvMCNegYIjkJwYU3y3rDGesWG4vz2h/P3E/bs7gxRW+gcOrGlOnrHo84L8noKNwrtcgAV048NhTItKrY/8hELkLSLNHg0C1GomC5NyDGKoU7LeRdIIMjbD7KJ3lH1du9nEn+Rz2RuuIfAsOx/axPHnjlGrxtp7RmKZ2ExKIih2WPHOm/GnVBh6eDf7HtlBrbePUG26zi0RxY6YcPFKOAeDSSdxnDW2xN9bKhR54tx5/tvBw/z+rBn49TH+cWiIp9pKpVyOejEmKgmLfiHR8EoP373BBVPElgQrFqORPPyEsWH+zbxLGCwW+a9Dp3hmpEG5XIlG2FylHE14jGrFMwa1nz+wZk1z5cqVfqwY7iq8rLERv41/sBp2ora9pAsDon58BmYk/W+rpAbgjiGQzqu5EzsevjEUTLSQUfJLxfMG5kwIpxB4TBqx6bygUg/qXPXWmyjO7uH0hiFe+OxaqoUKGgbZRnATHZDv+Yw16iy79yqm3DSHzqExnv/k05So5EfHYxjVuitnnBnpZGUL4i6GTDSSoiSxWK3y2aMn+PypM8zr7eG9ly9jca2MKRSplEtUi0XKvg9xiCNp1jirUaK+TYhoiInL3la9wb2TJnFzTw/PjozxmcPH0FIp5TImQ6MS6w0bE4E/YRB0DOYfANasWWO79wXENMcHzOmjO3ao6reN8SRSpM/IH1mtmSFW1kasu4ipo87D0qyVHN8SE72g3Dp3kfzYuXbjzxmv2lEpN/jGo1GvM++uJUy7cz7h6RYbPvYEMmawRnPUrKQEbLZb9C+byGX3XU3BGrZ/6XlaR5sUKqV8wpQabkKwiGN8zG8wsZqFIVNIMSZPUBULttrDR/Yd4HvDw6woFnjPnBnUmnXanUSz2GZDo+KO5rurYhRjotfRCkKW+sLbpw3SEeUfjg5x2EYdxdAlBDp0fms1jM/y2ztefGoHDzyQ2yJqLrIzCE/9v4rBVuMiS2rihkSsC2BtzMFzFAmE/I9WshXvF65cd7XwM5kZ0WwtbbZXONlEGi1uCIKQ0owqy992LVIWdn7pec5sPkWlpydFL23cao1uk9AuBqx46/WUJ1U4/Pge9j6yg96+/tx4lYi7/1gchnBS5oLNXGvWo1eH0xL/11flvFfkT3ftZ1urxcv7avzazCkEzfNYya02SKeHNNe/1+xAPUOh3eRXZk5hTkF4+NwIj5wdpliqEiPJsRmoI5KRjPYqodG/io54q3SviHMXRoaAOX5k6/fVhmvF84xK5AWifnkmmxoxf+KSJflhnkkl5j3Pp+AZCqp48e6/lPvn7MbSpKaW3IYUZ84/mXaJdwpho5YqTVa8/Ub65w0w/Pwxtj64kVpPP9aGsYyckOgqiRHOjZxjwcuWMHjNdEaPnOfZT/yAkpQz/qEz/pX0F7IIFb2wTieIKYmao0RaZ5dCRouL/r3g+WzvWP7L7gOctsrbByfw2kkTqNfrWJM1b8RqJu7g6iXEyXGz3ebOcT28fOIAB8KAjx05RrNYwrM2mtxy/Gi21k5DTzxjw2Dt3k3rvg+Y7r2B5uI7g1FR/hRnsVPa0Eg3fOd7AQPjxxOGYbyx20NFqZZK9IpQKZdSpQ9rLR2gY4OUQZStdCP7XQ5TJhWQFEGNx/n6KHPvnMfs2y4hPNVkw8efpNiJGD5iDGoyaRRjhMZYg97541jw2uW0OyHPf+IZGgdGKfgF1DoPOi56jEQ6uZpoSBpDq93CK5WpA+1WkOIeqhfuZ09yCStCQLSG9nujdf7b4aMUEP7d7JncXCtTb7fSWK0568/obgboqDI17PCOmdOoeYbPnDjDlhZU0wVTscZhV+8mmeLyrPwpoKxaJRdbEsnFvMCJQzu+bm24Tox4qhEonjF5ohdXLBTYtnUL9TasvP1GVr3pDQwNHU8/t2H9Og4fP8m2zVspFgvYMKBlQ0aDkCCwuQVLyVxhtuYjLwpBtMSEoBNSm9XDlW++FgqGLV95ntNbTlGqVFIxa3dOXq2lU2ix4v+5mcLkKgcf3cWub7xIpVQhCINcVxCJJ3OMIJ7BK3oYD44cO8bKu27nupUrOduCbVu2Ri1nZ4excbWVnPH6ZDyrXOvls0On+cLp80wvGH5/4SUsEKFjFRGPVJw5SbNiilwoSqcxyv1TJ3J1T5VnRsf44tCpaFdTgnGkYgk2fSHWamg83wtssG7H1rVfv9jt/yEGkHoBa8X8YcIlc12ckSj56+0f4Pm1z/KtL3+FaT1V/vOff5D3vO/36IQBjUaTz3/qs9z1slez9um1VGoVOp02QRgyPu4bqNtp40JZW7f2VmwEslDnqrdfhz+zwsmNQ2z+yiZ6Sr1pFZKWZp7g+x6j9WEWv/oKxl09ldbBYV745FOUTS0Cr6yN8iFn0EUkmh6yopw7f55Wq8Xbf+2dvP8jH2Hq4ACPfO0brH/maXp6YlZRTCWz4lQK4ohOqkHV4FlFq7185MABHq83uapW5vcXzGGg04rygRzIYVNBzUa7wxWlAvdPncRwGPD3h4Y4ZTw8o9iEgk+mBpJK9Umy3VX+ELCrLnL7L7I4Mk0GFVZ5jfNr9pT7xl8rxlskqqFIJCWbxCVjhEKhyGPf/R7jBwdZceVl3Hrj9dx0xx1YG3L40CGOHDiQVgaFYoHjR49xcrTOV7/8IK1mM94lRLZcSjJGTI7W7BlG66PMvWsBC++/gnA44Om/fIT2kTaeX8jtNI7gWY9Ou0Xv4gGu+83b8IuGFz72NCc3HKNSq8XiEIIYL91RrNbSaNQZHRulVC1z59138Qfvfx9veNsbqdVKfOOhb/GB9743WulivLh0M13DGV0Lnp1dSMbAqPjsOnOW6yaO47qeCmI8nj59DgpFRIOYERR7RIFys8Hvz5vNFdUKq0+d4xND5ygUyzixy1XkS/L10PN8LwyDb+7evO4/s2qVt/Uit/+H7Q7O7RAeP2vpEqPh8yLiGUk2EInDNIlQs3qzzi+vei3/5jd/neWL5qHAln2HefTb3+aJ736P7Zu3cvrMKepjDTQIGZgwgVpPLeq0xYI9GhM5u1RcI/Cm08FMNNz9oVWUZ/aw7X+tZdM/PEt/7wBhwjwWk3LljTGMyhh3PPCLDN4wk0Pf2c3jH/gOfcXeyJ+ESmhDOu027XYbq9A30MvCJUu5+faV3Hn3nVy6ZAElYO+xk/z9R/+Oz3/q05SL5UjOPdlrTLIRLVNAdVfYJginjfkEnhia7Rb39JT54OJLqKjyH/ce4TNnhqkUC1GFFc82Nut17h/fx5/Mn8OeTsBvbt3NXvEpdvEz0ukiCyqSuICwE+qVB7eu23axncEvxQBINolPnLXoA8b4v4vaUBAvmSDQdEY94tSdP3ee/nHjePkvvYxXrbqPy66/ij5gDDi47ygvPvccL25Yz64d29m/7yDnzp6l1WxFk8ES/Qy/YPD8QtQCibVtjAjDY+e46T13M+PVSzm39jDfe+9D1OiN+JCalZpi4mXNoyMsue8yrvyNm6gfGeHbv/cVzClDp9OkXm9SLpfp7etlcNpU5i1YyKVXXMFlK65m4eJFTCxG4Nbe/Yf5zje/xRc/9wUO7z9EX39fOgyaK+BiV4/JegXGIZsaIgOI+igWNUKnXuf/mTqJ3589jePtgN/avpe1rYBKoUAgSidUZgUt/vbSJcyvlHjf/sN84eRZyuUy1lpHs0BzmgDWaugXil4Ytj6458X1v5c0fX7YCf9vDCDyLoODyyta6rwgYuahViW3NTnjDXieR6fTYXjkHJVyhSuvXcHtL385199yC/MWz2cgNpwx4OTQKQ7tO8DB/fs4uP8Ahw8dZujoEU6ePMnZc8O0x+rRZg7jMXZ+mFl3z+Oa9/4CWg947PceZGTbeSq1aqqXJyn12dCuN6nO7+XOP30lpfFl1v3VGg4+vA8Bll2+jNetupdpM+cwddYsJgxOo7cMBaAOHB06y8Zn1/HYww+z9gdPcurEKWo9PZRLZTpBEPf3s7wolYu/2Io7l7nrQr0aK5s0xnj/grm8acIAz4yM8Vtbd3KsUKToFWiPjfG+OTP41WmDfH14lN/ZsYdOqYZomK2Rd7ia8VymRUSstXt6TOuKTa95TYP3v1/p5s3+CAaQ5Anh5FlL7jRiHlW1YQwTO9MwWf5rJJrDs4FlbHSEdtBm3PjxLFq6jKuuXcEVK65m4cJFTJkxg4GSRDt4gBYwApw916TdHGXdY2t44Hd/D1Gfyqwat/znV1CeWWPHx9ax8ePr6O8fH+sFZzh/sv+3SZNbH3g542+cyvGH9/DUn3+fnmI/5VqFB7/5EIsnj2c4McTj59m3Zw+bXniB59evZ/vmLQwdORIpndR6KZWKmUaAu53cUU1JxBeTvQIay82nJXTSkklGv2LBiECU8e0Gf7l0AbeWi3zu9Hn+aPc+xgpl7iz7/PXSBTSt8hs79vJcK6To+znJfpcQGnNBQiPGCzvhXXu3PftdVq3y+Cduv9sM+qc+Qljpnzi45ruDsxd/RAqF39YgCED9nFpl/GcrigZRS7XW10+vCEGnw3Pr1rP+6bX4xQID4waYOm0as+bMYfYlc5g6cyaDU6cyfvJk+sZNYNrgBNY+s44gsBQ8mLJsJjOWzmbvmq1s/coL1Gr9GQKJo4wU/64JSwaZe+MSTh8+znOfXEtZy4yNDnPDzTewcf2zfHrbboaOHuboocMcPnSE0ydPUa+PIWIol8v09/WDEcLQ0gmDNDlVdwupcfYFqrPlk26NBXeySdIBjUAtPobjpsCf7tjLjGULee34AfZNn8YX9u3n1xYvp88zfPzYEOtH65QrPdjQxqWqSUe9E/RQrQaeX/DDIPjI3m3PfnflypX+mtWrA16Ci38pHwKY2bNXFppyYq2IWW7DMETEy/YKqkNpdqRlkiWOsfSbWosNLe1Oh06nRRBGr9H3PErlMr39fdRqNY4fOUqhWATxoEe4ZOUiDj+/j+bBUTy/kNXaobhb1aOlUwXL3NsWce7ACU5uPEa5UgENCa1ldKweD4F4FAo+Bb+IXyhEyymSMep44BOXohWri6aKo5pXIo/y2LysjpubZALayYrZqL/gGcNoo84vD9T4wKL5jDSbPH/2DHdNmcyWdsC/3rSNE8UaBc3UrSW/ZBlEQ88reKHtbArGV687sGZyJ27x64/LAJKqwA5esvhStWadoCUiseoMtYzfsORUrC62u8GkuwCTbpsNo9n/0EZ7e8rFciQAFU9utprRRgzjG2chgiuTncViVGk1mhQ9n0K5SJjMGYpGZSfdq14z+TXR/IikkUwEg7i6cCZWna3mmpuYlRz9LL+4w9U1jhUx6DTGeNesqfzm1Ml0RocJenr4vT0H+Oq5Map+KZ60tlk/UpLIrypGFGhZY6/du2n95uSseInx/aV+KKz0x85uGKr2jTtovMK9ig2jPotJmz5pImTyQkk4UvEJvGutxg0bG7vGqB4vFEoR6zWOlwDFSilT7EzINUnPVLK9PUnzpFgsIb5xpmLyhNCM0yfOrj9y4/DGVd+QbBFTyr2MSzuXNZXfsSCOuunFksRsvtEvlXjx9Fmm9VRZPmkC3z49wscOn8ArV6KlElYzTkNy+BG+EhrP84IwfOe+LesfZeVKnwMHwpd6qD+KAQAHLKz06+efe6HaN77H+P7N1tqOiHgRbmMyHnq3ckh6heQCuC/PtXMumDh7aTTbCJ1jvLqrMWM1LXXkZInjZU7sPElgvQR8y+K0OEon3VR7cZnSXWrckF9ILRJPaCXPwjiLMBx2cmKbBqVpfJ47c4Z9geVLR45xxhRyqCKuBHz0fZ1CoVAIws6f79+24c9ZudInJnrwI8T2H/VD4n3DdnDukgdFvFdpGAaI+KliTqygJUYcFasoQUzHHsxFXkauD5Bx6U26kk3SDV/EgkZiYgZPSqggJXKKk6Wnc4U2Ru4NDofeiXNqnOTO0Sm2eeGslCaXTDc79bi6F12z10W8kib1ONnGrdSwrUa7D0vFYiwvq2loss7snqoNjCn4Ngy+unfbs7/MqlWG1S8t7v9LDSD9vhkzri+3veHvG99cZ4MgMGJ8S54wKT/k10m3kEFOz04yIokreZZMAolmWkUmr6ItmKhCiKHqRC3Dk2ynbtp3N5mnyYZNDOJ2+dJEloxf7wompFvGLjK3ZxM1s5ieFZNI1DhM626lL9UctpATxNDkUtnAMwU/DMO17V5z++FnnmlyoUzGT9QA0qRw0uylUzzhccQsUBsGivjSpZQlF2Q/5Dp+StcsYuyODe4+3kx1LwU+nApLyInlEQFz2e0WBfEyYke2pzUnsJ+1vLlwZX1uCsf5xXm93jx1PKfS5ay3Ec3mrTVnYI5ncmj2GZdCA2M8X224K7DcemDrs0M/StL3EruBL+nDAt7JA1uH1Ab3WA33izE+2FBj3Zd04te4zR13L19+zX1mMMo/NfImucZr/nPRPgC6SiWSWtlJG5LFEeqMiTtsIMkrr+W2nEhegcOky42y1S0Jddyk/ZJE8Szt0qUKn7lWaOLinTwnjJNAVRuKMb7acH+nLffEh+/9cw//X2oAMUi0yjt+cOc+Dc1dVnW/ZzxPNV5vIVmyZDNl/3TJlWom5OQyYdXZVGbjZXnpgiZnuUVy+5IlEC6Ny5WzESPOO83EpyStHpzk32QLsDLOVhZ63HlJN1dQt6xzea0ieeOWbP28K3+hztxCHk2KFUttGIhnPA3t/nbT3nVw57p9rFrlxWMZ/LQMICaQrPJOHtqyB9u506ru9IzvRztOtGtHYEb9lLy6Xn4RlGbbSFw8QbpQR/fimHQTV15xM4VgnaTswtxTcnHbJBpFSI4fmDlxZ3sa2fr4HOiebDuxedFGHPLpBUYB6d6flB8ZfXHg+QVfbbgzMHrnod0b9rwUmPcnnQNctGcwcdbiqZ4xXzaed4MNw0AEH/knflWMDySJHW4b1VG3kC56mPvwsgVJLkrXJdopko2vpSvpJAWBjHHWlCSjWWSsZrqk/HJTQuRIfOnfTYoA5r/fBfSNs8UsXUAdU8wjZS8Czy/4NgyeDkN97cHtG44lXdofx6GZH6MBhLDKO3Vw+zEa/t3Whg8Zz/gRVVUc4VGHXuT82aXEdROFSZdUdUMImkPabCxmqV3SMWk5JpIjf6YkEndNrbtDMa7lHf3Gi6iniEMKyWjr6YyBu2Iv9jDigAxKlzxORo5XlNDzCr4Nw4fqXvvug9s3HIvc/o/n8H/cHiBXHQAyZfbSD4pnfifG1UMET62mKlYqTvbruHmVbCATt+JKXGR+X0zXG5Ic2phq6Kiz/SPdfGvyv6B7e6J0g4NCznZwdBTcwRExzo5eITdkK10W7nqEJJlUCRHxjPHQMPjQvq0bfpd0//c/P+H7MSCBLxUyjt7i6PmTj1R6xu83xtwtYkpYGxjE5Oo2FQc7l4vap7glpOQTOjeTiAZGs3k+uYBcKmmDJmcgzi6ki5YfkC8P89tzHTVTSUfK8lM+zlwELl4gXYkgYG1gPM9HGVO1v7p/64Y/zyVLP4Hbyk/ICIiSw+2fCK3erKrPGeP78VyFzU3eXPBEXb/rjDmT9nRyG0fVqSKsatw2zZo9FxpR7JI1U1kUYy4GU+SMQVPBZXJb1LLZ0ESvRxz52IzX5o6Tqc0xbYmXmFnjFXy1+px25Ob9Wzd8Is70+Ukc/k/KA3SRS1f69fPrjw70FD9lpVgVz9wY+U0bpIl1UoqJ/NBAlesspJq3XTqC4jSJXGRNxLl0kiWFSWw2LtgQQ8+Ocni2iTShejsyc7FmoZhsIDO3vzkLbOlCCHLzD6Kgoed5noiIwoeDkcKbD+1fd5iVK32++c3wJ3lCwv+ZjzR2TZ237B5UPgyyRDUECFXjZpLgwiO5UbILIn0aLsk94JQelmL10nXATsKV5AUuJAxcKLgqDsnTeV3q7FgUR4nVaQioJj0Jzev3RxVCKCKeZzzCMNyGmnfv3/Hsw93P7Cf54f0fMoD4fa/0R88+u6viT/yEFvEQWSHiFWPd93gDFDl0zEg+zpuuiVy3/WqS3oA6AtVJ569LU9qknZwE+fOcisA6/Ut3GWNGP9NY/yf1ApIlB2ki665ucwZWFKwRUWN8D7QZqv2Lumm+5ej2jdvidq7+pFz+T8sDXIAXAEyas+xyY3i/IK8GkGgPHBgxKeMnD8bR1TjOo/mZflXWhpaLZfDZEqasljfOKJoFm03n4jaoILeIIasyyEa8bMYZSMAdiXICGxFhvITT9ZB2ggf273phY5Iz/ThLvJ9VA3BbyiHAlNlLXo54fyiGm+LbZTV1niq5JMBqmja42zEulIx1QRxxwoMLzCRNnGQ5VvR1XjzDnpAw1DUfzTwHmm//5Ic6cWs8G0kK+AaU0NonjXh/cmDb+m9F577K++e0cn+eDaC7CrEAUy5Zdq9i3y1ibhYMqgEgAcnEXqp5kt+TYzzJzfgJXaW3kwRGN9vtuNmkAeAU/fHeXZdy5mwz13jcPPMECXKXKwutVawx+Mb48eJy/QFqP3xg+/Nfudj7/yndxJ+Jj1xTY/LcxXcbvF9H7CuM5xfidfE23q5nVPJVmBNbuykGudgdaQ2baIu4sxFN1ORrTIuzyqZLlIiM7p2OkCcdPol1VERFxDNGBBuGHSPeN0T4H/u2b3gke3X/5939z7IBuA8ldYWD85Ys8zBvtiqrPM/Mi9QTwyhERJJCEaRjEuBVLnhj3T7VGJOH4xPmj3vYKTE029GbZf8aTyNJunPbWmtFxBgRI8aLx8bYgzWr1QafPrRn45aLhb6fhY+fMQPIeYSka8zs2bPLQbH3Tqu8DsvdxpjpkZJXcvMINfbFmhYKInoBWTND60SSxIw8i9fdkq5EmnwpAVgRi8Wk1uFl6+sUDe0RhUeM6pekPfDdAwfWNDNXv0p+lg7+Z90Ashxh5UrjEh3Hz5/fV6J0vcHco+htWJYZ3y8lVOlEwQRUVcRK1jggw4BExOnCSSwNh6Dxyl9Nt7/GBGFEJFUci1U9Qxu2BLYIPKaiD5eC0jO7d68bTl99RNK0P80Y//NuAF1VA3TfosGFy+eK1avFcj2iVyCyENUpRqSAs5IuvcZO5q8SL2vOlZIOhm+yTN+GYUfEDKHsRPQFEXmmpXbD8Z2b9l0YxuClDmb8XwP45xrDyhNyMQr0hEWLer12Ya5nuCQyBuYKOhthEGUcSq8YqSJSRMSPXL0NEGmj1EVkRIWzohxX4YCBfRZ2KuHeHuns27Fjx8gFr2jlSp/Jk/WnVcr9Sz7+X8qHrFctIGIkAAAAAElFTkSuQmCC" alt="SAIA logo">
+</template>
+
+<!-- ============ LANDING PAGE ============ -->
+<div id="landing">
+  <nav class="l-nav">
+    <div class="brand"><span class="logo-mark" data-logo="52"></span> SAIA</div>
+    
+  </nav>
+
+  <div class="hero">
+    <div class="hero-bg-arrows" id="heroArrows">
+      <svg class="hero-chart" viewBox="0 0 1200 500" preserveAspectRatio="none">
+        <path class="dash-flow" d="M0,380 L140,320 L280,360 L420,240 L560,280 L700,160 L840,210 L980,90 L1200,130" stroke="#3ecf7a" stroke-width="3" fill="none" stroke-dasharray="10 8"/>
+        <path class="dash-flow" d="M620,300 L720,360 L820,300 L920,400" stroke="#e2566d" stroke-width="3" fill="none" stroke-dasharray="10 8" style="animation-delay:-1.1s"/>
+      </svg>
+    </div>
+
+    <div class="hero-inner">
+      <div class="eyebrow"><span class="dot"></span> LIVE DATA FROM GLOBAL &amp; REGIONAL MARKETS</div>
+      <h1 class="headline">The stock is moving.<br><span class="accent-up">Which way?</span></h1>
+      <p class="sub">SAIA tracks live prices across global and regional markets, runs them through AI-driven predictions, and shows you one clear signal — <span style="color:var(--green);font-weight:600">up</span> or <span style="color:var(--rose);font-weight:600">down</span> — before you decide.</p>
+      <div class="cta-row" style="flex-direction:column;gap:10px;align-items:center">
+        <div id="googleSignInBtn"></div>
+        <div style="font-size:13px;color:var(--text-dimmer)">Sign in with the Google account you already have — no new account needed.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="about">
+    <div class="about-inner">
+      <div class="eyebrow" style="display:inline-flex"><span class="dot"></span> ABOUT THE PLATFORM</div>
+      <h2>What is SAIA?</h2>
+      <p class="lead"><b>SAIA stands for Stock And Arrows Investing App.</b> It's built around one simple idea: every stock is either pointed up or pointed down. SAIA's job is to make that direction obvious — backed by real data and AI analysis — before you put your money behind it.</p>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="f-icon">📡</div>
+          <h3>Live Market Data</h3>
+          <p>Prices, volume and history pulled continuously from major exchanges — NASDAQ, TADAWUL, EGX, DFM and more.</p>
+        </div>
+        <div class="feature-card">
+          <div class="f-icon">✦</div>
+          <h3>AI-Powered Predictions</h3>
+          <p>A prediction model projects where each stock is likely headed over the next 30 days.</p>
+        </div>
+        <div class="feature-card">
+          <div class="f-icon">↕</div>
+          <h3>One Clear Up/Down Signal</h3>
+          <p>No jargon, no clutter. Just a green arrow or a red arrow, so you know the direction at a glance.</p>
+        </div>
+        <div class="feature-card">
+          <div class="f-icon">💬</div>
+          <h3>Ask the AI Agent</h3>
+          <p>Talk to SAIA's AI agent directly — ask about any stock, compare two tickers, or get a plain-English read on the market.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tapeSection" class="ticker-tape">
+    <div class="ticker-track" id="landingTape"></div>
+  </div>
+
+  <div class="faq">
+    <div class="faq-inner">
+      <div class="faq-left">
+        <div class="eyebrow"><span class="dot"></span> GOT QUESTIONS?</div>
+        <h2>Frequently<br>Asked<br><span class="hl">Questions</span></h2>
+        <p>Everything you need to know about SAIA, the predictions, and how to read the signal before you invest.</p>
+        
+      </div>
+      <div class="faq-right" id="faqList"></div>
+    </div>
+  </div>
+
+  <div class="final-cta">
+    <div class="final-cta-card">
+      <div class="eyebrow" style="display:inline-flex"><span class="dot"></span> GET STARTED</div>
+      <h2>Ready to spot<br>the <span class="hl">next move?</span></h2>
+      <p>Sign in with Google to explore live market data, AI predictions, and a clear up-or-down signal on every stock.</p>
+      <div class="cta-row" style="justify-content:center">
+        <div id="googleSignInBtn2"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="l-footer">SAIA — Stock And Arrows Investing App. Market data, prices, and news are pulled live from the platform's data pipeline.</div>
+</div>
+
+<!-- ============ APP (DASHBOARD) ============ -->
+<div id="app" class="hidden">
+  <aside class="sidebar">
+    <div class="brand"><span class="logo-mark" data-logo="40"></span> <span class="txt">SAIA</span></div>
+
+    <button class="nav-item active" data-view="home" onclick="switchView('home')"><span class="ic">⌂</span><span class="txt">Home</span></button>
+    <button class="nav-item" data-view="stocks" onclick="switchView('stocks')"><span class="ic svg-ic"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="12" width="4" height="9" rx="1"/><rect x="10" y="7" width="4" height="14" rx="1"/><rect x="17" y="3" width="4" height="18" rx="1"/></svg></span><span class="txt">Stocks</span></button>
+    <button class="nav-item" data-view="watchlist" onclick="switchView('watchlist')"><span class="ic">★</span><span class="txt">Watchlist</span></button>
+    <button class="nav-item" data-view="predictions" onclick="switchView('predictions')"><span class="ic">◈</span><span class="txt">Predictions</span></button>
+    <button class="nav-item" data-view="news" onclick="switchView('news')"><span class="ic">▤</span><span class="txt">News</span></button>
+    <button class="nav-item" data-view="saved-news" onclick="switchView('saved-news')"><span class="ic svg-ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 2.5h12a1 1 0 0 1 1 1V21a.5.5 0 0 1-.77.42L12 17.4l-6.23 4.02A.5.5 0 0 1 5 21V3.5a1 1 0 0 1 1-1z"/></svg></span><span class="txt">Bookmarks</span></button>
+    <button class="nav-item" data-view="ai" onclick="switchView('ai')"><span class="ic">✦</span><span class="txt">Ask AI Agent</span></button>
+
+    <div class="nav-label">Export Data</div>
+    <button class="nav-item" id="downloadCompaniesBtn" onclick="downloadCompaniesCSV()"><span class="ic">⬇</span><span class="txt">Download Companies (CSV)</span></button>
+    <button class="nav-item" id="downloadStocksBtn" onclick="openDownloadModal()"><span class="ic">⬇</span><span class="txt">Download Stock Data (CSV)</span></button>
+    <button class="nav-item" id="downloadNewsBtn" onclick="openNewsDownloadModal()"><span class="ic">⬇</span><span class="txt">Download News (CSV)</span></button>
+
+    <div style="flex:1"></div>
+    <button class="nav-item" onclick="signOutUser()"><span class="ic">⏻</span><span class="txt">Sign out</span></button>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="search-box hidden" id="topSearchBox">
+        <span>🔍</span>
+        <input id="searchInput" placeholder="Search by ticker or company — e.g. AAPL or Aramco" oninput="onSearchInput()">
+      </div>
+      <div class="user-chip" id="dataLoadingPill" style="color:var(--green)"><span class="spinner"></span><span class="txt">Loading market data…</span></div>
+      <div class="user-chip" id="userChip">👤 Guest</div>
+    </div>
+    <div class="ticker-strip-app">
+      <div class="ticker-track" id="appTape"></div>
+    </div>
+
+    <!-- HOME -->
+    <section id="view-home" class="view">
+      <div class="section-head">
+        <h2>Home</h2>
+        <div class="meta">Latest news &amp; top companies</div>
+      </div>
+      <div class="home-dashboard">
+        <div class="home-col">
+          <div class="home-col-head">
+            <h3>Latest News</h3>
+            <button class="link-btn" onclick="switchView('news')">View all news →</button>
+          </div>
+          <div class="grid-news" id="homeNewsGrid"></div>
+        </div>
+        <div class="home-col">
+          <div class="home-col-head">
+            <h3>Most Popular Companies</h3>
+            <button class="link-btn" onclick="switchView('stocks')">View all stocks →</button>
+          </div>
+          <div class="grid-stocks" id="homeTopStocksGrid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STOCKS -->
+    <section id="view-stocks" class="view hidden">
+      <div class="section-head">
+        <h2>Stocks — All Stocks</h2>
+        <div class="meta"><span id="homeCount"></span> stocks</div>
+      </div>
+      <div class="filter-bar" id="stocksFilterBar">
+        <select id="stocksSectorFilter" onchange="renderStockGrid()"><option value="">All sectors</option></select>
+        <select id="stocksIndustryFilter" onchange="renderStockGrid()"><option value="">All industries</option></select>
+        <select id="stocksCategoryFilter" onchange="renderStockGrid()"><option value="">All categories</option></select>
+        <button class="clear-btn" onclick="clearFilters('stocks');renderStockGrid()">✕ Clear</button>
+      </div>
+      <div class="grid-stocks" id="stockGrid"></div>
+    </section>
+
+    <!-- WATCHLIST -->
+    <section id="view-watchlist" class="view hidden">
+      <div class="section-head">
+        <h2>Watchlist</h2>
+        <div class="meta"><span id="watchlistCount"></span> saved</div>
+      </div>
+      <div class="filter-bar" id="watchlistFilterBar">
+        <div class="search-box"><span>🔍</span><input type="text" id="watchlistSearchInput" placeholder="Search ticker or company…" oninput="renderWatchlist()"></div>
+        <select id="watchlistSectorFilter" onchange="renderWatchlist()"><option value="">All sectors</option></select>
+        <select id="watchlistIndustryFilter" onchange="renderWatchlist()"><option value="">All industries</option></select>
+        <select id="watchlistCategoryFilter" onchange="renderWatchlist()"><option value="">All categories</option></select>
+        <button class="clear-btn" onclick="clearFilters('watchlist');renderWatchlist()">✕ Clear</button>
+      </div>
+      <div class="grid-stocks" id="watchlistGrid"></div>
+    </section>
+
+    <!-- PREDICTIONS -->
+    <section id="view-predictions" class="view hidden">
+      <div class="section-head">
+        <h2>Predictions for Tomorrow</h2>
+        <div class="meta">Sorted by strongest predicted gain</div>
+      </div>
+      <div class="filter-bar" id="predictionsFilterBar">
+        <div class="search-box"><span>🔍</span><input type="text" id="predictionsSearchInput" placeholder="Search ticker or company…" oninput="renderPredictions()"></div>
+        <select id="predictionsSectorFilter" onchange="renderPredictions()"><option value="">All sectors</option></select>
+        <select id="predictionsIndustryFilter" onchange="renderPredictions()"><option value="">All industries</option></select>
+        <select id="predictionsCategoryFilter" onchange="renderPredictions()"><option value="">All categories</option></select>
+        <button class="clear-btn" onclick="clearFilters('predictions');renderPredictions()">✕ Clear</button>
+      </div>
+      <table class="pred-table">
+        <thead><tr>
+          <th>Stock</th><th>Current Price</th><th>Predicted Price</th><th>Change</th>
+        </tr></thead>
+        <tbody id="predBody"></tbody>
+      </table>
+    </section>
+
+    <!-- NEWS -->
+    <section id="view-news" class="view hidden">
+      <div class="section-head">
+        <h2>News</h2>
+        <div class="meta" id="newsCount"></div>
+      </div>
+      <div class="grid-news" id="newsGrid"></div>
+    </section>
+
+    <!-- SAVED NEWS -->
+    <section id="view-saved-news" class="view hidden">
+      <div class="section-head">
+        <h2>Bookmarks</h2>
+        <div class="meta"><span id="savedNewsCount"></span> saved</div>
+      </div>
+      <div class="filter-bar" id="savedNewsFilterBar">
+        <div class="search-box"><span>🔍</span><input type="text" id="savedNewsSearchInput" placeholder="Search ticker, title, or publisher…" oninput="renderSavedNews()"></div>
+      </div>
+      <div class="grid-news" id="savedNewsGrid"></div>
+    </section>
+
+    <!-- AI AGENT -->
+    <section id="view-ai" class="view hidden">
+      <div class="section-head"><h2>Ask the AI Agent</h2></div>
+      <div class="chat-shell">
+        <aside class="chat-sidebar" id="chatSidebar">
+          <button class="new-conv-btn" onclick="startNewConversation()">+ New conversation</button>
+          <div class="conv-list" id="conversationsList"></div>
+        </aside>
+        <div class="chat-wrap">
+          <div class="chat-log" id="chatLog"></div>
+          <div class="chat-input-row">
+            <input id="chatInput" dir="auto" placeholder="Ask about any stock, a comparison, or general advice..." onkeydown="if(event.key==='Enter')sendChat()">
+            <button class="send-btn" id="chatSendBtn" onclick="handleChatButtonClick()">Send</button>
+          </div>
+          <div class="disclaimer">The agent only uses this demo's simulated data — this isn't real financial advice.</div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- DETAIL -->
+    <section id="view-detail" class="view hidden">
+      <button class="back-btn" onclick="switchView('stocks')">← Back to all stocks</button>
+      <div id="detailContent"></div>
+    </section>
+  </div>
+</div>
+
+<!-- Duration picker for "Download Stock Data (CSV)" -->
+<div id="downloadModalOverlay" class="modal-overlay hidden" onclick="if(event.target===this) closeDownloadModal()">
+  <div class="modal-box">
+    <h3>Download stock data</h3>
+    <p>Choose how much price history to include per stock.</p>
+    <div class="modal-options">
+      <button class="modal-option" onclick="confirmStocksDownload(7)">Last 7 days</button>
+      <button class="modal-option" onclick="confirmStocksDownload(30)">Last 30 days</button>
+      <button class="modal-option" onclick="confirmStocksDownload(90)">Last 90 days</button>
+      <button class="modal-option" onclick="confirmStocksDownload(365)">Last 1 year</button>
+      <button class="modal-option" onclick="confirmStocksDownload(3650)">All available history</button>
+    </div>
+    <button class="modal-cancel" onclick="closeDownloadModal()">Cancel</button>
+  </div>
+</div>
+
+<!-- Duration picker for "Download News (CSV)" -->
+<div id="newsDownloadModalOverlay" class="modal-overlay hidden" onclick="if(event.target===this) closeNewsDownloadModal()">
+  <div class="modal-box">
+    <h3>Download news</h3>
+    <p>Choose how far back to include, based on each article's publish date.</p>
+    <div class="modal-options">
+      <button class="modal-option" onclick="confirmNewsDownload(1)">Last 24 hours</button>
+      <button class="modal-option" onclick="confirmNewsDownload(7)">Last 7 days</button>
+      <button class="modal-option" onclick="confirmNewsDownload(30)">Last 30 days</button>
+      <button class="modal-option" onclick="confirmNewsDownload(90)">Last 90 days</button>
+      <button class="modal-option" onclick="confirmNewsDownload(3650)">All available history</button>
+    </div>
+    <button class="modal-cancel" onclick="closeNewsDownloadModal()">Cancel</button>
+  </div>
+</div>
+
+<script>
+/* ================= GOOGLE SIGN-IN =================
+   TODO (you): replace this with YOUR OWN Google OAuth Client ID from
+   Google Cloud Console > APIs & Services > Credentials.
+   This must be an "OAuth client ID" of type "Web application", and the
+   exact origin you're serving this file from (e.g. http://localhost:8080
+   or https://yourdomain.com) must be added under "Authorized JavaScript
+   origins". It will NOT work opened directly as a file:// URL — you must
+   serve it over http/https (even a simple local server is fine).
+*/
+let GOOGLE_CLIENT_ID = "";
+
+async function loadConfig() {
+    const res = await fetch("/api/config");
+    const config = await res.json();
+
+    GOOGLE_CLIENT_ID = config.google_client_id;
+
+    initGoogleSignIn();
+}
+
+window.addEventListener("DOMContentLoaded", async () => {
+    await loadConfig();
+    restoreSessionIfAny();
+});
+let currentUser = null; // { name, email, picture } — set after Google sign-in
+
+// Minimal, unverified client-side decode of the Google ID token (JWT).
+// This is fine for a frontend-only prototype: it's just reading the profile
+// info Google put in the token so we can show the real name/photo. It does
+// NOT prove the token is genuine — for that you'd verify it on a backend
+// (see the "Frontend + Backend" option if you want that later).
+function decodeGoogleCredential(jwt){
+  try{
+    const base64Url = jwt.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const json = decodeURIComponent(
+      atob(base64).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join('')
+    );
+    return JSON.parse(json);
+  }catch(e){
+    console.error('Failed to decode Google credential', e);
+    return null;
+  }
+}
+
+async function handleGoogleCredentialResponse(response){
+  const payload = decodeGoogleCredential(response.credential);
+  if(!payload){
+    alert("Couldn't complete Google sign-in. Please try again.");
+    return;
+  }
+  currentUser = { name: payload.name, email: payload.email, picture: payload.picture };
+  saveSession(currentUser);
+  // Watchlist is synced across devices via the server (SQLite), keyed by
+  // this Google account's email.
+  await loadWatchlistFromServer();
+  // Switch chat from the anonymous per-tab thread to this account's own
+  // conversations (ensureChatThreadId() picks the right one next time it's
+  // called for anonymous fallback; signed-in users use conversation_id
+  // instead — see loadConversations()).
+  CHAT_THREAD_ID = null;
+  conversations = [];
+  currentConversationId = null;
+  chatHistoryLoaded = false; // force enterApp() to fetch THIS account's chat log, not reuse whatever was loaded before
+  renderUserChip();
+  enterApp();
+}
+
+// ---- Session persistence (localStorage) ----
+// Without this, currentUser only ever lived in a JS variable, so any page
+// refresh reset it to null and bounced the user back to the sign-in
+// screen even seconds after they'd just signed in. This mirrors the same
+// trust model the app already uses for the Google credential (an
+// unverified client-side JWT decode — fine for this prototype, not meant
+// to be a secure auth boundary) — it just remembers that decoded profile
+// across reloads instead of throwing it away every time.
+const SESSION_STORAGE_KEY = 'saia_session';
+function saveSession(user){
+  try{ localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(user)); }
+  catch(e){ console.error('Failed to save session locally', e); }
+}
+function clearSession(){
+  try{ localStorage.removeItem(SESSION_STORAGE_KEY); }
+  catch(e){ /* ignore */ }
+}
+function loadSavedSession(){
+  try{
+    const raw = localStorage.getItem(SESSION_STORAGE_KEY);
+    if(!raw) return null;
+    const user = JSON.parse(raw);
+    return (user && user.email) ? user : null;
+  }catch(e){
+    console.error('Failed to read saved session', e);
+    return null;
+  }
+}
+async function restoreSessionIfAny(){
+  const saved = loadSavedSession();
+  if(!saved) return;
+  currentUser = saved;
+  await loadWatchlistFromServer();
+  renderUserChip();
+  enterApp();
+}
+
+function renderUserChip(){
+  const chip = document.getElementById('userChip');
+  if(!chip) return;
+  if(currentUser){
+    chip.innerHTML = `<img src="${currentUser.picture}" referrerpolicy="no-referrer" alt="" style="width:22px;height:22px;border-radius:50%;object-fit:cover;display:block"><span>${currentUser.name}</span>`;
+  } else {
+    chip.innerHTML = '👤 Guest';
+  }
+}
+
+function signOutUser(){
+  currentUser = null;
+  clearSession();
+  if(chatController){ chatController.abort(); chatController = null; } // don't let this account's request keep running against the next one's session
+  chatThinkingEl = null;
+  setChatBusy(false);
+  CHAT_THREAD_ID = null;
+  conversations = [];
+  currentConversationId = null;
+  pendingDeleteId = null;
+  chatHistoryLoaded = false;
+  chatLog.innerHTML = ''; // don't leave this account's chat visible for whoever uses the tab next
+  renderConversationsList();
+  if(window.google && google.accounts && google.accounts.id){
+    google.accounts.id.disableAutoSelect();
+  }
+  renderUserChip();
+  backToLanding();
+}
+
+function initGoogleSignIn(){
+  if(!(window.google && google.accounts && google.accounts.id)){
+    // GSI script hasn't loaded yet (or was blocked) — try again shortly.
+    setTimeout(initGoogleSignIn, 300);
+    return;
+  }
+  google.accounts.id.initialize({
+    client_id: GOOGLE_CLIENT_ID,
+    callback: handleGoogleCredentialResponse,
+    auto_select: false
+  });
+  [['googleSignInBtn', 'pill'], ['googleSignInBtn2', 'pill']].forEach(([id]) => {
+    const el = document.getElementById(id);
+    if(el){
+      google.accounts.id.renderButton(el, {
+        theme: 'filled_black',
+        size: 'large',
+        shape: 'pill',
+        text: 'signin_with',
+        locale: 'en',
+        width: 260
+      });
+    }
+  });
+}
+window.addEventListener('DOMContentLoaded', () => {
+  restoreSessionIfAny();
+});
+
+/* ================= LOGO INJECTION ================= */
+// Clones the <img> in <template id="logoTpl"> (the user's own logo image)
+// into every .logo-mark placeholder, sized per its data-logo attribute.
+function injectLogos(){
+  const tpl = document.getElementById('logoTpl');
+  document.querySelectorAll('.logo-mark').forEach(el=>{
+    const size = el.dataset.logo || 30;
+    el.style.width = size+'px';
+    el.style.height = size+'px';
+    const clone = tpl.content.cloneNode(true);
+    el.appendChild(clone);
+  });
+}
+// The favicon is set directly on <link id="faviconLink"> in <head> (same
+// source image as the logo, just pre-sized to 64x64), so there's nothing to
+// sync at runtime anymore — kept as a no-op so any old callers don't break.
+function syncFaviconWithLogo(){}
+function makeFloatArrow(up, top, left, delay, dur, scale){
+  const color = up ? '#3ecf7a' : '#e2566d';
+  const path = up
+    ? 'M4,26 L15,15 L20,20 L34,6 M24,6 L34,6 L34,16'
+    : 'M4,8 L15,19 L20,14 L34,28 M24,28 L34,28 L34,18';
+  return `<svg class="float-arrow" viewBox="0 0 38 34" width="${34*scale}" height="${30*scale}" style="top:${top}%;left:${left}%;animation-duration:${dur}s;animation-delay:${delay}s">
+    <path d="${path}" stroke="${color}" stroke-width="4.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>`;
+}
+function buildHeroDecor(){
+  const el = document.getElementById('heroArrows');
+  const arrows = [
+    makeFloatArrow(true, 18, 8, 0, 6, 2.2),
+    makeFloatArrow(false, 68, 12, -2, 7, 1.9),
+    makeFloatArrow(true, 30, 88, -1, 6.5, 2.1),
+    makeFloatArrow(false, 72, 84, -3, 5.5, 1.8),
+    makeFloatArrow(true, 8, 46, -4, 8, 1.6)
+  ].join('');
+  const pills = [
+    `<div class="float-pill" style="top:12%;left:20%;animation-duration:7s;color:#3ecf7a">+3.2%</div>`,
+    `<div class="float-pill" style="top:78%;left:16%;animation-duration:6s;animation-delay:-2s;color:#e2566d">-1.4%</div>`,
+    `<div class="float-pill" style="top:22%;left:78%;animation-duration:8s;animation-delay:-3s;color:#eef2fb">$412.80</div>`,
+    `<div class="float-pill" style="top:60%;left:80%;animation-duration:6.5s;animation-delay:-1s;color:#3ecf7a">+0.8%</div>`
+  ].join('');
+  el.insertAdjacentHTML('beforeend', arrows+pills);
+}
+
+/* ================= BACKEND API CONFIG =================
+   This frontend never talks to Databricks directly (no CORS support, and a
+   Databricks token must never sit in browser-side code). Instead it calls a
+   small backend proxy — see saia_backend/app.py — which reads DATABRICKS_*
+   values from its own .env and queries the finance_intelligence_hub.silver
+   tables on your behalf.
+
+   TODO (you): once saia_backend is running, set baseUrl to wherever it's
+   hosted (e.g. 'http://localhost:8000' locally) and flip useMockData to false.
+     GET {baseUrl}/api/companies                -> silver.companies rows
+     GET {baseUrl}/api/stock-prices?ticker=XXX   -> silver.stock_prices rows for one ticker
+     GET {baseUrl}/api/news[?ticker=XXX]         -> gold.news_sentiments rows (article + positive/negative/neutral scores)
+======================================================== */
+const API_CONFIG = {
+  baseUrl: '', // served from the same domain as the API, so relative paths work
+  endpoints: {
+    companies: '/api/companies',
+    stockPrices: '/api/stock-prices',
+    stockPricesDownload: '/api/stock-prices/download',
+    news: '/api/news',
+    newsSearch: '/api/news/search',
+    newsDownload: '/api/news/download',
+    newsByIds: '/api/news/by-ids',
+    predictions: '/api/predictions',
+    predictionsAll: '/api/predictions/all',
+    watchlist: '/api/watchlist',
+    watchlistToggle: '/api/watchlist/toggle',
+    savedNews: '/api/saved-news',
+    savedNewsToggle: '/api/saved-news/toggle',
+    chat: '/api/chat',
+    chatHistory: '/api/chat-history',
+    chatConversations: '/api/chat-conversations'
+  },
+  useMockData: false
+};
+
+async function apiRequest(path, params = {}){
+  const url = new URL(API_CONFIG.baseUrl.replace(/\/$/, '') + path, window.location.origin);
+  Object.entries(params).forEach(([k, v]) => {
+    if(v !== undefined && v !== null && v !== '') url.searchParams.set(k, v);
+  });
+  // No auth header here on purpose — the Databricks token lives only in
+  // saia_backend's .env, never in this browser-side code.
+  const res = await fetch(url.toString(), { headers: { 'Content-Type': 'application/json' } });
+  if(!res.ok){
+    // Try to surface the backend's actual error detail (FastAPI returns
+    // {"detail": "..."} on HTTPException) instead of just the status code,
+    // so failures are debuggable from the browser console.
+    let detail = '';
+    try{ detail = (await res.json()).detail || ''; }catch(_){ /* body wasn't JSON */ }
+    throw new Error(`API request failed (${res.status}) on ${path}${detail ? `: ${detail}` : ''}`);
+  }
+  return res.json();
+}
+
+async function apiPost(path, body = {}, opts = {}){
+  const url = API_CONFIG.baseUrl.replace(/\/$/, '') + path;
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+    signal: opts.signal // optional AbortSignal — lets callers (e.g. the chat "stop" button) cancel an in-flight request
+  });
+  if(!res.ok){
+    // Same reasoning as apiRequest() above: surface FastAPI's actual
+    // {"detail": "..."} instead of just the status code. This matters
+    // especially for /api/chat, which returns 503 with a clear message
+    // when GOOGLE_API_KEY isn't configured on the backend yet.
+    let detail = '';
+    try{ detail = (await res.json()).detail || ''; }catch(_){ /* body wasn't JSON */ }
+    throw new Error(`API request failed (${res.status}) on ${path}${detail ? `: ${detail}` : ''}`);
+  }
+  return res.json();
+}
+
+async function apiDelete(path, params = {}){
+  const url = new URL(API_CONFIG.baseUrl.replace(/\/$/, '') + path, window.location.origin);
+  Object.entries(params).forEach(([k, v]) => {
+    if(v !== undefined && v !== null && v !== '') url.searchParams.set(k, v);
+  });
+  const res = await fetch(url.toString(), { method: 'DELETE' });
+  if(!res.ok){
+    let detail = '';
+    try{ detail = (await res.json()).detail || ''; }catch(_){ /* body wasn't JSON */ }
+    throw new Error(`API request failed (${res.status}) on ${path}${detail ? `: ${detail}` : ''}`);
+  }
+  return res.json();
+}
+
+async function fetchCompanies(){
+  if(API_CONFIG.useMockData) return MOCK_COMPANIES;
+  return apiRequest(API_CONFIG.endpoints.companies);
+}
+async function fetchStockPrices(ticker){
+  if(API_CONFIG.useMockData) return MOCK_HISTORY[ticker] || [];
+  return apiRequest(API_CONFIG.endpoints.stockPrices, { ticker, days: 30 });
+}
+async function fetchNews(ticker, limit, offset){
+  if(API_CONFIG.useMockData){
+    const all = ticker
+      ? MOCK_NEWS.filter(n => n.ticker === ticker || (n.related_tickers||[]).includes(ticker))
+      : MOCK_NEWS;
+    return typeof offset === 'number' ? all.slice(offset, offset + (limit||all.length)) : all;
+  }
+  const params = ticker ? { ticker } : {};
+  if(limit !== undefined) params.limit = limit;
+  if(offset !== undefined) params.offset = offset;
+  return apiRequest(API_CONFIG.endpoints.news, params);
+}
+function matchesNewsQuery(n, q){
+  return (n.title||'').toLowerCase().includes(q) ||
+         (n.ticker||'').toLowerCase().includes(q) ||
+         (n.publisher_name||'').toLowerCase().includes(q);
+}
+// Server-side free-text search over news (title/ticker/publisher), used by
+// the News page's search box. See /api/news/search's docstring for why this
+// replaced the old client-side "search pool" approach.
+async function fetchNewsSearch(q, limit, offset){
+  if(API_CONFIG.useMockData){
+    const ql = (q||'').toLowerCase();
+    const all = MOCK_NEWS.filter(n => matchesNewsQuery(n, ql));
+    return typeof offset === 'number' ? all.slice(offset, offset + (limit||all.length)) : all;
+  }
+  const params = { q };
+  if(limit !== undefined) params.limit = limit;
+  if(offset !== undefined) params.offset = offset;
+  return apiRequest(API_CONFIG.endpoints.newsSearch, params);
+}
+
+const STOCK_PRICES_CACHE = {};
+async function getStockPrices(ticker){
+  if(STOCK_PRICES_CACHE[ticker]) return STOCK_PRICES_CACHE[ticker];
+  const data = await fetchStockPrices(ticker);
+  const sorted = [...data].sort((a,b) => new Date(a.trade_date) - new Date(b.trade_date));
+  STOCK_PRICES_CACHE[ticker] = sorted;
+  return sorted;
+}
+
+// Fetches the last `days` of history for one ticker — used by the download
+// duration picker, which needs more (or less) than the fixed 30 days the
+// detail-page chart/table use.
+async function getStockPricesForDays(ticker, days){
+  if(API_CONFIG.useMockData){
+    const data = MOCK_HISTORY[ticker] || [];
+    return [...data].sort((a,b) => new Date(a.trade_date) - new Date(b.trade_date)).slice(-days);
+  }
+  const data = await apiRequest(API_CONFIG.endpoints.stockPrices, { ticker, days });
+  return [...data].sort((a,b) => new Date(a.trade_date) - new Date(b.trade_date));
+}
+
+// Bulk history across ALL tickers in one request — used by the "Download
+// Stock Data (CSV)" button. This used to be built client-side by calling
+// getStockPricesForDays() once per ticker (14k+ separate requests), which is
+// what made that download sit for a long time and then fail. One request
+// against /api/stock-prices/download does the same job the backend already
+// does in a single query.
+async function fetchStockPricesBulk(days){
+  if(API_CONFIG.useMockData){
+    const rowsPerTicker = COMPANIES.map(c => {
+      const prices = (MOCK_HISTORY[c.ticker] || []).slice(-days);
+      return prices.map(p => ({ ticker: c.ticker, company_name: c.company_name, ...p }));
+    });
+    return rowsPerTicker.flat();
+  }
+  return apiRequest(API_CONFIG.endpoints.stockPricesDownload, { days });
+}
+
+// Bulk news across the chosen date window in one request — mirrors
+// fetchStockPricesBulk above. Used by the "Download News (CSV)" duration
+// modal so the user can pick how far back (by publish date) to include,
+// instead of always exporting the entire news_sentiments table.
+async function fetchNewsBulk(days){
+  if(API_CONFIG.useMockData){
+    const cutoff = Date.now() - days*24*60*60*1000;
+    return MOCK_NEWS.filter(n => new Date(n.published_at).getTime() >= cutoff);
+  }
+  return apiRequest(API_CONFIG.endpoints.newsDownload, { days });
+}
+
+// Pulls the full news_sentiments table for the "Download News (CSV)" button
+// by paging through /api/news in bounded chunks, instead of firing one
+// unbounded /api/news/download query for the entire table in a single shot.
+// With a large enough news table that single query was slow enough to trip
+// a timeout somewhere along the way (proxy, browser, or the warehouse
+// itself) and fail outright with no partial progress — paging keeps each
+// individual request small and fast, and onProgress lets the caller show
+// how far along it is instead of one long silent wait.
+async function fetchAllNews(onProgress){
+  if(API_CONFIG.useMockData) return MOCK_NEWS;
+  const PAGE_SIZE = 1000;
+  let all = [];
+  let offset = 0;
+  while(true){
+    const page = await apiRequest(API_CONFIG.endpoints.news, { limit: PAGE_SIZE, offset });
+    all = all.concat(page);
+    if(onProgress) onProgress(all.length);
+    if(page.length < PAGE_SIZE) break;
+    offset += PAGE_SIZE;
+  }
+  return all;
+}
+
+// Looks up the exact article rows for a set of ids, regardless of whether
+// they fall inside whatever page of NEWS_ITEMS happens to be loaded right
+// now. Used by Saved News, since a saved article can age out of the
+// paginated /api/news window while still being saved on the server.
+async function fetchNewsByIds(ids){
+  if(!ids || !ids.length) return [];
+  if(API_CONFIG.useMockData) return MOCK_NEWS.filter(n => ids.includes(n.article_id));
+  return apiRequest(API_CONFIG.endpoints.newsByIds, { article_ids: ids.join(',') });
+}
+// Maps to gold.stock_price_predictions via the backend's /api/predictions —
+// real ML-generated 30-day price predictions, not a client-side estimate.
+async function fetchPredictions(limit, offset){
+  if(API_CONFIG.useMockData) return [];
+  const params = { limit };
+  if(offset !== undefined) params.offset = offset;
+  return apiRequest(API_CONFIG.endpoints.predictions, params);
+}
+// Fetches the ENTIRE predictions table in one request (no LIMIT/OFFSET) —
+// used by the search pool instead of paging through /api/predictions in
+// 1000-row chunks, since one unbounded query costs far less total DB work
+// than repeated OFFSET pagination (see /api/predictions/all's docstring).
+async function fetchAllPredictions(){
+  if(API_CONFIG.useMockData) return [];
+  return apiRequest(API_CONFIG.endpoints.predictionsAll, {});
+}
+
+/* ================= MOCK DATA (matches Databricks silver schema) =================
+   silver.companies       -> MOCK_COMPANIES
+   silver.stock_prices    -> MOCK_HISTORY[ticker]
+   silver.company_news_*  -> MOCK_NEWS
+   This is only used while API_CONFIG.useMockData is true.
+=================================================================================== */
+function mulberry32(a){
+  return function(){
+    a|=0; a=a+0x6D2B79F5|0;
+    let t=Math.imul(a^a>>>15,1|a);
+    t=t+Math.imul(t^t>>>7,61|t)^t;
+    return ((t^t>>>14)>>>0)/4294967296;
+  };
+}
+function strSeed(s){
+  let h=1779033703^s.length;
+  for(let i=0;i<s.length;i++){h=Math.imul(h^s.charCodeAt(i),3432918353);h=h<<13|h>>>19;}
+  return (h^h>>>16)>>>0;
+}
+
+const COMPANY_DEFS = [
+  {ticker:'AAPL', company_name:'Apple Inc.', category:'Technology', base:195},
+  {ticker:'MSFT', company_name:'Microsoft Corp.', category:'Technology', base:415},
+  {ticker:'GOOGL', company_name:'Alphabet Inc.', category:'Technology', base:178},
+  {ticker:'AMZN', company_name:'Amazon.com Inc.', category:'Consumer Discretionary', base:186},
+  {ticker:'TSLA', company_name:'Tesla Inc.', category:'Automotive', base:248},
+  {ticker:'NVDA', company_name:'NVIDIA Corp.', category:'Technology', base:132},
+  {ticker:'META', company_name:'Meta Platforms', category:'Technology', base:512},
+  {ticker:'NFLX', company_name:'Netflix Inc.', category:'Media', base:670},
+  {ticker:'2222.SR', company_name:'Saudi Aramco', category:'Energy', base:31},
+  {ticker:'COMI.CA', company_name:'Commercial Intl Bank', category:'Banking', base:78},
+  {ticker:'EMAAR.DU', company_name:'Emaar Properties', category:'Real Estate', base:9.4},
+  {ticker:'ADNOCGAS.AD', company_name:'ADNOC Gas', category:'Energy', base:3.2},
+];
+const CATEGORY_PE = {
+  'Technology':[24,42], 'Automotive':[30,55], 'Media':[20,32],
+  'Energy':[7,13], 'Banking':[6,11], 'Real Estate':[9,16], 'Consumer Discretionary':[22,38]
+};
+
+function buildMockHistory(def){
+  const rng = mulberry32(strSeed(def.ticker));
+  let price = def.base * (0.82 + rng()*0.1);
+  const drift = (def.category==='Technology' || def.category==='Automotive') ? 0.0009 : 0.0002;
+  const days = [];
+  const startDate = new Date();
+  startDate.setDate(startDate.getDate() - 210);
+  for(let i=0;i<210;i++){
+    const vol = price*0.021;
+    const change = (rng()-0.485+drift)*vol;
+    price = Math.max(price+change, def.base*0.35);
+    const open = price*(0.995+rng()*0.01);
+    const high = Math.max(open,price)*(1+rng()*0.01);
+    const low = Math.min(open,price)*(1-rng()*0.01);
+    const d = new Date(startDate);
+    d.setDate(d.getDate()+i);
+    days.push({
+      trade_date: d.toISOString().slice(0,10),
+      open_price: +open.toFixed(2),
+      high_price: +high.toFixed(2),
+      low_price: +low.toFixed(2),
+      close_price: +price.toFixed(2),
+      adjusted_close_price: +price.toFixed(2),
+      volume: Math.floor(1_200_000 + rng()*38_000_000)
+    });
+  }
+  return days;
+}
+function buildMockCompany(def, history){
+  const rng = mulberry32(strSeed(def.ticker+'_snap'));
+  const last = history[history.length-1].close_price;
+  const prev = history[history.length-2].close_price;
+  const change = +(last-prev).toFixed(2);
+  const change_percent = +((change/prev)*100).toFixed(2);
+  const window52 = history.slice(-180).map(h=>h.close_price);
+  const week52_high = Math.max(...window52);
+  const week52_low = Math.min(...window52);
+  const yearAgoPrice = history[0].close_price;
+  const week52_change_percent = +(((last-yearAgoPrice)/yearAgoPrice)*100).toFixed(2);
+  const [peLo,peHi] = CATEGORY_PE[def.category] || [15,30];
+  const pe_ratio = +(peLo + rng()*(peHi-peLo)).toFixed(1);
+  const sharesB = +(0.4 + rng()*9).toFixed(2);
+  const market_cap = +(last*sharesB*1e9).toFixed(0);
+  const volume = history[history.length-1].volume;
+  const recentVol = history.slice(-63);
+  const avg_volume_3m = Math.floor(recentVol.reduce((s,h)=>s+h.volume,0)/recentVol.length);
+  return {
+    ticker: def.ticker, company_name: def.company_name, category: def.category,
+    price: last, change, change_percent, volume, avg_volume_3m, market_cap, pe_ratio,
+    week52_change_percent, week52_low, week52_high
+  };
+}
+
+const MOCK_HISTORY = {};
+const MOCK_COMPANIES = COMPANY_DEFS.map(def=>{
+  const hist = buildMockHistory(def);
+  MOCK_HISTORY[def.ticker] = hist;
+  return buildMockCompany(def, hist);
+});
+
+const NEWS_TEMPLATES = [
+  name=>({title:`${name} shares climb after stronger-than-expected earnings`, desc:`Investors reacted positively as ${name} reported results ahead of analyst estimates, with strength across its core segments.`}),
+  name=>({title:`${name} announces new investment in AI technology`, desc:`${name} unveiled a fresh round of investment aimed at expanding its AI capabilities and product roadmap.`}),
+  name=>({title:`Analysts raise price targets for ${name} ahead of next quarter`, desc:`Several sell-side analysts lifted their price targets on ${name}, citing improving fundamentals heading into the next earnings cycle.`}),
+  name=>({title:`${name} dips slightly amid broader market volatility`, desc:`Shares of ${name} pulled back in line with a broader market downturn, though the move was not tied to company-specific news.`}),
+  name=>({title:`${name} expands operations into new regional markets`, desc:`${name} confirmed plans to expand its footprint into additional markets as part of its ongoing growth strategy.`}),
+  name=>({title:`Report: demand for ${name} products beats expectations`, desc:`A new industry report suggests demand for ${name}'s products and services is running ahead of prior forecasts.`}),
+];
+const PUBLISHERS = [
+  {name:'Reuters', domain:'reuters.com'},
+  {name:'Bloomberg', domain:'bloomberg.com'},
+  {name:'CNBC', domain:'cnbc.com'},
+  {name:'MarketWatch', domain:'marketwatch.com'},
+  {name:'Financial Times', domain:'ft.com'},
+];
+function buildMockNews(){
+  const rng = mulberry32(777);
+  const items = [];
+  let idCounter = 1;
+  MOCK_COMPANIES.forEach(c=>{
+    const n = 1 + Math.floor(rng()*2);
+    for(let i=0;i<n;i++){
+      const tmpl = NEWS_TEMPLATES[Math.floor(rng()*NEWS_TEMPLATES.length)](c.company_name);
+      const daysAgo = Math.floor(rng()*7);
+      const pub = PUBLISHERS[Math.floor(rng()*PUBLISHERS.length)];
+      const d = new Date();
+      d.setDate(d.getDate()-daysAgo);
+      // Mock sentiment: three scores that add up to ~1, like FinBERT output.
+      const s1 = rng(), s2 = rng(), s3 = rng();
+      const sSum = s1+s2+s3;
+      items.push({
+        article_id: 'mock-'+(idCounter++),
+        ticker: c.ticker,
+        related_tickers: [c.ticker],
+        related_tickers_count: 1,
+        title: tmpl.title,
+        description: tmpl.desc,
+        publisher_name: pub.name,
+        source_url: `https://www.${pub.domain}/search?q=${encodeURIComponent(c.ticker)}`,
+        published_at: d.toISOString(),
+        positive_score: +(s1/sSum).toFixed(3),
+        negative_score: +(s2/sSum).toFixed(3),
+        neutral_score: +(s3/sSum).toFixed(3)
+      });
+    }
+  });
+  return items.sort((a,b)=> new Date(b.published_at) - new Date(a.published_at));
+}
+const MOCK_NEWS = buildMockNews();
+
+/* ================= FORMATTERS ================= */
+function fmtCur(v){
+  if(v===undefined || v===null || isNaN(v)) return '—';
+  return '$'+(+v).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+}
+function fmtCap(v){
+  if(v===undefined || v===null || isNaN(v)) return '—';
+  if(v>=1e12) return (v/1e12).toFixed(2)+'T';
+  if(v>=1e9) return (v/1e9).toFixed(2)+'B';
+  if(v>=1e6) return (v/1e6).toFixed(2)+'M';
+  return (+v).toFixed(0);
+}
+function fmtPct(v){
+  if(v===undefined || v===null || isNaN(v)) return '—';
+  return (v>=0?'+':'')+(+v).toFixed(2)+'%';
+}
+function fmtSentPct(v){
+  // FinBERT scores come back as 0–1 probabilities; some mock/edited rows
+  // might already be 0–100, so handle both without double-scaling.
+  if(v===undefined || v===null || isNaN(v)) return null;
+  const pct = v <= 1 ? v*100 : v;
+  return Math.round(pct)+'%';
+}
+function formatNewsDate(ts){
+  if(!ts) return '';
+  const d = new Date(ts);
+  if(isNaN(d)) return '';
+  const diffDays = Math.floor((new Date()-d)/(1000*60*60*24));
+  if(diffDays<=0) return 'Today';
+  if(diffDays===1) return '1d ago';
+  return diffDays+'d ago';
+}
+
+/* ================= WATCHLIST (saved on the server, synced across devices per Google account) ================= */
+let WATCHLIST = [];
+let watchlistBusy = false; // guards against double-clicks while a request is in flight
+
+async function loadWatchlistFromServer(){
+  if(!currentUser || !currentUser.email){ WATCHLIST = []; return; }
+  try{
+    const data = await apiRequest(API_CONFIG.endpoints.watchlist, { email: currentUser.email });
+    WATCHLIST = data.watchlist || [];
+  }catch(e){
+    console.error('Failed to load watchlist from server', e);
+    WATCHLIST = [];
+  }
+}
+
+function isWatched(ticker){ return WATCHLIST.includes(ticker); }
+
+async function toggleWatch(ticker, evt){
+  if(evt) evt.stopPropagation();
+  if(!currentUser || !currentUser.email || watchlistBusy) return;
+  watchlistBusy = true;
+  try{
+    const data = await apiPost(API_CONFIG.endpoints.watchlistToggle, { email: currentUser.email, ticker });
+    WATCHLIST = data.watchlist || [];
+  }catch(e){
+    console.error('Failed to update watchlist', e);
+    alert("Couldn't update your watchlist right now — please try again.");
+  }finally{
+    watchlistBusy = false;
+  }
+  renderStockGrid();
+  renderWatchlist();
+  renderHomeDashboard();
+  if(!document.getElementById('view-detail').classList.contains('hidden')) refreshDetailWatchButton(ticker);
+}
+
+/* ================= SAVED NEWS (saved on the server, synced across devices per Google account) ================= */
+let SAVED_NEWS = [];
+let SAVED_NEWS_ARTICLES = {}; // article_id -> full article row, fetched directly by id (see refreshSavedNewsArticles)
+let savedNewsBusy = false; // guards against double-clicks while a request is in flight
+
+async function loadSavedNewsFromServer(){
+  if(!currentUser || !currentUser.email){ SAVED_NEWS = []; SAVED_NEWS_ARTICLES = {}; return; }
+  try{
+    const data = await apiRequest(API_CONFIG.endpoints.savedNews, { email: currentUser.email });
+    SAVED_NEWS = data.saved_news || [];
+  }catch(e){
+    console.error('Failed to load saved news from server', e);
+    SAVED_NEWS = [];
+  }
+  await refreshSavedNewsArticles();
+}
+
+// Saved article_ids can point at articles that aren't in NEWS_ITEMS right
+// now — saved a while ago, since paged past in "Load more news", or saved
+// from a ticker-specific list. Filtering against NEWS_ITEMS made those
+// entries silently vanish from the Saved News view even though they were
+// still saved on the server. Fetch the actual rows by id instead.
+async function refreshSavedNewsArticles(){
+  if(!SAVED_NEWS.length){ SAVED_NEWS_ARTICLES = {}; return; }
+  try{
+    const articles = await fetchNewsByIds(SAVED_NEWS);
+    SAVED_NEWS_ARTICLES = {};
+    articles.forEach(a => { SAVED_NEWS_ARTICLES[a.article_id] = a; });
+  }catch(e){
+    console.error('Failed to load saved news articles', e);
+  }
+}
+
+function isNewsSaved(articleId){ return SAVED_NEWS.includes(articleId); }
+
+async function toggleNewsSave(articleId, evt){
+  if(evt) evt.stopPropagation();
+  if(!currentUser || !currentUser.email || savedNewsBusy) return;
+  savedNewsBusy = true;
+  try{
+    const data = await apiPost(API_CONFIG.endpoints.savedNewsToggle, { email: currentUser.email, article_id: articleId });
+    SAVED_NEWS = data.saved_news || [];
+  }catch(e){
+    console.error('Failed to update saved news', e);
+    alert("Couldn't update your saved news right now — please try again.");
+    savedNewsBusy = false;
+    return;
+  }
+  savedNewsBusy = false;
+  // Render right away with the ids we already have — the star on the News
+  // view flips instantly this way, same as the stock watchlist star. The
+  // full article rows for Saved News (needed for articles that aren't in
+  // NEWS_ITEMS right now) are fetched in the background afterward and only
+  // trigger a second render, instead of every star-click waiting on that
+  // extra request before anything updates.
+  renderNews();
+  renderSavedNews();
+  renderHomeDashboard();
+  refreshSavedNewsArticles().then(() => {
+    renderSavedNews();
+    renderHomeDashboard();
+  });
+}
+
+/* ================= TICKER TAPE ================= */
+function buildTape(el){
+  // With 14k+ companies, rendering all of them in the scrolling tape would
+  // create a huge, laggy DOM. Show a sample instead.
+  const TAPE_SAMPLE_SIZE = 40;
+  const sample = [...COMPANIES].sort(()=>Math.random()-0.5).slice(0, TAPE_SAMPLE_SIZE);
+  const items = sample.map(c=>{
+    const up = c.change_percent>=0;
+    return `<div class="tick-item"><span class="tick-sym">${c.ticker}</span><span>${fmtCur(c.price)}</span><span class="${up?'tick-up':'tick-down'}">${fmtPct(c.change_percent)}</span></div>`;
+  }).join('');
+  el.innerHTML = items+items;
+}
+
+/* ================= NAVIGATION ================= */
+let COMPANIES = [];
+let NEWS_ITEMS = [];
+
+// Views that show the top search box, and what it searches
+const SEARCHABLE_VIEWS = { stocks: 'stocks', news: 'news' };
+
+async function enterApp(){
+  if(!currentUser){
+    // Safety net: nothing should call enterApp() before a Google sign-in
+    // completes, but just in case, don't let anyone into the dashboard
+    // without a signed-in user.
+    alert('Please sign in with Google first.');
+    return;
+  }
+  document.getElementById('landing').classList.add('hidden');
+  document.getElementById('app').classList.remove('hidden');
+  await loadSavedNewsFromServer();
+  renderStockGrid(); renderNews(); renderHomeDashboard(); renderWatchlist(); renderSavedNews();
+  if(!chatHistoryLoaded) await initChatSidebar();
+  // If sign-in happened before bootstrap() finished loading companies/news
+  // (e.g. the user signed in quickly), the dashboard above may have
+  // rendered with empty data. Re-render once loading is actually done.
+  await bootstrapPromise;
+  renderStockGrid(); renderNews(); renderHomeDashboard(); renderWatchlist(); renderSavedNews();
+}
+function backToLanding(){
+  document.getElementById('app').classList.add('hidden');
+  document.getElementById('landing').classList.remove('hidden');
+}
+function switchView(name){
+  document.querySelectorAll('.view').forEach(v=>v.classList.add('hidden'));
+  document.getElementById('view-'+name).classList.remove('hidden');
+  document.querySelectorAll('.nav-item[data-view]').forEach(b=>b.classList.toggle('active', b.dataset.view===name));
+
+  // Search box only shows on Stocks & News, not Home or anywhere else
+  const searchBox = document.getElementById('topSearchBox');
+  if(SEARCHABLE_VIEWS[name]){
+    searchBox.classList.remove('hidden');
+    document.getElementById('searchInput').value = '';
+  } else {
+    searchBox.classList.add('hidden');
+  }
+  onSearchInput(); // reset filters for the newly active view
+
+  if(name === 'predictions' && !predictionsLoaded){
+    predictionsLoaded = true;
+    renderPredictions();
+  }
+}
+function onSearchInput(){
+  stockGridPageSize = 20;
+  renderStockGrid();
+  renderNews();
+}
+
+/* ================= STOCK CARD (shared by Stocks + Home dashboard + Watchlist) ================= */
+function renderStockCard(c){
+  const up = c.change_percent>=0;
+  const watched = isWatched(c.ticker);
+  return `<div class="stock-card" onclick="openDetail('${c.ticker}')">
+    <button class="star-btn ${watched?'active':''}" onclick="toggleWatch('${c.ticker}', event)" title="${watched?'Remove from watchlist':'Add to watchlist'}">${watched?'★':'☆'}</button>
+    <div class="row1">
+      <div><div class="sym">${c.ticker}</div><div class="name">${c.company_name}</div></div>
+      <div class="badge">${c.category||'—'}</div>
+    </div>
+    <div class="price-row" style="margin-top:18px">
+      <div class="price">${fmtCur(c.price)}</div>
+      <div class="chg ${up?'up':'down'}">${fmtPct(c.change_percent)}</div>
+    </div>
+  </div>`;
+}
+
+/* ================= SECTOR/INDUSTRY/CATEGORY FILTERS ================= */
+// Shared across Stocks, Watchlist, and Predictions. Each section keeps its
+// own <select> trio (prefix + "SectorFilter"/"IndustryFilter"/"CategoryFilter")
+// so the three views can be filtered independently.
+function populateFilterOptions(prefix, list){
+  const sectorEl = document.getElementById(prefix+'SectorFilter');
+  const industryEl = document.getElementById(prefix+'IndustryFilter');
+  const categoryEl = document.getElementById(prefix+'CategoryFilter');
+  if(!sectorEl || !industryEl || !categoryEl) return;
+  const fill = (el, values, allLabel)=>{
+    const current = el.value;
+    const uniq = [...new Set(values.filter(Boolean))].sort();
+    el.innerHTML = `<option value="">${allLabel}</option>` + uniq.map(v=>`<option value="${v}">${v}</option>`).join('');
+    if(uniq.includes(current)) el.value = current;
+  };
+  // Only rebuild option lists once (or when empty) — rebuilding on every
+  // render would reset the user's selection since <option> mutations
+  // clear the picked value's index if it no longer matches after sort.
+  if(sectorEl.dataset.filled!=='1'){ fill(sectorEl, list.map(c=>c.sector), 'All sectors'); sectorEl.dataset.filled='1'; }
+  if(industryEl.dataset.filled!=='1'){ fill(industryEl, list.map(c=>c.industry), 'All industries'); industryEl.dataset.filled='1'; }
+  if(categoryEl.dataset.filled!=='1'){ fill(categoryEl, list.map(c=>c.category), 'All categories'); categoryEl.dataset.filled='1'; }
+}
+function applySectorIndustryCategoryFilter(prefix, list){
+  const sector = document.getElementById(prefix+'SectorFilter')?.value || '';
+  const industry = document.getElementById(prefix+'IndustryFilter')?.value || '';
+  const category = document.getElementById(prefix+'CategoryFilter')?.value || '';
+  return list.filter(c=>{
+    if(sector && c.sector!==sector) return false;
+    if(industry && c.industry!==industry) return false;
+    if(category && c.category!==category) return false;
+    return true;
+  });
+}
+function clearFilters(prefix){
+  ['Sector','Industry','Category'].forEach(k=>{
+    const el = document.getElementById(prefix+k+'Filter');
+    if(el) el.value = '';
+  });
+}
+
+/* ================= STOCKS GRID ================= */
+let stockGridPageSize = 20;
+function renderStockGrid(){
+  const searchEl = document.getElementById('searchInput');
+  const activeView = document.querySelector('.nav-item.active')?.dataset.view;
+  const q = (activeView==='stocks' && searchEl ? searchEl.value : '').trim().toLowerCase();
+  if(companiesLoaded) populateFilterOptions('stocks', COMPANIES);
+  let fullList = COMPANIES.filter(c=>{
+    if(q && !(c.ticker.toLowerCase().includes(q) || c.company_name.toLowerCase().includes(q))) return false;
+    return true;
+  });
+  fullList = applySectorIndustryCategoryFilter('stocks', fullList);
+  document.getElementById('homeCount').textContent = fullList.length;
+
+  if(!companiesLoaded && fullList.length===0){
+    document.getElementById('stockGrid').innerHTML = '<div style="color:var(--text-dimmer)"><span class="spinner"></span>Loading stocks…</div>';
+    return;
+  }
+  const visible = fullList.slice(0, stockGridPageSize);
+  let html = visible.map(renderStockCard).join('') || '<div style="color:var(--text-dimmer)">No matching stocks.</div>';
+  if(fullList.length > stockGridPageSize){
+    html += `<button class="add-btn" style="grid-column:1/-1;justify-self:center" onclick="stockGridPageSize+=20;renderStockGrid()">Load more</button>`;
+  }
+  document.getElementById('stockGrid').innerHTML = html;
+}
+
+/* ================= WATCHLIST VIEW ================= */
+function renderWatchlist(){
+  const grid = document.getElementById('watchlistGrid');
+  const countEl = document.getElementById('watchlistCount');
+  if(!grid) return;
+  if(!companiesLoaded){
+    // COMPANIES hasn't loaded yet — don't say "you haven't added any
+    // stocks yet" here, that's misleading for someone who saved stocks in
+    // a previous session; it's just not loaded yet. This clears itself
+    // automatically once bootstrap() finishes, no action needed.
+    countEl.textContent = '…';
+    grid.innerHTML = '<div style="color:var(--text-dimmer)"><span class="spinner"></span>Loading your watchlist…</div>';
+    return;
+  }
+  const watchedList = COMPANIES.filter(c=>isWatched(c.ticker));
+  populateFilterOptions('watchlist', watchedList);
+  const q = (document.getElementById('watchlistSearchInput')?.value || '').trim().toLowerCase();
+  let list = q ? watchedList.filter(c=>c.ticker.toLowerCase().includes(q) || c.company_name.toLowerCase().includes(q)) : watchedList;
+  list = applySectorIndustryCategoryFilter('watchlist', list);
+  countEl.textContent = list.length;
+  grid.innerHTML = list.map(renderStockCard).join('') || (watchedList.length
+    ? '<div style="color:var(--text-dimmer)">No watchlist stocks match this filter.</div>'
+    : '<div style="color:var(--text-dimmer)">You haven\'t added any stocks yet. Tap the ☆ on any stock card to save it here.</div>');
+}
+
+/* ================= HOME DASHBOARD ================= */
+function renderHomeDashboard(){
+  const newsGrid = document.getElementById('homeNewsGrid');
+  const stocksGrid = document.getElementById('homeTopStocksGrid');
+
+  if(!homeNewsLoaded){
+    newsGrid.innerHTML = '<div style="color:var(--text-dimmer)"><span class="spinner"></span>Loading news…</div>';
+  }else{
+    const topNews = HOME_NEWS_PREVIEW.length ? HOME_NEWS_PREVIEW : NEWS_ITEMS.slice(0,5);
+    newsGrid.innerHTML = topNews.map(renderNewsCard).join('') || '<div style="color:var(--text-dimmer)">No news yet.</div>';
+  }
+
+  if(!companiesLoaded){
+    stocksGrid.innerHTML = '<div style="color:var(--text-dimmer)"><span class="spinner"></span>Loading stocks…</div>';
+  }else{
+    const topCompanies = [...COMPANIES].sort((a,b)=>b.market_cap-a.market_cap).slice(0,8);
+    stocksGrid.innerHTML = topCompanies.map(renderStockCard).join('') || '<div style="color:var(--text-dimmer)">No companies yet.</div>';
+  }
+}
+
+/* ================= PREDICTIONS ================= */
+// Companies in COMPANIES but with no row in `rows` (matched by ticker) have
+// no prediction yet — usually recent IPOs/spinoffs without enough
+// fact_stock_prices history for the ML pipeline to train on (confirmed gap:
+// 13,599 companies vs 13,340 predictions). We used to ask the backend to
+// LEFT JOIN dim_companies to surface these, but joining+sorting 13k+ rows on
+// every request (especially the search pool below) held the backend's
+// shared DB connection pool (POOL_SIZE=4) busy long enough to starve
+// /api/news and search across the whole site. Doing this diff here instead
+// costs nothing extra — COMPANIES is already loaded for free — and never
+// touches Databricks again.
+function appendMissingCompanies(rows){
+  const haveTicker = new Set(rows.map(r=>r.ticker));
+  const missing = COMPANIES
+    .filter(c => !haveTicker.has(c.ticker))
+    .map(c => ({
+      ticker: c.ticker, company_name: c.company_name,
+      last_known_close_price: c.price ?? null,
+      predicted_close_price: null, predicted_change_percent: null,
+      has_prediction: false,
+      sector: c.sector, industry: c.industry, category: c.category
+    }));
+  return rows.concat(missing);
+}
+
+let predictionsLoaded = false;
+let PREDICTIONS_CACHE = null; // progressively loaded rows for normal browsing, joined with sector/industry/category
+let predictionsHasMore = true;
+let predictionsMissingAppended = false; // guards against appending the "no prediction yet" rows more than once
+const PREDICTIONS_PAGE_SIZE = 20;
+
+// Attaches sector/industry/category from COMPANIES (predictions rows don't
+// carry these themselves) — pulled into a helper so both the paginated
+// browse cache and the full search pool below can reuse it.
+function joinPredictionRows(rows){
+  const companyByTicker = Object.fromEntries(COMPANIES.map(c=>[c.ticker, c]));
+  return rows.map(r=>({...r, has_prediction: true, sector: companyByTicker[r.ticker]?.sector, industry: companyByTicker[r.ticker]?.industry, category: companyByTicker[r.ticker]?.category}));
+}
+
+// Search only over PREDICTIONS_CACHE (whatever's been paged in via "Load
+// more" so far) made search feel broken — a ticker that hadn't been paged
+// in yet (e.g. AAPL, NVDA, ranked outside the first page by predicted gain)
+// looked like it had "no prediction" even though /api/predictions has a row
+// for it. This loads the FULL predictions universe via /api/predictions/all
+// (a single unbounded query, same pattern /api/companies already uses) so
+// search actually covers every ticker.
+//
+// It used to only start that fetch the first time someone typed into the
+// search box, which meant the first search always waited on it live. Now it
+// preloads in the background right alongside companies/news/predictions on
+// page load (see bootstrap()), so by the time anyone searches it's usually
+// already sitting in memory — same instant-filter feel as Stocks and News.
+let PREDICTIONS_SEARCH_ALL = null;
+let predictionsSearchLoading = false;
+const PREDICTIONS_SEARCH_PAGE_SIZE = 10; // how many results to reveal per "Load more" click while searching
+let predictionsSearchVisibleCount = PREDICTIONS_SEARCH_PAGE_SIZE;
+let predictionsSearchLastQuery = null; // tracks the query so switching searches resets pagination
+
+async function ensurePredictionsSearchPool(){
+  if(PREDICTIONS_SEARCH_ALL || predictionsSearchLoading) return;
+  predictionsSearchLoading = true;
+  try{
+    const all = await fetchAllPredictions(); // single query, see /api/predictions/all
+    PREDICTIONS_SEARCH_ALL = appendMissingCompanies(joinPredictionRows(all));
+  }catch(e){
+    console.error('Failed to load full predictions search pool:', e);
+    PREDICTIONS_SEARCH_ALL = null;
+  }
+  predictionsSearchLoading = false;
+  renderPredictions(); // re-render once the pool arrives so results appear
+}
+
+async function renderPredictions(){
+  const tbody = document.getElementById('predBody');
+  if(!PREDICTIONS_CACHE){
+    tbody.innerHTML = '<tr><td colspan="4" style="color:var(--text-dimmer);padding:20px"><span class="spinner"></span>Loading predictions…</td></tr>';
+    let rows;
+    try{
+      rows = await fetchPredictions(PREDICTIONS_PAGE_SIZE, 0);
+    }catch(e){
+      console.error('Failed to load predictions:', e);
+      tbody.innerHTML = '<tr><td colspan="4" style="color:var(--text-dimmer);padding:20px">Failed to load predictions.</td></tr>';
+      return;
+    }
+    if(rows.length < PREDICTIONS_PAGE_SIZE) predictionsHasMore = false;
+    PREDICTIONS_CACHE = joinPredictionRows(rows);
+  }
+  // Once "Load more" has pulled in the entire real predictions table (no
+  // more pages left server-side), tack the no-prediction-yet companies onto
+  // the end once — matches where they'd naturally sort (NULLS LAST) and
+  // costs no extra Databricks call, since COMPANIES is already in memory.
+  if(!predictionsHasMore && !predictionsMissingAppended && companiesLoaded){
+    PREDICTIONS_CACHE = appendMissingCompanies(PREDICTIONS_CACHE);
+    predictionsMissingAppended = true;
+  }
+  if(companiesLoaded) populateFilterOptions('predictions', COMPANIES);
+  const q = (document.getElementById('predictionsSearchInput')?.value || '').trim().toLowerCase();
+  if(q && !PREDICTIONS_SEARCH_ALL && !predictionsSearchLoading){ ensurePredictionsSearchPool(); }
+  // Never block search behind a spinner waiting on the full-table query —
+  // that single unbounded /api/predictions/all call can take real time on
+  // its own. Instead, search whatever's already loaded (PREDICTIONS_CACHE)
+  // right away; once the full pool finishes loading in the background,
+  // ensurePredictionsSearchPool() calls renderPredictions() again and the
+  // results quietly upgrade to the complete set.
+  if(predictionsSearchLastQuery !== q){ predictionsSearchLastQuery = q; predictionsSearchVisibleCount = PREDICTIONS_SEARCH_PAGE_SIZE; }
+  const searchSource = q ? (PREDICTIONS_SEARCH_ALL || PREDICTIONS_CACHE) : PREDICTIONS_CACHE;
+  let rows = q ? searchSource.filter(r=>r.ticker.toLowerCase().includes(q) || (r.company_name||'').toLowerCase().includes(q)) : PREDICTIONS_CACHE;
+  rows = applySectorIndustryCategoryFilter('predictions', rows);
+  const totalMatches = rows.length;
+  if(q) rows = rows.slice(0, predictionsSearchVisibleCount);
+  let html = rows.map(r=>{
+    // has_prediction is set client-side (see appendMissingCompanies /
+    // joinPredictionRows above) — a company can be a real, listed ticker
+    // with no model output yet (usually a recent IPO/spinoff without enough
+    // fact_stock_prices history to train on). Show that plainly instead of
+    // rendering it as a 0%/negative prediction, which would misrepresent it
+    // as a real model output.
+    if(!r.has_prediction){
+      return `<tr onclick="openDetail('${r.ticker}')">
+        <td><b>${r.ticker}</b><br><span style="color:var(--text-dimmer);font-size:12px">${r.company_name||''}</span></td>
+        <td class="num">${fmtCur(r.last_known_close_price)}</td>
+        <td class="num" colspan="2" style="color:var(--text-dimmer);font-size:12px">Prediction not available yet — not enough price history</td>
+      </tr>`;
+    }
+    const up = (r.predicted_change_percent ?? 0) >= 0;
+    return `<tr onclick="openDetail('${r.ticker}')">
+      <td><b>${r.ticker}</b><br><span style="color:var(--text-dimmer);font-size:12px">${r.company_name||''}</span></td>
+      <td class="num">${fmtCur(r.last_known_close_price)}</td>
+      <td class="num">${fmtCur(r.predicted_close_price)}</td>
+      <td class="num ${up?'up':'down'}">${fmtPct(r.predicted_change_percent)}</td>
+    </tr>`;
+  }).join('') || '<tr><td colspan="4" style="color:var(--text-dimmer);padding:20px">No prediction data available.</td></tr>';
+  // "Load more" fetches the next server page on the unfiltered list; while
+  // searching, it just reveals 10 more already-filtered matches instantly.
+  if(!q && predictionsHasMore){
+    html += `<tr><td colspan="4" style="text-align:center;padding:16px"><button class="add-btn" id="loadMorePredictionsBtn" onclick="loadMorePredictions()">Load more</button></td></tr>`;
+  }
+  if(q && totalMatches > predictionsSearchVisibleCount){
+    html += `<tr><td colspan="4" style="text-align:center;padding:16px"><button class="add-btn" onclick="loadMorePredictionsSearch()">Load more</button></td></tr>`;
+  }
+  if(q && !PREDICTIONS_SEARCH_ALL && predictionsSearchLoading){
+    html += `<tr><td colspan="4" style="text-align:center;color:var(--text-dimmer);font-size:12px;padding:8px"><span class="spinner"></span>Still searching older tickers…</td></tr>`;
+  }
+  tbody.innerHTML = html;
+}
+
+function loadMorePredictionsSearch(){
+  predictionsSearchVisibleCount += PREDICTIONS_SEARCH_PAGE_SIZE;
+  renderPredictions();
+}
+
+async function loadMorePredictions(){
+  const btn = document.getElementById('loadMorePredictionsBtn');
+  if(btn){
+    btn.disabled = true;
+    btn.innerHTML = `<span class="spinner"></span>Loading…`;
+  }
+  try{
+    const more = await fetchPredictions(PREDICTIONS_PAGE_SIZE, PREDICTIONS_CACHE.length);
+    if(more.length < PREDICTIONS_PAGE_SIZE) predictionsHasMore = false;
+    PREDICTIONS_CACHE = PREDICTIONS_CACHE.concat(joinPredictionRows(more));
+  }catch(e){
+    console.error('Failed to load more predictions:', e);
+    predictionsHasMore = false;
+  }
+  renderPredictions();
+}
+
+/* ================= NEWS ================= */
+function renderSentimentPills(n){
+  // Instead of showing all three FinBERT scores, only show whichever one is
+  // dominant for this article (highest raw score) as a single badge:
+  // green = positive, red = negative, grey = neutral.
+  const candidates = [
+    {key:'pos',  label:'Positive', icon:'▲', raw:n.positive_score},
+    {key:'neg',  label:'Negative', icon:'▼', raw:n.negative_score},
+    {key:'norm', label:'Neutral',  icon:'●', raw:n.neutral_score},
+  ].filter(s => s.raw !== undefined && s.raw !== null && !isNaN(s.raw));
+  if(!candidates.length) return '';
+  const top = candidates.reduce((best, cur) => cur.raw > best.raw ? cur : best);
+  return `<div class="news-sentiment">
+    <span class="sent-pill ${top.key}">${top.icon} ${top.label} ${fmtSentPct(top.raw)}</span>
+  </div>`;
+}
+function renderNewsCard(n){
+  const company = COMPANIES.find(c=>c.ticker===n.ticker);
+  const safeUrl = (n.source_url||'').replace(/'/g, "\\'");
+  const saved = isNewsSaved(n.article_id);
+  return `<div class="news-card" onclick="window.open('${safeUrl}','_blank')">
+    <button class="star-btn ${saved?'active':''}" onclick="toggleNewsSave('${n.article_id}', event)" title="${saved?'Remove from bookmarks':'Add to bookmarks'}">${saved?'★':'☆'}</button>
+    <div class="src">${n.publisher_name||'Unknown source'} · ${n.ticker}</div>
+    <h3>${n.title}</h3>
+    <p class="news-desc">${n.description||''}</p>
+    ${renderSentimentPills(n)}
+    <div class="meta"><span>${formatNewsDate(n.published_at)}</span><span>${company?company.company_name:n.ticker}</span></div>
+  </div>`;
+}
+let newsHasMore = true;
+const NEWS_PAGE_SIZE = 20;
+
+// Stocks search feels instant because ALL companies are loaded once in the
+// background (COMPANIES), so filtering is just an in-memory .filter() — no
+// network call per keystroke. News can't use that same trick: the news
+// table is far bigger, so pulling a "search pool" into the browser (this
+// used to fetch 2000 articles up front, then page in another 1000 at a time
+// via /api/news's LIMIT/OFFSET whenever a rare query didn't have enough
+// matches yet) meant scanning deep into the archive one 1000-row chunk at a
+// time just to filter client-side — slow enough to time out and made search
+// feel broken.
+//
+// Both ticker-scoped and free-text queries now hit the server instead,
+// which pushes the actual filtering into SQL (see /api/news/search) so
+// only the matching rows ever get sorted, no matter how deep "Load more"
+// pages in.
+let newsSearchMode = null;        // 'ticker' | 'text' | null
+let newsSearchTicker = null;      // resolved ticker, when the query matches a company
+let newsSearchResults = [];       // server-fetched results for the current search
+let newsSearchOffset = 0;
+let newsSearchHasMore = true;
+let newsSearchLoading = false;
+let newsSearchLastQuery = null;   // tracks the query string so switching searches resets pagination
+
+function resolveTickerFromQuery(q){
+  // A single character matching some company's exact ticker (e.g. "a" ==
+  // Agilent's ticker "A", "m" == Macy's "M") used to silently scope the
+  // whole search to just that one company — so typing "m" jumped straight
+  // to Macy's few articles instead of doing a normal broad search, and
+  // "Load more" correctly disappeared since there was nothing left to load
+  // for that one ticker. That's not a bug, but it's a confusing surprise
+  // for such a short, likely-accidental match — require at least 2
+  // characters before auto-scoping to a specific company.
+  if(!q || q.length < 2) return null;
+  const exact = COMPANIES.find(c => c.ticker.toLowerCase() === q);
+  if(exact) return exact.ticker;
+  const byName = COMPANIES.filter(c => c.company_name.toLowerCase().includes(q));
+  // Only auto-scope to a company by name if the query is unambiguous.
+  return byName.length === 1 ? byName[0].ticker : null;
+}
+
+// Runs a fresh search (either ticker-scoped via /api/news, or free-text via
+// /api/news/search) and replaces whatever results were showing before.
+async function ensureNewsSearchResults(mode, key){
+  newsSearchMode = mode;
+  newsSearchTicker = mode === 'ticker' ? key : null;
+  newsSearchLastQuery = key;
+  newsSearchResults = [];
+  newsSearchOffset = 0;
+  newsSearchHasMore = true;
+  newsSearchLoading = true;
+  renderNews();
+  try{
+    const batch = mode === 'ticker'
+      ? await fetchNews(key, NEWS_PAGE_SIZE, 0)
+      : await fetchNewsSearch(key, NEWS_PAGE_SIZE, 0);
+    newsSearchResults = batch;
+    newsSearchOffset = batch.length;
+    if(batch.length < NEWS_PAGE_SIZE) newsSearchHasMore = false;
+  }catch(e){
+    console.error('Failed to load news search results:', e);
+    newsSearchResults = [];
+    newsSearchHasMore = false;
+  }
+  newsSearchLoading = false;
+  renderNews();
+}
+
+async function loadMoreNewsSearch(){
+  const btn = document.getElementById('loadMoreNewsSearchBtn');
+  if(btn){
+    btn.disabled = true;
+    btn.innerHTML = `<span class="spinner"></span>Loading…`;
+  }
+  try{
+    const more = newsSearchMode === 'ticker'
+      ? await fetchNews(newsSearchTicker, NEWS_PAGE_SIZE, newsSearchOffset)
+      : await fetchNewsSearch(newsSearchLastQuery, NEWS_PAGE_SIZE, newsSearchOffset);
+    newsSearchResults = newsSearchResults.concat(more);
+    newsSearchOffset += more.length;
+    if(more.length < NEWS_PAGE_SIZE) newsSearchHasMore = false;
+  }catch(e){
+    console.error('Failed to load more news search results:', e);
+    newsSearchHasMore = false;
+  }
+  renderNews();
+}
+
+function renderNews(){
+  const searchEl = document.getElementById('searchInput');
+  const activeView = document.querySelector('.nav-item.active')?.dataset.view;
+  const q = (activeView==='news' && searchEl ? searchEl.value : '').trim().toLowerCase();
+
+  if(!q){
+    // No search — plain paginated feed, unchanged.
+    newsSearchMode = null;
+    newsSearchTicker = null;
+    document.getElementById('newsCount').textContent = NEWS_ITEMS.length+' articles';
+    let html = NEWS_ITEMS.map(renderNewsCard).join('') || '<div style="color:var(--text-dimmer)">No matching news.</div>';
+    if(newsHasMore){
+      html += `<button class="add-btn" id="loadMoreNewsBtn" style="grid-column:1/-1;justify-self:center" onclick="loadMoreNews()">Load more</button>`;
+    }
+    document.getElementById('newsGrid').innerHTML = html;
+    return;
+  }
+
+  // Ticker-scoped (e.g. "AAPL", or an unambiguous company name) vs.
+  // free-text both go through the server now (see /api/news/search's
+  // docstring for why free-text no longer filters an in-memory pool).
+  const tickerMatch = resolveTickerFromQuery(q);
+  const mode = tickerMatch ? 'ticker' : 'text';
+  const key = tickerMatch || q;
+  if(newsSearchLastQuery !== key || newsSearchMode !== mode){
+    ensureNewsSearchResults(mode, key); // kicks off the fetch; will re-render when done
+    return;
+  }
+  if(newsSearchLoading && newsSearchResults.length === 0){
+    document.getElementById('newsCount').textContent = 'Searching…';
+    document.getElementById('newsGrid').innerHTML = '<div style="color:var(--text-dimmer)"><span class="spinner"></span>Searching news…</div>';
+    return;
+  }
+  document.getElementById('newsCount').textContent = newsSearchResults.length+' articles';
+  let html = newsSearchResults.map(renderNewsCard).join('') || '<div style="color:var(--text-dimmer)">No matching news.</div>';
+  if(newsSearchHasMore){
+    html += `<button class="add-btn" id="loadMoreNewsSearchBtn" style="grid-column:1/-1;justify-self:center" onclick="loadMoreNewsSearch()">Load more</button>`;
+  }
+  document.getElementById('newsGrid').innerHTML = html;
+}
+
+async function loadMoreNews(){
+  const btn = document.getElementById('loadMoreNewsBtn');
+  if(btn){
+    btn.disabled = true;
+    btn.innerHTML = `<span class="spinner"></span>Loading…`;
+  }
+  try{
+    const more = await fetchNews(undefined, NEWS_PAGE_SIZE, NEWS_ITEMS.length);
+    NEWS_ITEMS = NEWS_ITEMS.concat(more);
+    if(more.length < NEWS_PAGE_SIZE) newsHasMore = false;
+  }catch(e){
+    console.error('Failed to load more news:', e);
+    newsHasMore = false;
+  }
+  renderNews();
+  renderHomeDashboard();
+}
+
+/* ================= SAVED NEWS VIEW ================= */
+function renderSavedNews(){
+  const grid = document.getElementById('savedNewsGrid');
+  const countEl = document.getElementById('savedNewsCount');
+  if(!grid) return;
+  // Look up each saved id from SAVED_NEWS_ARTICLES (fetched directly by id),
+  // not from NEWS_ITEMS — a saved article won't necessarily be inside
+  // whatever page of the news feed happens to be loaded right now.
+  const fullList = SAVED_NEWS.map(id => SAVED_NEWS_ARTICLES[id]).filter(Boolean);
+  const q = (document.getElementById('savedNewsSearchInput')?.value || '').trim().toLowerCase();
+  const list = q
+    ? fullList.filter(n =>
+        (n.title||'').toLowerCase().includes(q) ||
+        (n.ticker||'').toLowerCase().includes(q) ||
+        (n.publisher_name||'').toLowerCase().includes(q))
+    : fullList;
+  countEl.textContent = list.length;
+  grid.innerHTML = list.map(renderNewsCard).join('') || (fullList.length
+    ? '<div style="color:var(--text-dimmer)">No bookmarks match this search.</div>'
+    : '<div style="color:var(--text-dimmer)">You haven\'t saved any articles yet. Tap the ☆ on any news card to save it here.</div>');
+}
+
+/* ================= CSV DOWNLOADS ================= */
+function download(filename, text){
+  const blob = new Blob([text], {type:'text/csv;charset=utf-8;'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href=url; a.download=filename; document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
+// ---- Stock data download: user picks a duration first, then we fetch that
+// many days of history per ticker (concurrently) and export one row per
+// (ticker, trading day) — not just each ticker's latest snapshot. ----
+function openDownloadModal(){
+  document.getElementById('downloadModalOverlay').classList.remove('hidden');
+}
+function closeDownloadModal(){
+  document.getElementById('downloadModalOverlay').classList.add('hidden');
+}
+async function confirmStocksDownload(days){
+  closeDownloadModal();
+  const btn = document.getElementById('downloadStocksBtn');
+  const originalHTML = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = `<span class="spinner"></span><span class="txt">Preparing CSV…</span>`;
+  try{
+    const header = 'ticker,company_name,trade_date,open,high,low,close,adjusted_close,volume\n';
+    const rows = await fetchStockPricesBulk(days);
+    const body = rows.map(p => [
+      p.ticker, `"${(p.company_name||'').replace(/"/g,'""')}"`, p.trade_date, p.open_price, p.high_price,
+      p.low_price, p.close_price, p.adjusted_close_price, p.volume
+    ].join(',')).join('\n');
+    const label = days>=3650 ? 'all' : days+'d';
+    download(`saia_stocks_${label}.csv`, header+body);
+  }catch(e){
+    console.error('Failed to build stock CSV:', e);
+    alert('Something went wrong preparing the download. Please try again.');
+  }finally{
+    btn.disabled = false;
+    btn.innerHTML = originalHTML;
+  }
+}
+
+// ---- News download: user picks a duration first (like the stock download
+// modal above), then we fetch just that publish-date window in one request
+// against /api/news/download?days=... instead of always paging through the
+// entire news_sentiments table. ----
+function openNewsDownloadModal(){
+  document.getElementById('newsDownloadModalOverlay').classList.remove('hidden');
+}
+function closeNewsDownloadModal(){
+  document.getElementById('newsDownloadModalOverlay').classList.add('hidden');
+}
+async function confirmNewsDownload(days){
+  closeNewsDownloadModal();
+  const btn = document.getElementById('downloadNewsBtn');
+  const originalHTML = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = `<span class="spinner"></span><span class="txt">Preparing CSV…</span>`;
+  try{
+    const allNews = await fetchNewsBulk(days);
+    const header = 'published_at,publisher_name,ticker,title,description,source_url,positive_score,negative_score,neutral_score\n';
+    const rows = allNews.map(n=>[
+      n.published_at, `"${(n.publisher_name||'').replace(/"/g,'""')}"`, n.ticker,
+      `"${(n.title||'').replace(/"/g,'""')}"`, `"${(n.description||'').replace(/"/g,'""')}"`, n.source_url,
+      n.positive_score ?? '', n.negative_score ?? '', n.neutral_score ?? ''
+    ].join(',')).join('\n');
+    const label = days>=3650 ? 'all' : (days===1 ? '24h' : days+'d');
+    download(`saia_news_${label}.csv`, header+rows);
+  }catch(e){
+    console.error('Failed to build news CSV:', e);
+    alert('Something went wrong preparing the download. Please try again.');
+  }finally{
+    btn.disabled = false;
+    btn.innerHTML = originalHTML;
+  }
+}
+
+// ---- Companies download: the full companies snapshot (COMPANIES) is
+// already loaded in memory for the Stocks/Watchlist/Home views, so this
+// just exports it as CSV directly — no extra network request needed. ----
+async function downloadCompaniesCSV(){
+  const btn = document.getElementById('downloadCompaniesBtn');
+  const originalHTML = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = `<span class="spinner"></span><span class="txt">Preparing CSV…</span>`;
+  try{
+    // COMPANIES normally loads almost immediately on bootstrap, but guard
+    // against the (rare) case someone clicks this before it's back yet.
+    if(!companiesLoaded){
+      btn.innerHTML = `<span class="spinner"></span><span class="txt">Waiting for company data…</span>`;
+      await bootstrapPromise;
+    }
+    const header = 'ticker,company_name,short_name,exchange,currency,country,sector,industry,quote_type,category,market_cap,pe_ratio,price,change,change_percent,volume,avg_volume_3m,week52_low,week52_high,week52_change_percent\n';
+    const rows = COMPANIES.map(c=>[
+      c.ticker, `"${(c.company_name||'').replace(/"/g,'""')}"`, `"${(c.short_name||'').replace(/"/g,'""')}"`,
+      c.exchange, c.currency, c.country, `"${(c.sector||'').replace(/"/g,'""')}"`, `"${(c.industry||'').replace(/"/g,'""')}"`,
+      c.quote_type, c.category, c.market_cap, c.pe_ratio, c.price, c.change, c.change_percent,
+      c.volume, c.avg_volume_3m, c.week52_low, c.week52_high, c.week52_change_percent
+    ].join(',')).join('\n');
+    download('saia_companies.csv', header+rows);
+  }catch(e){
+    console.error('Failed to build companies CSV:', e);
+    alert('Something went wrong preparing the download. Please try again.');
+  }finally{
+    btn.disabled = false;
+    btn.innerHTML = originalHTML;
+  }
+}
+
+/* ================= DETAIL VIEW ================= */
+
+function refreshDetailWatchButton(ticker){
+  const btn = document.getElementById('detailWatchBtn');
+  if(!btn) return;
+  const watched = isWatched(ticker);
+  btn.classList.toggle('active', watched);
+  btn.innerHTML = `${watched?'★':'☆'} ${watched?'In your watchlist':'Add to watchlist'}`;
+}
+async function openDetail(ticker){
+  const c = COMPANIES.find(x=>x.ticker===ticker);
+  if(!c) return;
+  switchView('detail');
+  document.querySelectorAll('.nav-item[data-view]').forEach(b=>b.classList.remove('active'));
+
+  const up = c.change_percent>=0;
+  const watched = isWatched(c.ticker);
+  document.getElementById('detailContent').innerHTML = `
+    <div class="detail-head">
+      <div class="detail-title">
+        <div class="sym-badge">${c.ticker.slice(0,4)}</div>
+        <div>
+          <div style="font-size:20px;font-weight:700">${c.company_name}</div>
+          <div style="color:var(--text-dimmer);font-size:13px">${c.category||''} · ${c.exchange||''} · ${c.ticker}${c.short_name && c.short_name!==c.company_name ? ' · '+c.short_name : ''}</div>
+          <button class="detail-watch-btn ${watched?'active':''}" id="detailWatchBtn" onclick="toggleWatch('${c.ticker}')">${watched?'★':'☆'} ${watched?'In your watchlist':'Add to watchlist'}</button>
+        </div>
+      </div>
+      <div>
+        <div class="detail-price">${fmtCur(c.price)}</div>
+        <div class="chg ${up?'up':'down'}" style="font-size:15px;text-align:right">${fmtPct(c.change_percent)} today</div>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-box"><div class="lbl">P/E Ratio</div><div class="val">${c.pe_ratio ?? '—'}</div></div>
+      <div class="stat-box"><div class="lbl">Market Cap</div><div class="val">${fmtCap(c.market_cap)}</div></div>
+      <div class="stat-box"><div class="lbl">52-Week High</div><div class="val">${fmtCur(c.week52_high)}</div></div>
+      <div class="stat-box"><div class="lbl">52-Week Low</div><div class="val">${fmtCur(c.week52_low)}</div></div>
+      <div class="stat-box"><div class="lbl">52-Week Change</div><div class="val">${fmtPct(c.week52_change_percent)}</div></div>
+      <div class="stat-box"><div class="lbl">Volume</div><div class="val">${(c.volume||0).toLocaleString('en-US')}</div></div>
+      <div class="stat-box"><div class="lbl">Avg. Volume (3M)</div><div class="val">${(c.avg_volume_3m||0).toLocaleString('en-US')}</div></div>
+      <div class="stat-box"><div class="lbl">Sector</div><div class="val" style="font-size:15px">${c.sector||'—'}</div></div>
+      <div class="stat-box"><div class="lbl">Industry</div><div class="val" style="font-size:15px">${c.industry||'—'}</div></div>
+      <div class="stat-box"><div class="lbl">Country</div><div class="val" style="font-size:15px">${c.country||'—'}</div></div>
+      <div class="stat-box"><div class="lbl">Currency</div><div class="val" style="font-size:15px">${c.currency||'—'}</div></div>
+      <div class="stat-box"><div class="lbl">Quote Type</div><div class="val" style="font-size:15px">${c.quote_type||'—'}</div></div>
+      <div class="stat-box"><div class="lbl">Shares Outstanding</div><div class="val" style="font-size:15px">${c.shares_outstanding ? Number(c.shares_outstanding).toLocaleString('en-US') : '—'}</div></div>
+    </div>
+
+    <div class="chart-panel">
+      <h3>Price History (Last 30 Days)</h3>
+      <div class="price-chart-wrap" id="detailPriceChart">
+        <div style="color:var(--text-dimmer);padding:30px 0;text-align:center">Loading chart…</div>
+      </div>
+      <div style="max-height:420px;overflow-y:auto">
+        <table class="pred-table">
+          <thead><tr>
+            <th>Date</th><th>Open</th><th>High</th><th>Low</th><th>Close</th><th>Adj. Close</th><th>Volume</th>
+          </tr></thead>
+          <tbody id="detailPriceBody"><tr><td colspan="7" style="color:var(--text-dimmer)">Loading price history…</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section-head" style="margin-top:34px">
+      <h2 style="font-size:22px">Related News</h2>
+    </div>
+    <div class="grid-news" id="detailNewsGrid"><div style="color:var(--text-dimmer)">Loading news…</div></div>
+  `;
+
+  // Track which ticker this call is for, so that if the user clicks into
+  // another stock before these requests finish, the slower one can't come
+  // back later and overwrite the newer ticker's chart/news with stale data.
+  currentDetailTicker = ticker;
+
+  // Prices and news are independent of each other — fetch and render each
+  // the moment it lands instead of waiting on both (via Promise.all) before
+  // showing anything. That used to mean the price chart, which is normally
+  // fast, sat behind a "Loading…" placeholder just because news was the
+  // slower of the two — same reasoning bootstrap() already applies to
+  // companies vs. news on the main dashboard.
+  getStockPrices(c.ticker).then(prices => {
+    if(currentDetailTicker !== ticker) return; // stale — user moved on to another stock
+    try{ renderPriceLineChart('detailPriceChart', prices.slice(-30)); }
+    catch(e){ console.error('Failed to render price chart:', e); }
+    try{ renderDetailPriceTable(prices); }
+    catch(e){ console.error('Failed to render price history table:', e); }
+  }).catch(e => console.error('Failed to load price history:', e));
+
+  detailNewsOffset = 0;
+  detailNewsHasMore = true;
+  loadDetailNews(ticker, true);
+}
+
+// Related-news section on the stock detail page. This used to fetch every
+// article for the ticker in one uncapped call (up to /api/news's 200-row
+// default) and render all of it at once — for a ticker with a lot of
+// coverage, that meant building up to 200 news-card DOM nodes on every
+// single detail-page open, which is what actually made the page feel slow.
+// Paginated the same way the News and Predictions pages already are: a
+// small first page, with "Load more" for the rest on demand.
+const DETAIL_NEWS_PAGE_SIZE = 20;
+let currentDetailTicker = null;
+let detailNewsOffset = 0;
+let detailNewsHasMore = true;
+let detailNewsItems = [];
+
+async function loadDetailNews(ticker, reset){
+  const grid = document.getElementById('detailNewsGrid');
+  try{
+    const batch = await fetchNews(ticker, DETAIL_NEWS_PAGE_SIZE, detailNewsOffset);
+    if(currentDetailTicker !== ticker) return; // stale — user moved on to another stock
+    if(reset) detailNewsItems = [];
+    detailNewsItems = detailNewsItems.concat(batch);
+    detailNewsOffset += batch.length;
+    if(batch.length < DETAIL_NEWS_PAGE_SIZE) detailNewsHasMore = false;
+  }catch(e){
+    console.error('Failed to load related news:', e);
+    if(currentDetailTicker !== ticker) return;
+    detailNewsHasMore = false;
+  }
+  if(!grid || currentDetailTicker !== ticker) return;
+  let html = detailNewsItems.map(renderNewsCard).join('') || '<div style="color:var(--text-dimmer)">No related news found.</div>';
+  if(detailNewsHasMore){
+    html += `<button class="add-btn" id="loadMoreDetailNewsBtn" style="grid-column:1/-1;justify-self:center" onclick="loadMoreDetailNews()">Load more</button>`;
+  }
+  grid.innerHTML = html;
+}
+
+function loadMoreDetailNews(){
+  const btn = document.getElementById('loadMoreDetailNewsBtn');
+  if(btn){
+    btn.disabled = true;
+    btn.innerHTML = `<span class="spinner"></span>Loading…`;
+  }
+  loadDetailNews(currentDetailTicker, false);
+}
+
+// Interactive SVG line chart for one stock's last-30-days closing price.
+// Hovering (mouse or touch) snaps to the nearest trading day and shows a
+// tooltip with that day's date + close price, plus a vertical guideline
+// and a dot on the line — no chart library, just an SVG + one listener.
+function renderPriceLineChart(containerId, prices){
+  const wrap = document.getElementById(containerId);
+  if(!wrap) return;
+  const clean = (prices||[]).filter(p => p && p.close_price != null && p.trade_date);
+  if(clean.length < 2){
+    wrap.innerHTML = '<div style="color:var(--text-dimmer);padding:30px 0;text-align:center">Not enough price history to chart yet.</div>';
+    return;
+  }
+
+  const W = 900, H = 260, padL = 46, padR = 14, padT = 16, padB = 28;
+  const closes = clean.map(p => +p.close_price);
+  let min = Math.min(...closes), max = Math.max(...closes);
+  if(min === max){ min -= 1; max += 1; } // avoid a zero-height flat line
+  const pad = (max-min)*0.08;
+  min -= pad; max += pad;
+
+  const xAt = i => padL + (i/(clean.length-1)) * (W-padL-padR);
+  const yAt = v => padT + (1 - (v-min)/(max-min)) * (H-padT-padB);
+
+  const up = closes[closes.length-1] >= closes[0];
+  const lineColor = up ? 'var(--green)' : 'var(--rose)';
+
+  const linePath = clean.map((p,i) => `${i===0?'M':'L'}${xAt(i).toFixed(2)},${yAt(+p.close_price).toFixed(2)}`).join(' ');
+  const areaPath = `${linePath} L${xAt(clean.length-1).toFixed(2)},${(H-padB).toFixed(2)} L${xAt(0).toFixed(2)},${(H-padB).toFixed(2)} Z`;
+
+  // A handful of Y-axis gridlines/labels for readability.
+  const gridLines = [0,0.25,0.5,0.75,1].map(t=>{
+    const v = min + t*(max-min);
+    const y = yAt(v);
+    return `<line x1="${padL}" y1="${y.toFixed(2)}" x2="${W-padR}" y2="${y.toFixed(2)}" stroke="var(--border)" stroke-width="1"/>
+      <text x="${padL-8}" y="${(y+4).toFixed(2)}" text-anchor="end" font-size="11" fill="var(--text-dimmer)" font-family="'IBM Plex Mono',monospace">${fmtCur(v)}</text>`;
+  }).join('');
+
+  // A few X-axis date labels (first, middle-ish, last) so it doesn't get crowded.
+  const labelIdxs = [0, Math.floor((clean.length-1)/2), clean.length-1];
+  const xLabels = [...new Set(labelIdxs)].map(i => {
+    const d = new Date(clean[i].trade_date);
+    const txt = isNaN(d) ? clean[i].trade_date : d.toLocaleDateString('en-US',{month:'short',day:'numeric'});
+    return `<text x="${xAt(i).toFixed(2)}" y="${H-8}" text-anchor="middle" font-size="11" fill="var(--text-dimmer)" font-family="'IBM Plex Mono',monospace">${txt}</text>`;
+  }).join('');
+
+  const gradId = 'priceFill_'+containerId;
+  wrap.innerHTML = `
+    <svg class="price-chart-svg" id="${containerId}_svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="${gradId}" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="${lineColor}" stop-opacity="0.28"/>
+          <stop offset="100%" stop-color="${lineColor}" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      ${gridLines}
+      <path d="${areaPath}" fill="url(#${gradId})" stroke="none"/>
+      <path d="${linePath}" fill="none" stroke="${lineColor}" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+      ${xLabels}
+      <line id="${containerId}_cursor" x1="0" y1="${padT}" x2="0" y2="${H-padB}" stroke="var(--text-dimmer)" stroke-width="1" stroke-dasharray="3,3" style="opacity:0"/>
+      <circle id="${containerId}_dot" r="4.5" fill="${lineColor}" stroke="var(--bg)" stroke-width="2" style="opacity:0"/>
+    </svg>
+    <div class="price-chart-tooltip" id="${containerId}_tooltip"></div>
+  `;
+
+  const svg = document.getElementById(`${containerId}_svg`);
+  const cursorLine = document.getElementById(`${containerId}_cursor`);
+  const dot = document.getElementById(`${containerId}_dot`);
+  const tooltip = document.getElementById(`${containerId}_tooltip`);
+
+  function showAt(clientX, clientY, rect){
+    const relX = ((clientX - rect.left) / rect.width) * W;
+    // Snap to the nearest data point rather than interpolating.
+    let nearest = 0, best = Infinity;
+    for(let i=0;i<clean.length;i++){
+      const d = Math.abs(xAt(i) - relX);
+      if(d < best){ best = d; nearest = i; }
+    }
+    const p = clean[nearest];
+    const px = xAt(nearest), py = yAt(+p.close_price);
+
+    cursorLine.setAttribute('x1', px); cursorLine.setAttribute('x2', px);
+    cursorLine.style.opacity = 1;
+    dot.setAttribute('cx', px); dot.setAttribute('cy', py);
+    dot.style.opacity = 1;
+
+    const d = new Date(p.trade_date);
+    const dateTxt = isNaN(d) ? p.trade_date : d.toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'});
+    tooltip.innerHTML = `<div class="t-date">${dateTxt}</div>${fmtCur(+p.close_price)}`;
+    // Position tooltip using the mouse's actual pixel position within the wrap (not the SVG's internal coordinate space).
+    const wrapRect = wrap.getBoundingClientRect();
+    tooltip.style.left = (clientX - wrapRect.left) + 'px';
+    tooltip.style.top = ((clientY - wrapRect.top) - 14) + 'px';
+    tooltip.classList.add('show');
+  }
+  function hide(){
+    cursorLine.style.opacity = 0;
+    dot.style.opacity = 0;
+    tooltip.classList.remove('show');
+  }
+
+  svg.addEventListener('mousemove', e=>{
+    const rect = svg.getBoundingClientRect();
+    showAt(e.clientX, e.clientY, rect);
+  });
+  svg.addEventListener('mouseleave', hide);
+  svg.addEventListener('touchmove', e=>{
+    if(!e.touches.length) return;
+    const rect = svg.getBoundingClientRect();
+    showAt(e.touches[0].clientX, e.touches[0].clientY, rect);
+  }, {passive:true});
+  svg.addEventListener('touchend', hide);
+}
+
+function renderDetailPriceTable(prices){
+  const tbody = document.getElementById('detailPriceBody');
+  if(!tbody) return;
+  // Show the most recent 30 trading days, newest first — straight from
+  // gold.fact_stock_prices (trade_date, open/high/low/close, adjusted
+  // close, volume), no chart, no prediction overlay.
+  const last30 = prices.slice(-30).slice().reverse();
+  if(!last30.length){
+    tbody.innerHTML = '<tr><td colspan="7" style="color:var(--text-dimmer)">No price history available.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = last30.map(p => `
+    <tr>
+      <td>${p.trade_date || '—'}</td>
+      <td>${fmtCur(p.open_price)}</td>
+      <td>${fmtCur(p.high_price)}</td>
+      <td>${fmtCur(p.low_price)}</td>
+      <td>${fmtCur(p.close_price)}</td>
+      <td>${fmtCur(p.adjusted_close_price)}</td>
+      <td>${(p.volume||0).toLocaleString('en-US')}</td>
+    </tr>
+  `).join('');
+}
+
+/* ================= AI CHAT =================
+   Talks to this app's own backend (/api/chat — see saia_backend/chatbot.py),
+   which runs the message through a LangGraph + Gemini agent that can look
+   up real companies/prices/news/predictions as tools. The browser never
+   calls a model API directly and never holds any API key — same trust
+   boundary as every other endpoint in API_CONFIG.
+*/
+const chatLog = document.getElementById('chatLog');
+const conversationsListEl = document.getElementById('conversationsList');
+const GREETING = "Hi! I'm SAIA's AI agent. Ask me about any stock in the list, compare two tickers, or get a general read on the market.";
+
+// Anonymous (not signed in) visitors have no email to key a persisted
+// conversation by, so they keep the old single random-per-tab thread
+// behavior instead of getting a sidebar. Signed-in users are scoped by
+// conversation_id (below) instead of this.
+let CHAT_THREAD_ID = null;
+function ensureChatThreadId(){
+  if(CHAT_THREAD_ID) return CHAT_THREAD_ID;
+  const key = 'saia_chat_thread_id';
+  CHAT_THREAD_ID = sessionStorage.getItem(key);
+  if(!CHAT_THREAD_ID){
+    CHAT_THREAD_ID = 'anon:'+(window.crypto?.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2));
+    sessionStorage.setItem(key, CHAT_THREAD_ID);
+  }
+  return CHAT_THREAD_ID;
+}
+
+// ---- Sidebar / multi-conversation state --------------------------------
+// Persistent per-conversation chat log (see /api/chat-history and
+// /api/chat-conversations in app.py) — separate from CHAT_THREAD_ID above.
+// This is what lets a signed-in user keep several distinct conversations
+// with SAIA (like a ChatGPT sidebar) that survive a refresh, a server
+// restart, or signing in on another device.
+let chatHistoryLoaded = false; // avoids re-fetching/re-rendering on every enterApp() call
+let conversations = [];        // [{id, title, created_at, updated_at}, ...], most-recent first
+let currentConversationId = null;
+let pendingDeleteId = null;    // conversation currently showing its inline "delete this?" confirm
+
+async function initChatSidebar(){
+  chatHistoryLoaded = false;
+  if(!currentUser || !currentUser.email){
+    // Anonymous: no sidebar (nothing to persist), just the old single greeting.
+    conversations = [];
+    currentConversationId = null;
+    renderConversationsList();
+    chatLog.innerHTML = '';
+    pushMsg('bot', GREETING);
+    chatHistoryLoaded = true;
+    return;
+  }
+  await loadConversations();
+  chatHistoryLoaded = true;
+}
+
+// Refetches the sidebar list from the server. Keeps whatever conversation
+// is currently open selected if it still exists; otherwise (first load, or
+// the open one just got deleted) falls back to the most recently active
+// conversation, or an empty state if the user has none yet.
+async function loadConversations(){
+  if(!currentUser?.email) return;
+  try{
+    const data = await apiRequest(API_CONFIG.endpoints.chatConversations, { email: currentUser.email });
+    conversations = data.conversations || [];
+  }catch(e){
+    console.error('Failed to load conversations', e);
+  }
+  if(currentConversationId && !conversations.find(c => c.id === currentConversationId)){
+    currentConversationId = null;
+  }
+  if(!currentConversationId && conversations.length){
+    await openConversation(conversations[0].id, { skipIfSame: false });
+  }else if(!conversations.length){
+    currentConversationId = null;
+    chatLog.innerHTML = '';
+    pushMsg('bot', GREETING);
+  }
+  renderConversationsList();
+}
+
+function renderConversationsList(){
+  if(!currentUser?.email){
+    conversationsListEl.innerHTML = '';
+    return;
+  }
+  if(!conversations.length){
+    conversationsListEl.innerHTML = '<div class="conv-empty">No conversations yet — start one above.</div>';
+    return;
+  }
+  conversationsListEl.innerHTML = conversations.map(c => {
+    const active = c.id === currentConversationId;
+    const title = escapeHtml(c.title || 'New conversation');
+    if(pendingDeleteId === c.id){
+      return `
+        <div class="conv-item ${active ? 'active' : ''}">
+          <div class="conv-confirm">
+            <span>Delete this chat?</span>
+            <button class="confirm-yes" onclick="confirmDeleteConversation('${c.id}')">Delete</button>
+            <button class="confirm-no" onclick="cancelDeleteConversation()">Cancel</button>
+          </div>
+        </div>`;
+    }
+    return `
+      <div class="conv-item ${active ? 'active' : ''}">
+        <button class="conv-title" title="${title}" onclick="openConversation('${c.id}')">${title}</button>
+        <button class="conv-delete-btn" title="Delete conversation" onclick="requestDeleteConversation('${c.id}')">🗑️</button>
+      </div>`;
+  }).join('');
+}
+
+// The sidebar's "+ New conversation" button. Just clears the local view —
+// the actual DB row is only created once the user sends their first
+// message in it (see sendChat()/POST /api/chat), so clicking "new" a bunch
+// of times without typing anything never litters the sidebar with empty
+// conversations.
+function startNewConversation(){
+  if(!currentUser?.email){
+    alert('Sign in to start and keep separate conversations.');
+    return;
+  }
+  if(chatController) return; // don't switch away mid-request
+  currentConversationId = null;
+  pendingDeleteId = null;
+  chatLog.innerHTML = '';
+  pushMsg('bot', GREETING);
+  renderConversationsList();
+}
+
+// Opens (loads the messages for) one conversation from the sidebar.
+async function openConversation(id, { skipIfSame = true } = {}){
+  if(chatController) return; // don't switch away mid-request
+  if(skipIfSame && id === currentConversationId) return;
+  currentConversationId = id;
+  pendingDeleteId = null;
+  chatLog.innerHTML = '';
+  renderConversationsList(); // reflect the new active item right away, before the fetch resolves
+  try{
+    const data = await apiRequest(API_CONFIG.endpoints.chatHistory, { email: currentUser.email, conversation_id: id });
+    const history = data.history || [];
+    if(!history.length){
+      pushMsg('bot', GREETING);
+    }else{
+      history.forEach(m => pushMsg(m.role, m.content));
+    }
+  }catch(e){
+    console.error('Failed to load conversation', e);
+    pushMsg('bot', GREETING);
+  }
+}
+
+// Step 1 of delete: show the inline "Delete this chat? Delete / Cancel"
+// confirm in place of that item's trash icon, instead of deleting right away.
+function requestDeleteConversation(id){
+  pendingDeleteId = id;
+  renderConversationsList();
+}
+function cancelDeleteConversation(){
+  pendingDeleteId = null;
+  renderConversationsList();
+}
+// Step 2: the user actually pressed "Delete" in the inline confirm.
+async function confirmDeleteConversation(id){
+  try{
+    await apiDelete(`${API_CONFIG.endpoints.chatConversations}/${id}`, { email: currentUser.email });
+  }catch(e){
+    console.error('Failed to delete conversation', e);
+    alert("Couldn't delete this conversation right now. Please try again.");
+    pendingDeleteId = null;
+    renderConversationsList();
+    return;
+  }
+  conversations = conversations.filter(c => c.id !== id);
+  pendingDeleteId = null;
+  if(currentConversationId === id){
+    currentConversationId = null;
+    if(conversations.length){
+      await openConversation(conversations[0].id, { skipIfSame: false });
+    }else{
+      chatLog.innerHTML = '';
+      pushMsg('bot', GREETING);
+    }
+  }
+  renderConversationsList();
+}
+
+// Escapes text for safe HTML insertion (relies on the browser's own
+// textContent->innerHTML escaping rather than a hand-rolled regex).
+function escapeHtml(str){
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+// The bot (Gemini via chatbot.py) writes plain Markdown — **bold**, "* "
+// bullet lists, and blank-line-separated paragraphs (see SYSTEM_PROMPT's
+// "bullet points or a small table" instruction). The chat log used to dump
+// that straight into textContent, so users saw literal asterisks instead of
+// formatting. This renders just that small subset of Markdown to HTML,
+// escaping everything else first so nothing the model outputs can inject
+// markup into the page.
+function renderMarkdownLite(text){
+  const escaped = escapeHtml(text);
+  const lines = escaped.split(/\r?\n/);
+  const out = [];
+  let inList = false;
+  const closeList = () => { if(inList){ out.push('</ul>'); inList = false; } };
+
+  for(const rawLine of lines){
+    const line = rawLine.trim();
+    const bullet = line.match(/^[*-]\s+(.*)$/);
+    if(bullet){
+      if(!inList){ out.push('<ul>'); inList = true; }
+      out.push('<li>'+bullet[1]+'</li>');
+    }else{
+      closeList();
+      if(line) out.push('<p>'+line+'</p>');
+    }
+  }
+  closeList();
+
+  let html = out.join('');
+  // Bold **text** -> <strong>, after structural tags are in place so it
+  // only ever touches inline text content.
+  html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  return html || escaped; // fall back to plain escaped text if empty
+}
+
+function pushMsg(role, text){
+  const div = document.createElement('div');
+  div.className = 'msg '+(role==='user'?'user':'bot');
+  // Without this, Arabic replies render with the browser's default LTR
+  // direction, which garbles word order and punctuation placement.
+  // dir="auto" makes each bubble pick its own direction based on the first
+  // strong-directionality character in its own text, independent of every
+  // other bubble in the log (so an Arabic question and an English answer
+  // right after it each render correctly).
+  div.dir = 'auto';
+  if(role==='user'){
+    // User input is never Markdown — keep it as plain text.
+    div.textContent = text;
+  }else{
+    div.innerHTML = renderMarkdownLite(text);
+  }
+  chatLog.appendChild(div);
+  chatLog.scrollTop = chatLog.scrollHeight;
+  return div;
+}
+// ---- Request lock + cancel-in-flight ---------------------------------
+// While a chat request is pending: (1) sending a second one is blocked
+// entirely — the input is disabled and Enter/click can't fire another
+// request — and (2) the Send button turns into a Stop button that really
+// aborts the in-flight fetch via AbortController, instead of just hiding a
+// spinner. Aborting only stops the BROWSER from waiting on the response;
+// it doesn't reach into the backend and kill the Gemini call already
+// running there (that request finishes server-side regardless and still
+// gets logged to chat_messages) — but from the user's point of view the UI
+// is instantly free again, which is what "stop" means here.
+let chatController = null; // the AbortController for the request currently in flight, or null
+let chatThinkingEl = null;
+
+function setChatBusy(busy){
+  const input = document.getElementById('chatInput');
+  const btn = document.getElementById('chatSendBtn');
+  input.disabled = busy;
+  btn.textContent = busy ? 'Stop' : 'Send';
+  btn.classList.toggle('stop-btn', busy);
+  if(!busy) input.focus();
+}
+
+// Single entry point for the button — routes to "send" or "stop" depending
+// on whether a request is currently in flight, so the same button/handler
+// can't ever fire a second overlapping request.
+function handleChatButtonClick(){
+  if(chatController){
+    stopChat();
+  }else{
+    sendChat();
+  }
+}
+
+function stopChat(){
+  if(!chatController) return;
+  chatController.abort();
+  chatController = null;
+  if(chatThinkingEl){ chatThinkingEl.remove(); chatThinkingEl = null; }
+  pushMsg('bot', '⏹️ Stopped. Ask me anything else whenever you\'re ready.');
+  setChatBusy(false);
+}
+
+async function sendChat(){
+  if(chatController) return; // a request is already in flight — the button/Enter shouldn't be able to start a second one
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if(!text) return;
+
+  pushMsg('user', text);
+  input.value = '';
+  setChatBusy(true);
+
+  // pushMsg() always markdown-escapes its text, so build the typing
+  // indicator's real (safe, static, no user input involved) markup directly
+  // instead of routing it through pushMsg.
+  chatThinkingEl = pushMsg('bot', '');
+  chatThinkingEl.classList.add('thinking');
+  chatThinkingEl.innerHTML = '<span class="typing-dots"><span></span><span></span><span></span></span>';
+
+  chatController = new AbortController();
+  const payload = { message: text };
+  if(currentUser?.email){
+    // Signed-in: scoped by conversation_id (sidebar), not thread_id — if
+    // this is a brand new conversation, currentConversationId is still
+    // null and the backend creates one and hands its id back below.
+    payload.email = currentUser.email;
+    payload.conversation_id = currentConversationId;
+  }else{
+    // Anonymous: no sidebar/persistence, just the old per-tab thread.
+    payload.thread_id = ensureChatThreadId();
+  }
+
+  try{
+    const data = await apiPost(API_CONFIG.endpoints.chat, payload, { signal: chatController.signal });
+
+    if(chatThinkingEl){ chatThinkingEl.remove(); chatThinkingEl = null; }
+    pushMsg('bot', data.reply || "Sorry, I couldn't respond right now.");
+
+    if(currentUser?.email && data.conversation_id){
+      currentConversationId = data.conversation_id;
+      // Cheap GET — keeps titles (auto-set from the first message) and
+      // recency ordering in the sidebar accurate right after every turn.
+      await loadConversations();
+    }
+  }catch(e){
+    if(e.name === 'AbortError'){
+      // The user hit Stop — stopChat() already cleaned up the UI, nothing more to do here.
+      return;
+    }
+    console.error('Chat request failed:', e);
+    if(chatThinkingEl){ chatThinkingEl.remove(); chatThinkingEl = null; }
+    // /api/chat returns specific status codes for known failure modes —
+    // surface each with its own clear message instead of one generic
+    // "try again" that would be misleading for a config or quota issue.
+    let msg;
+    if(/GOOGLE_API_KEY|GEMINI_API_KEY/.test(e.message)){
+      msg = "The AI agent isn't configured yet on the backend (missing Gemini API key).";
+    }else if(/\(429\)/.test(e.message)){
+      msg = "The AI agent is getting a lot of requests right now and hit its rate limit — please wait a moment and try again.";
+    }else{
+      msg = "There was a problem reaching the agent. Please try again in a moment.";
+    }
+    pushMsg('bot', msg);
+  }finally{
+    chatController = null;
+    setChatBusy(false);
+  }
+}
+
+/* ================= FAQ ================= */
+const FAQ_ITEMS = [
+  {q:"How does SAIA's prediction model work?", a:"SAIA runs each stock's recent price history through a demo AI prediction model that projects a likely price 30 days out. It's meant to illustrate the concept — not to be used for real trading decisions."},
+  {q:"Is the market data real or simulated?", a:"This prototype ships with simulated data by default, but the platform is built to plug directly into a real backend — prices, history, and news can be swapped in from live sources."},
+  {q:"Which markets and exchanges are covered?", a:"The demo includes stocks from NASDAQ, TADAWUL, EGX and DFM, spanning tech, energy, banking and other sectors so you can see how the signal looks across different markets."},
+  {q:"Can I export the data I see?", a:"Yes — from the sidebar inside the app you can download the companies list, the stock price history, or the news feed as CSV files at any time. For prices and news you also pick how far back to go before the file is generated."},
+  {q:"How does the AI Assistant help me?", a:"The Ask AI Agent tab lets you chat directly about any stock in the dataset — ask for a plain-English read, compare two tickers, or ask what the prediction means. It always reminds you this is simulated data, not financial advice."}
+];
+function renderFAQ(){
+  const el = document.getElementById('faqList');
+  if(!el) return;
+  el.innerHTML = FAQ_ITEMS.map((f,i)=>`
+    <div class="faq-item" id="faq-${i}">
+      <button class="faq-q" onclick="toggleFAQ(${i})">
+        <span>${f.q}</span>
+        <span class="chev">▾</span>
+      </button>
+      <div class="faq-a"><p>${f.a}</p></div>
+    </div>`).join('');
+}
+function toggleFAQ(i){
+  const item = document.getElementById('faq-'+i);
+  const body = item.querySelector('.faq-a');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(o=>{
+    o.classList.remove('open');
+    o.querySelector('.faq-a').style.maxHeight = null;
+  });
+  if(!isOpen){
+    item.classList.add('open');
+    body.style.maxHeight = body.scrollHeight+'px';
+  }
+}
+
+/* ================= INIT ================= */
+let companiesLoaded = false;   // true once the full COMPANIES list has loaded — gates Stocks/Watchlist/Home's top-stocks widget
+let newsLoaded = false;        // true once the full NEWS_ITEMS page has loaded — gates the News view
+let homeNewsLoaded = false;    // true once the small Home "Latest News" preview has loaded
+let HOME_NEWS_PREVIEW = [];    // the 5 articles Home's news card actually needs — fetched separately so it isn't stuck behind the bigger 100-article page
+function showDataLoadingPill(show){
+  const pill = document.getElementById('dataLoadingPill');
+  if(pill) pill.classList.toggle('hidden', !show);
+}
+// Companies and news load independently now (see bootstrap below), so the
+// pill's text reflects whichever of the two is still in flight instead of
+// showing one frozen "Loading market data…" message the whole time.
+function updateDataLoadingPillText(){
+  const pill = document.getElementById('dataLoadingPill');
+  if(!pill) return;
+  const label = pill.querySelector('.txt') || pill;
+  if(!companiesLoaded && !newsLoaded) label.textContent = 'Loading stocks & news…';
+  else if(!companiesLoaded) label.textContent = 'Loading stocks…';
+  else if(!newsLoaded) label.textContent = 'Loading news…';
+  else label.textContent = 'Loading market data…';
+}
+async function bootstrap(){
+  injectLogos();
+  syncFaviconWithLogo();
+  buildHeroDecor();
+  renderFAQ();
+  updateDataLoadingPillText();
+  showDataLoadingPill(true);
+
+  // Home's "Latest News" card only ever shows 5 articles, but it used to
+  // wait on the same 100-article fetch the News view needs — fetch just
+  // those 5 separately and paint them the moment they land, instead of
+  // making Home's news card wait on a request it doesn't actually need.
+  const homeNewsPromise = fetchNews(undefined, 5, 0)
+    .then(items => { HOME_NEWS_PREVIEW = items; })
+    .catch(e => { console.error('Failed to load home news preview:', e); HOME_NEWS_PREVIEW = []; })
+    .finally(() => {
+      homeNewsLoaded = true;
+      if(currentUser) renderHomeDashboard();
+    });
+
+  // Companies and the full news page are independent of each other — they
+  // used to be joined behind a single Promise.allSettled, which meant
+  // companiesLoaded (and everything gated on it: the Stocks grid, the
+  // Watchlist, and Home's "Top Stocks" widget) stayed stuck on "Loading…"
+  // until the much bigger 100-article news fetch ALSO finished, even though
+  // none of those views need news data at all. That's what made stock data
+  // on Home look badly delayed whenever news was the slower of the two.
+  // Now each fetch flips its own "loaded" flag and re-renders its own views
+  // the moment it personally resolves, so a slow request on one side never
+  // holds up data that's already back on the other.
+  const companiesPromise = fetchCompanies()
+    .then(data => { COMPANIES = data; })
+    .catch(e => { console.error('Failed to load companies:', e); COMPANIES = []; })
+    .finally(() => {
+      companiesLoaded = true;
+      updateDataLoadingPillText();
+      buildTape(document.getElementById('landingTape'));
+      buildTape(document.getElementById('appTape'));
+      if(currentUser){ renderStockGrid(); renderHomeDashboard(); renderWatchlist(); }
+    });
+
+  // Preload the predictions search pool in the background too, once
+  // companies are ready (joinPredictionRows needs COMPANIES to attach
+  // sector/industry/category) — same idea as companies/news, so search on
+  // the Predictions view is an instant in-memory filter instead of kicking
+  // off a fresh /api/predictions/all request the first time someone types.
+  companiesPromise.then(() => ensurePredictionsSearchPool());
+
+  const newsPromise = fetchNews(undefined, NEWS_PAGE_SIZE, 0)
+    .then(items => {
+      NEWS_ITEMS = items;
+      if(NEWS_ITEMS.length < NEWS_PAGE_SIZE) newsHasMore = false;
+    })
+    .catch(e => { console.error('Failed to load news:', e); NEWS_ITEMS = []; })
+    .finally(() => {
+      newsLoaded = true;
+      updateDataLoadingPillText();
+      if(currentUser){ renderNews(); renderHomeDashboard(); }
+    });
+
+  await Promise.allSettled([homeNewsPromise, companiesPromise, newsPromise]);
+  showDataLoadingPill(false);
+  // If the user already signed in and entered the app before this finished
+  // (e.g. they signed in quickly, or their session was restored on page
+  // load), some views may have rendered before their data was ready.
+  // Refresh everything now that all of it is in, so nothing needs a manual
+  // action (like starring a stock) to "wake up".
+  if(currentUser){
+    renderStockGrid(); renderNews(); renderHomeDashboard(); renderWatchlist(); renderSavedNews();
+  }
+}
+const bootstrapPromise = bootstrap();
+
+/* ================= LIVE DATA POLLING =================
+   Keeps the ticker tape (and any open stock views) updated with fresh
+   prices from the backend without requiring a page reload — refetches
+   /api/companies on an interval and re-renders whatever is on screen.
+   This does not touch news/predictions, which don't need second-by-second
+   freshness. */
+const LIVE_REFRESH_INTERVAL_MS = 20000;
+function startLiveDataPolling(){
+  setInterval(async () => {
+    try{
+      const fresh = await fetchCompanies();
+      if(Array.isArray(fresh) && fresh.length){
+        COMPANIES = fresh;
+        buildTape(document.getElementById('landingTape'));
+        buildTape(document.getElementById('appTape'));
+        if(currentUser){
+          renderStockGrid();
+          renderHomeDashboard();
+          renderWatchlist();
+        }
+      }
+    }catch(e){
+      console.error('Live data refresh failed:', e);
+    }
+  }, LIVE_REFRESH_INTERVAL_MS);
+}
+bootstrapPromise.then(startLiveDataPolling);
+</script>
+</body>
+</html>

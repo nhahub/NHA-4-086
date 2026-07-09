@@ -1,0 +1,122 @@
+table dim_Period
+	lineageTag: 4d96e095-031a-4af6-a89e-a6380f74cde6
+
+	column Date
+		formatString: General Date
+		lineageTag: 8379fa34-23a7-4ea0-8031-60a0f6a16066
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order
+		formatString: 0
+		lineageTag: 1669639b-e081-4cb9-902c-903bc3f30fed
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Order]
+
+		annotation SummarizationSetBy = Automatic
+
+	column StartDate
+		formatString: General Date
+		lineageTag: 7432bbc7-e1ae-4d36-8fbe-4af8483c52ad
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [StartDate]
+
+		variation Variation
+			isDefault
+			relationship: 3b602d46-f5c3-49ab-98f6-eaf9f68e3e83
+			defaultHierarchy: LocalDateTable_630a207b-4052-4faa-9984-b226a54aa2b6.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column EndDate
+		formatString: General Date
+		lineageTag: d6db6045-440a-4eb2-b3e5-93ea5a1fd610
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [EndDate]
+
+		variation Variation
+			isDefault
+			relationship: 3534b603-dd36-4ccd-b681-432514393575
+			defaultHierarchy: LocalDateTable_63ce4140-4309-444a-9c01-f831151e0934.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Period
+		lineageTag: 5a7ca8be-edd3-472c-92f0-204100bf8987
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Period]
+		sortByColumn: Order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_Period = calculated
+		mode: import
+		source = ```
+				
+				//PURPOSE: Create a table with 9 rows. Each row represents a precise period of time: 1D, 5D, ..., 5Y
+				VAR _MaxDate    = MAX(fact_stock_prices[trade_date])
+				VAR _MinDate    = MIN(fact_stock_prices[trade_date])
+				VAR _ReferenceDate    = DATE(YEAR(_MaxDate),MONTH(_MaxDate), DAY(_MaxDate))
+				VAR _src        = CALENDAR( _ReferenceDate - 8, _ReferenceDate ) 
+				VAR _EndDate    = _ReferenceDate
+				RETURN
+				    GENERATE (
+				         _src,
+				        VAR BaseDate = [date]
+				        VAR _Order = SWITCH(TRUE,
+				                                BaseDate = _ReferenceDate, 1, --1D
+				                                BaseDate = _ReferenceDate - 1, 2, --5D
+				                                BaseDate = _ReferenceDate - 2, 3, --1M
+				                                BaseDate = _ReferenceDate - 3, 4, --3M
+				                                BaseDate = _ReferenceDate - 4, 5, --6M
+				                                BaseDate = _ReferenceDate - 5, 6, --YTD
+				                                BaseDate = _ReferenceDate - 6, 7, --1Y
+				                                BaseDate = _ReferenceDate - 7, 8, --2Y
+				                                BaseDate = _ReferenceDate - 8, 9 --5Y
+				                             )
+				        VAR _StartDate = SWITCH(TRUE,
+				                                BaseDate = _ReferenceDate,   _EndDate - 1, --1D
+				                                BaseDate = _ReferenceDate - 1, _EndDate - 5, --5D
+				                                BaseDate = _ReferenceDate - 2, _EndDate - 30, --1M
+				                                BaseDate = _ReferenceDate - 3, _EndDate - 90, --3M
+				                                BaseDate = _ReferenceDate - 4, _EndDate - 180, --6M
+				                                BaseDate = _ReferenceDate - 5, DATE(YEAR(BaseDate),1,1), --YTD
+				                                BaseDate = _ReferenceDate - 6, DATE(YEAR(BaseDate)-1,MONTH(BaseDate),DAY(_ReferenceDate)), --1Y
+				                                BaseDate = _ReferenceDate - 7, DATE(YEAR(BaseDate)-2,MONTH(BaseDate),DAY(_ReferenceDate)), --2Y
+				                                BaseDate = _ReferenceDate - 8, _MinDate 
+				                             )
+				        VAR _StardDateAjusted = SWITCH(TRUE,
+				                                WEEKDAY(_StartDate,2) = 6, _StartDate  +  2, --Saturday
+				                                WEEKDAY(_StartDate,2) = 7, _StartDate  +  1, --Sunday
+				                                _StartDate      
+				                             )
+				        VAR _PeriodName = SWITCH(TRUE,
+				                                BaseDate = _ReferenceDate,   "1D",
+				                                BaseDate = _ReferenceDate - 1, "5D",
+				                                BaseDate = _ReferenceDate - 2, "1M",
+				                                BaseDate = _ReferenceDate - 3, "3M",
+				                                BaseDate = _ReferenceDate - 4, "6M",
+				                                BaseDate = _ReferenceDate - 5, "YTD",
+				                                BaseDate = _ReferenceDate - 6, "1Y",
+				                                BaseDate = _ReferenceDate - 7, "2Y", 
+				                                BaseDate = _ReferenceDate - 8, "5Y" 
+				                             )
+				        RETURN ROW (
+				            "Order", _Order,
+				            "StartDate", _StardDateAjusted,
+				            "EndDate", _EndDate,
+				            "Period", _PeriodName
+				             )
+				    )
+				
+				```
+
+	annotation PBI_Id = 38c5d2de2840479abdd84062b89ab7b8
+

@@ -1,0 +1,99 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 74.666665395100921
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 1160,
+            "y": 122.49999999999991
+          },
+          "nodeIndex": "dim_companies",
+          "nodeLineageTag": "1a9bb20d-edcc-452f-a17b-0da76c579c00",
+          "size": {
+            "height": 558.33333333333326,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 274,
+            "y": 587.5
+          },
+          "nodeIndex": "fact_news",
+          "nodeLineageTag": "fee06ae8-fdb5-4d5d-9c00-74b31df7ecd9",
+          "size": {
+            "height": 511.66666666666663,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 279.66666666666652,
+            "y": 139.16666666666666
+          },
+          "nodeIndex": "fact_stock_prices",
+          "nodeLineageTag": "e0fb3c4b-ed59-4003-841f-19d3009bc71d",
+          "size": {
+            "height": 340.33333333333326,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 565.33333333333371,
+            "y": 926.50000413258863
+          },
+          "nodeIndex": "dim_Period",
+          "nodeLineageTag": "4d96e095-031a-4af6-a89e-a6380f74cde6",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 887.66666666666652,
+            "y": 847.83334096272779
+          },
+          "nodeIndex": "dim_Date",
+          "nodeLineageTag": "bd6ad1cb-6bf8-4509-891a-1d7f77ef20cb",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 1170,
+            "y": 490.83333539962769
+          },
+          "nodeIndex": "01_Measures",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 60,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}
