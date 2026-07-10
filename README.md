@@ -133,7 +133,7 @@ The data pipelines continuously ingest stock market data and financial news, val
 
 ---
 
-## 📈 Data Engineering Summary
+##  Data Engineering Summary
 
 | Metric | Value |
 |---------|------:|
@@ -145,7 +145,12 @@ The data pipelines continuously ingest stock market data and financial news, val
 | Storage Engine | Delta Lake |
 | Loading Strategy | Incremental ETL |
 
+---
 
+#  📈 Power BI
+
+* Power BI
+![](https://github.com/OmarAhmedWahby/SAIA/blob/main/docs/Screenshots/Data_screens/Powerbi Screen.png)
 
 # 👨‍💻 Team Members
 
