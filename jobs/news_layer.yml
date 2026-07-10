@@ -6,6 +6,11 @@ resources:
 
       name: news_layer_job
 
+      schedule:
+        quartz_cron_expression: "0 0 * * * ?"
+        timezone_id: "Africa/Cairo"
+        pause_status: "UNPAUSED"
+      
       tasks:
         - task_key: Init_db
 
@@ -35,5 +40,5 @@ resources:
 
           notebook_task:
             notebook_path: ../ELT/serving_layer/03_fact_news.ipynb
-            
+
 
