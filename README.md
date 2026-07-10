@@ -144,3 +144,22 @@ The data pipelines continuously ingest stock market data and financial news, val
 | Time Period | 2022 – Present |
 | Storage Engine | Delta Lake |
 | Loading Strategy | Incremental ETL |
+
+
+
+# 👨‍💻 Team Members
+
+### Omar Ahmed Wahby
+
+Data Engineering • Business Intelligence • Power BI • Analytics
+
+- [LinkedIn](https://www.linkedin.com/in/omarwahby)  
+- [GitHub](https://github.com/OmarAhmedWahby)
+
+### Abdallah Mohamed Abdelzaher
+
+Data Engineering • Machine Learning • NLP
+
+
+- [LinkedIn](https://www.linkedin.com/in/abdallahabdelzaher)  
+- [GitHub](https://github.com/AbdallahAbdElzaher24)
