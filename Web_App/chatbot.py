@@ -28,6 +28,9 @@ also expose over a CLI, a websocket, a queue worker, etc. later.
 import os
 import sqlite3
 import time
+import ast
+import operator
+import datetime as dt
 from typing import Optional
 
 from langchain_core.messages import (
@@ -64,6 +67,17 @@ def _backend():
     return _backend_module
 
 GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
+
+# Gemini 2.5 models default to *dynamic* thinking (the model decides its own
+# reasoning budget per call) when thinking_budget isn't passed explicitly.
+# For an agent that has to read a long system prompt, pick the right one of
+# 12 tools, and not invent numbers, that dynamic budget is unreliable — on
+# some turns it barely thinks before answering (-> hallucinated numbers /
+# wrong or skipped tool calls), on others it burns tokens thinking about a
+# trivial "hi". Pinning an explicit budget makes tool selection much more
+# consistent. 0 disables thinking entirely (fastest, worst tool selection);
+# -1 restores the old dynamic behavior.
+GEMINI_THINKING_BUDGET = int(os.environ.get("GEMINI_THINKING_BUDGET", "1024"))
 
 # ---- Multi-key support -----------------------------------------------------
 # You can run this with more than one Gemini API key so that if one key hits
@@ -132,18 +146,27 @@ if not GEMINI_API_KEYS:
 
 SYSTEM_PROMPT = """You are SAIA, the AI assistant embedded in a stock-market
 analytics platform (companies, price history, news sentiment, and ML price
-predictions for a fixed universe of tickers).
+predictions for a fixed universe of tickers). You are also a fully capable
+general-purpose assistant — your usefulness is not limited to this platform.
 
 Identity:
 - You ARE "SAIA's AI agent" — that is your only identity in this
   conversation. Never describe yourself as "a large language model",
   "trained by Google", or similar generic self-descriptions, and never
   mention Gemini or any underlying model name. If asked who you are, briefly
-  say you're SAIA's assistant for exploring the platform's stocks, news, and
-  predictions.
-- Stay in character and on topic even for small talk ("how are you",
-  "what's up") — answer briefly and naturally, then steer toward how you can
-  help with the platform's data, instead of giving a generic AI disclaimer.
+  say you're SAIA's assistant — it can explore the platform's stocks, news,
+  and predictions, and can also help with anything else the user needs.
+- Stay in character for small talk ("how are you", "what's up") — answer
+  briefly and naturally.
+- For anything the user asks that ISN'T about this platform's data — general
+  knowledge, explanations, math, coding help, writing/editing, translation,
+  advice, brainstorming, casual conversation, whatever — just answer it
+  directly and as well as you can, the same way any capable assistant would.
+  Do NOT deflect, refuse, or force the conversation back to stocks just
+  because a question is unrelated to the platform; only bring up the
+  platform's data/tools when the question is actually about it. A generic
+  "I can only help with stocks" response is wrong unless the request truly
+  needs data you don't have.
 
 Rules:
 - Always use your tools to look up real numbers (prices, sentiment, tickers,
@@ -159,12 +182,40 @@ Rules:
 - For comparing two or more named tickers, use compare_tickers rather than
   calling get_company_details separately for each.
 - For sector-level questions ("how's tech doing", "which sector is
-  strongest"), use get_sector_overview.
+  strongest"), use get_sector_overview. For exchange-level questions ("how's
+  TADAWUL doing", "which exchange is strongest"), use get_exchange_overview.
+  If you're unsure what sector/exchange names are valid, check
+  list_sectors_and_exchanges first rather than guessing.
 - For general sentiment/mood questions about a ticker (not specific
   headlines), use get_ticker_sentiment_summary; use get_latest_news when
   they want actual articles.
 - For a single named ticker's prediction, use get_ticker_prediction; use
   get_top_predictions only for "best N" lists.
+- For "which stocks are predicted to fall/drop the most", use
+  get_worst_predictions (the mirror of get_top_predictions).
+- For broad "how's the market doing today" / overall mood questions, use
+  get_market_summary instead of listing individual stocks.
+- For news about a TOPIC or EVENT rather than one company (e.g. "any news
+  about mergers", "articles mentioning inflation"), use
+  search_news_by_keyword; use get_latest_news when they name a specific
+  ticker/company.
+- For "which stocks are near their 52-week high/low" screening questions, use
+  get_52_week_extremes. For "cheapest/most expensive by P/E" questions, use
+  screen_by_pe_ratio.
+- For "how risky/volatile is this stock lately" questions, use
+  get_stock_volatility.
+- For "what would $X invested in TICKER N days ago be worth today" style
+  hypotheticals, use calculate_investment_return — this is a historical
+  what-if calculation, not investment advice or a prediction; say so.
+- For arithmetic/math the user asks about that ISN'T a platform lookup (e.g.
+  "what's 12% of 340", compounding, converting a percentage), use calculate
+  rather than doing the math yourself in your head — it avoids silly
+  arithmetic slips. For anything depending on today's date/day-of-week, use
+  get_current_datetime rather than guessing.
+- If a signed-in user explicitly asks you to add/remove/save/track/untrack a
+  ticker on their watchlist, use modify_watchlist. Never call this
+  proactively or for anything other than an explicit add/remove request, and
+  never call it without the user's email.
 - ML price predictions and news sentiment scores are model outputs, not
   guarantees. When you present them, briefly make clear they're
   model-generated and not financial advice.
@@ -181,6 +232,29 @@ Rules:
   correct grammar, not a stiff or literal translation. Never mix in English
   filler unless a term (like a ticker symbol) has no natural Arabic
   equivalent.
+
+Before you answer, check yourself against these rules — they matter more
+than any other instruction above:
+1. Is this question actually about the platform's stocks/news/predictions/
+   watchlist? If NOT, just answer it directly and well from your own
+   knowledge/reasoning — don't hunt for a tool that doesn't apply, and don't
+   redirect the user back to stocks.
+2. If it IS about the platform: does the answer contain a price, percentage,
+   ticker fact, sentiment score, prediction, or watchlist/saved-article
+   content? If yes and you haven't called a tool THIS turn to get it, call
+   the right tool first — don't answer from memory, even if you're
+   confident, even if you already showed a similar number earlier in this
+   conversation.
+3. Is there a tool above whose description matches what the user is asking
+   (ranking → get_market_movers, worst predictions → get_worst_predictions,
+   comparing named tickers → compare_tickers, sector → get_sector_overview,
+   exchange → get_exchange_overview, overall market mood →
+   get_market_summary, topic/news search → search_news_by_keyword, 52-week
+   screening → get_52_week_extremes, P/E screening → screen_by_pe_ratio,
+   volatility → get_stock_volatility, hypothetical return →
+   calculate_investment_return, add/remove watchlist → modify_watchlist,
+   etc.)? If yes, use that specific tool rather than a more generic one or
+   none at all.
 """
 
 # ---- CACHE for the (potentially huge — 10k+ rows) companies table --------
@@ -200,6 +274,25 @@ def _get_companies_cached() -> list:
         _companies_cache["rows"] = _backend().get_companies()
         _companies_cache["fetched_at"] = now
     return _companies_cache["rows"]
+
+
+# Same idea for the full (unpaginated) predictions table — get_worst_predictions
+# pulls ALL rows to sort ascending (the paginated /api/predictions endpoint
+# only sorts descending), so without a cache every "which stocks are predicted
+# to fall the most" question would force a fresh full-table query.
+_predictions_cache: dict = {"rows": None, "fetched_at": 0.0}
+_PREDICTIONS_CACHE_TTL_SECONDS = 60
+
+
+def _get_all_predictions_cached() -> list:
+    now = time.time()
+    if (
+        _predictions_cache["rows"] is None
+        or now - _predictions_cache["fetched_at"] > _PREDICTIONS_CACHE_TTL_SECONDS
+    ):
+        _predictions_cache["rows"] = _backend().get_all_predictions()
+        _predictions_cache["fetched_at"] = now
+    return _predictions_cache["rows"]
 
 
 # ---- TOOLS -----------------------------------------------------------------
@@ -275,7 +368,7 @@ def get_top_predictions(limit: int = 10) -> list:
     sorted best-first. Each row has last_known_close_price,
     predicted_close_price and predicted_change_percent. These are model
     outputs, not guarantees — always caveat that when presenting them."""
-    return _backend().get_predictions(limit=min(limit, 30))
+    return _backend().get_predictions(limit=min(limit, 30), offset=0)
 
 
 @tool
@@ -329,17 +422,21 @@ def compare_tickers(tickers: list) -> list:
     three"). Unknown tickers are returned with an error note instead of
     being silently dropped."""
     companies = {r["ticker"]: r for r in _get_companies_cached() if r.get("ticker")}
-    predictions = {}
-    for t in tickers:
-        t_upper = (t or "").strip().upper()
-        if not t_upper:
-            continue
-        try:
-            rows = _backend().get_predictions(limit=1, ticker=t_upper)
-            if rows:
-                predictions[t_upper] = rows[0]
-        except Exception:
-            pass
+    # Was previously one live get_predictions(ticker=...) call PER ticker —
+    # for an N-ticker comparison that meant N sequential round trips to
+    # Databricks, each holding one of the shared POOL_SIZE=4 connections
+    # (see app.py's run_query) and slowing this one chat reply down roughly
+    # linearly with how many tickers were being compared. Every other tool
+    # here already reads predictions from the 60s-TTL cached full table
+    # (_get_all_predictions_cached) instead of hitting the warehouse live —
+    # this just brings compare_tickers in line with that pattern, so
+    # comparing tickers costs one cached in-memory lookup instead of N
+    # network round trips.
+    predictions = {
+        r["ticker"]: r
+        for r in _get_all_predictions_cached()
+        if r.get("ticker") and r.get("predicted_change_percent") is not None
+    }
     out = []
     for t in tickers:
         t = (t or "").strip().upper()
@@ -434,10 +531,130 @@ def get_ticker_prediction(ticker: str) -> dict:
     ticker rather than asking for a top-N list. This is a model output, not
     a guarantee — always caveat that when presenting it."""
     ticker = ticker.strip().upper()
-    rows = _backend().get_predictions(limit=1, ticker=ticker)
+    rows = _backend().get_predictions(limit=1, offset=0, ticker=ticker)
     if rows:
         return rows[0]
     return {"error": f"No prediction found for ticker '{ticker}'."}
+
+
+@tool
+def search_news_by_keyword(query: str, limit: int = 10) -> list:
+    """Full-text search across ALL news articles by keyword or topic — matches
+    title, ticker, or publisher name. Use this when the user asks about news on
+    a TOPIC or EVENT (e.g. "any news about interest rates", "articles
+    mentioning mergers") rather than one specific company's headlines — use
+    get_latest_news instead when they name a specific ticker/company."""
+    rows = _backend().search_news(q=query, limit=min(limit, 20), offset=0)
+    fields = (
+        "ticker", "title", "publisher_name", "source_url", "published_at",
+        "positive_score", "negative_score", "neutral_score",
+    )
+    return [{k: r.get(k) for k in fields} for r in rows]
+
+
+@tool
+def get_worst_predictions(limit: int = 10) -> list:
+    """Get the tickers with the strongest ML-predicted 30-day price DECLINES,
+    sorted worst-first (most negative predicted_change_percent first). This is
+    the mirror of get_top_predictions — use it for "which stocks are predicted
+    to fall/drop the most" questions. These are model outputs, not
+    guarantees — always caveat that when presenting them."""
+    rows = _get_all_predictions_cached()
+    ranked = [r for r in rows if r.get("predicted_change_percent") is not None]
+    ranked.sort(key=lambda r: r["predicted_change_percent"])
+    fields = (
+        "ticker", "company_name", "last_known_close_price",
+        "predicted_close_price", "predicted_change_percent",
+    )
+    return [{k: r.get(k) for k in fields} for r in ranked[: min(limit, 30)]]
+
+
+@tool
+def get_market_summary() -> dict:
+    """Get one overall snapshot of the whole platform right now: how many
+    companies are up vs. down vs. unchanged today, the average day
+    change_percent across every tracked stock, total combined trading volume,
+    and which sector is leading/lagging. Use this for broad "how's the market
+    doing today" / "what's the overall mood" questions instead of listing
+    individual stocks one by one."""
+    rows = _get_companies_cached()
+    changes = [r["change_percent"] for r in rows if r.get("change_percent") is not None]
+    volumes = [r["volume"] for r in rows if r.get("volume") is not None]
+    by_sector: dict = {}
+    for r in rows:
+        cp = r.get("change_percent")
+        if cp is not None:
+            by_sector.setdefault(r.get("sector") or "Unknown", []).append(cp)
+    sector_avgs = {s: sum(v) / len(v) for s, v in by_sector.items() if v}
+    best_sector = max(sector_avgs.items(), key=lambda x: x[1]) if sector_avgs else None
+    worst_sector = min(sector_avgs.items(), key=lambda x: x[1]) if sector_avgs else None
+    return {
+        "companies_tracked": len(rows),
+        "gainers": sum(1 for c in changes if c > 0),
+        "losers": sum(1 for c in changes if c < 0),
+        "unchanged": sum(1 for c in changes if c == 0),
+        "avg_change_percent": (sum(changes) / len(changes)) if changes else None,
+        "total_volume": sum(volumes) if volumes else None,
+        "leading_sector": (
+            {"sector": best_sector[0], "avg_change_percent": best_sector[1]} if best_sector else None
+        ),
+        "lagging_sector": (
+            {"sector": worst_sector[0], "avg_change_percent": worst_sector[1]} if worst_sector else None
+        ),
+    }
+
+
+@tool
+def get_52_week_extremes(mode: str = "near_high", limit: int = 10) -> list:
+    """Screen companies by where their current price sits inside their 52-week
+    range. mode="near_high" returns stocks trading closest to their 52-week
+    high; mode="near_low" returns stocks trading closest to their 52-week low.
+    Use this for "which stocks are near their 52-week high/low" screening
+    questions."""
+    rows = _get_companies_cached()
+    scored = []
+    for r in rows:
+        price, hi, lo = r.get("price"), r.get("week52_high"), r.get("week52_low")
+        if price is None or hi is None or lo is None or hi == lo:
+            continue
+        scored.append((r, (price - lo) / (hi - lo)))  # 1.0 = at high, 0.0 = at low
+    if not scored:
+        return [{"error": "52-week range data not available."}]
+    scored.sort(key=lambda x: x[1], reverse=(mode != "near_low"))
+    fields = ("ticker", "company_name", "price", "week52_high", "week52_low")
+    out = []
+    for r, pct in scored[: min(limit, 30)]:
+        row = {k: r.get(k) for k in fields}
+        row["pct_of_52w_range"] = round(pct * 100, 1)
+        out.append(row)
+    return out
+
+
+@tool
+def modify_watchlist(email: str, ticker: str, action: str) -> dict:
+    """Add or remove a ticker from a signed-in user's watchlist on their
+    behalf. `action` must be "add" or "remove". Only call this if you already
+    have the user's email for this conversation, and ONLY when they explicitly
+    ask to add/remove/save/track/untrack a stock — never do this proactively
+    or as a side effect of answering an unrelated question. Returns the user's
+    full updated watchlist."""
+    ticker = ticker.strip().upper()
+    email = email.strip()
+    action = action.strip().lower()
+    if action not in ("add", "remove"):
+        return {"error": "action must be 'add' or 'remove'"}
+    current = _backend().get_watchlist(email=email).get("watchlist", [])
+    is_saved = ticker in current
+    if (action == "add" and is_saved) or (action == "remove" and not is_saved):
+        return {
+            "watchlist": current,
+            "note": f"{ticker} was already {'saved' if is_saved else 'not saved'} — no change made.",
+        }
+    # toggle_watchlist flips whatever the current state is, which is exactly
+    # the transition we just confirmed is needed (add -> not saved, remove ->
+    # saved), so a single toggle call is safe here.
+    body = _backend().WatchlistToggleRequest(email=email, ticker=ticker)
+    return _backend().toggle_watchlist(body)
 
 
 @tool
@@ -461,6 +678,175 @@ def get_user_watchlist(email: str) -> dict:
     return _backend().get_watchlist(email=email)
 
 
+# ---- GENERAL-PURPOSE / ANALYTICAL TOOLS ------------------------------------
+# These aren't platform data lookups — they're small, self-contained
+# calculations the agent can reach for so it doesn't do arithmetic "in its
+# head" (a common source of silly numeric slips) or guess at today's date.
+
+_SAFE_OPERATORS = {
+    ast.Add: operator.add, ast.Sub: operator.sub, ast.Mult: operator.mul,
+    ast.Div: operator.truediv, ast.Pow: operator.pow, ast.Mod: operator.mod,
+    ast.FloorDiv: operator.floordiv, ast.USub: operator.neg, ast.UAdd: operator.pos,
+}
+
+
+def _safe_eval_node(node):
+    if isinstance(node, ast.Constant) and isinstance(node.value, (int, float)):
+        return node.value
+    if isinstance(node, ast.BinOp) and type(node.op) in _SAFE_OPERATORS:
+        return _SAFE_OPERATORS[type(node.op)](_safe_eval_node(node.left), _safe_eval_node(node.right))
+    if isinstance(node, ast.UnaryOp) and type(node.op) in _SAFE_OPERATORS:
+        return _SAFE_OPERATORS[type(node.op)](_safe_eval_node(node.operand))
+    raise ValueError("only numbers, + - * / % ** // and parentheses are allowed")
+
+
+@tool
+def calculate(expression: str) -> dict:
+    """Evaluate a plain arithmetic expression — numbers with + - * / % **
+    (power) // (floor division) and parentheses, e.g. "340 * 0.12" or
+    "(120-100)/100*100". Use this for any math the user asks about (percentage
+    math, compounding, unit conversion, etc.) instead of computing it
+    yourself, to avoid arithmetic mistakes. Not for looking up stock data —
+    use the platform tools for that."""
+    try:
+        tree = ast.parse(expression, mode="eval")
+        return {"expression": expression, "result": _safe_eval_node(tree.body)}
+    except Exception as e:
+        return {"expression": expression, "error": f"Could not evaluate this expression: {e}"}
+
+
+@tool
+def get_current_datetime() -> dict:
+    """Get the current date and time (UTC) and day of the week. Use this for
+    anything that depends on "today"/"now" — e.g. how many days until/since a
+    date, or what day of the week it is — instead of guessing."""
+    now = dt.datetime.utcnow()
+    return {
+        "utc_datetime": now.isoformat(timespec="seconds"),
+        "date": now.strftime("%Y-%m-%d"),
+        "day_of_week": now.strftime("%A"),
+    }
+
+
+@tool
+def calculate_investment_return(ticker: str, amount: float, days_ago: int) -> dict:
+    """Calculate a historical "what if" investment return: if the user had put
+    `amount` into `ticker` `days_ago` trading days ago, what it would be worth
+    today, based on real historical closing prices. Returns entry/current
+    price and date, resulting value, and percent return. This is a backward-
+    looking calculation, not a prediction or financial advice — say so when
+    presenting it."""
+    ticker = ticker.strip().upper()
+    rows = _backend().get_stock_prices(ticker=ticker, days=max(days_ago + 5, 30))
+    if not rows or len(rows) < 2:
+        return {"error": f"Not enough price history for '{ticker}' to calculate a return."}
+    entry_idx = max(len(rows) - 1 - days_ago, 0)
+    entry_price = rows[entry_idx].get("close_price")
+    current_price = rows[-1].get("close_price")
+    if not entry_price or not current_price:
+        return {"error": "Missing price data for this calculation."}
+    shares = amount / entry_price
+    current_value = shares * current_price
+    return {
+        "ticker": ticker,
+        "amount_invested": amount,
+        "entry_date": rows[entry_idx].get("trade_date"),
+        "entry_price": entry_price,
+        "current_date": rows[-1].get("trade_date"),
+        "current_price": current_price,
+        "current_value": round(current_value, 2),
+        "return_percent": round((current_value - amount) / amount * 100, 2),
+    }
+
+
+@tool
+def get_stock_volatility(ticker: str, days: int = 30) -> dict:
+    """Calculate a simple historical volatility measure for one ticker: the
+    standard deviation of daily percentage price changes over the last `days`
+    trading days, plus the average daily move. Higher stdev = choppier/
+    riskier lately. Use this for "how volatile/risky has X been" questions."""
+    ticker = ticker.strip().upper()
+    rows = _backend().get_stock_prices(ticker=ticker, days=days)
+    closes = [r["close_price"] for r in rows if r.get("close_price") is not None]
+    if len(closes) < 2:
+        return {"error": f"Not enough price history for '{ticker}' to calculate volatility."}
+    daily_returns = [
+        (closes[i] - closes[i - 1]) / closes[i - 1] * 100
+        for i in range(1, len(closes)) if closes[i - 1]
+    ]
+    if not daily_returns:
+        return {"error": "Could not compute daily returns for this ticker."}
+    mean = sum(daily_returns) / len(daily_returns)
+    variance = sum((r - mean) ** 2 for r in daily_returns) / len(daily_returns)
+    return {
+        "ticker": ticker,
+        "trading_days_analyzed": len(daily_returns),
+        "avg_daily_change_percent": round(mean, 3),
+        "volatility_stdev_percent": round(variance ** 0.5, 3),
+    }
+
+
+@tool
+def screen_by_pe_ratio(mode: str = "lowest", limit: int = 10) -> list:
+    """Screen companies by P/E ratio. mode="lowest" returns the cheapest
+    stocks by P/E (excluding zero/negative P/E, which isn't meaningful);
+    mode="highest" returns the most expensive. Use for "lowest/highest P/E"
+    value-screening questions."""
+    rows = _get_companies_cached()
+    scored = [r for r in rows if r.get("pe_ratio") is not None and r["pe_ratio"] > 0]
+    if not scored:
+        return [{"error": "P/E ratio data not available."}]
+    scored.sort(key=lambda r: r["pe_ratio"], reverse=(mode == "highest"))
+    fields = ("ticker", "company_name", "pe_ratio", "price", "sector")
+    return [{k: r.get(k) for k in fields} for r in scored[: min(limit, 30)]]
+
+
+@tool
+def get_exchange_overview(exchange: Optional[str] = None) -> list:
+    """Get performance rolled up by exchange (NASDAQ, TADAWUL, EGX, DFM,
+    etc.): average day change_percent, gainers/losers count, and company
+    count. Pass an exchange name to see just that exchange's companies, or
+    omit it to compare ALL exchanges. Use for "how's TADAWUL doing" / "which
+    exchange is up the most" questions."""
+    rows = _get_companies_cached()
+    if exchange:
+        ex = exchange.strip().lower()
+        matches = [r for r in rows if (r.get("exchange") or "").lower() == ex]
+        if not matches:
+            return [{"error": f"No companies found on exchange '{exchange}'."}]
+        fields = ("ticker", "company_name", "price", "change_percent")
+        return [{k: m.get(k) for k in fields} for m in matches]
+    by_exchange: dict = {}
+    for r in rows:
+        e = r.get("exchange") or "Unknown"
+        by_exchange.setdefault(e, []).append(r)
+    out = []
+    for e, companies in by_exchange.items():
+        changes = [c["change_percent"] for c in companies if c.get("change_percent") is not None]
+        out.append({
+            "exchange": e,
+            "company_count": len(companies),
+            "avg_change_percent": (sum(changes) / len(changes)) if changes else None,
+            "gainers": sum(1 for c in changes if c > 0),
+            "losers": sum(1 for c in changes if c < 0),
+        })
+    out.sort(key=lambda r: (r["avg_change_percent"] is None, -(r["avg_change_percent"] or 0)))
+    return out
+
+
+@tool
+def list_sectors_and_exchanges() -> dict:
+    """List every distinct sector and exchange currently present on the
+    platform. Use this if you're unsure what sector/exchange name to pass to
+    get_sector_overview/get_exchange_overview, or if the user asks what
+    sectors/exchanges are covered."""
+    rows = _get_companies_cached()
+    return {
+        "sectors": sorted({r["sector"] for r in rows if r.get("sector")}),
+        "exchanges": sorted({r["exchange"] for r in rows if r.get("exchange")}),
+    }
+
+
 TOOLS = [
     search_companies,
     get_company_details,
@@ -474,6 +860,18 @@ TOOLS = [
     get_ticker_prediction,
     get_saved_articles,
     get_user_watchlist,
+    search_news_by_keyword,
+    get_worst_predictions,
+    get_market_summary,
+    get_52_week_extremes,
+    modify_watchlist,
+    calculate,
+    get_current_datetime,
+    calculate_investment_return,
+    get_stock_volatility,
+    screen_by_pe_ratio,
+    get_exchange_overview,
+    list_sectors_and_exchanges,
 ]
 
 # ---- GRAPH -------------------------------------------------------------
@@ -491,7 +889,20 @@ _current_key_idx = 0
 def _get_llm_for_key(idx: int):
     if idx not in _llm_clients:
         llm = ChatGoogleGenerativeAI(
-            model=GEMINI_MODEL, api_key=GEMINI_API_KEYS[idx], temperature=0.3
+            model=GEMINI_MODEL,
+            api_key=GEMINI_API_KEYS[idx],
+            # 0, not 0.3: this agent's whole job is picking the right tool
+            # and repeating back real numbers, not being creative. Any
+            # temperature above 0 gives it room to "smooth over" a tool
+            # result or a borderline tool choice instead of the most likely
+            # (= usually correct) one, which is exactly what shows up as
+            # hallucinated numbers or an odd tool pick.
+            temperature=0,
+            thinking_budget=GEMINI_THINKING_BUDGET,
+            # Without an explicit cap, thinking + tool-call JSON + the reply
+            # itself compete for the same default token budget, and on a
+            # multi-tool turn the visible reply can come back clipped/weak.
+            max_tokens=2048,
         )
         _llm_clients[idx] = llm.bind_tools(TOOLS)
     return _llm_clients[idx]
@@ -730,7 +1141,10 @@ def extract_user_facts(existing_facts: list, user_message: str, reply: str) -> l
     )
     try:
         llm = ChatGoogleGenerativeAI(
-            model=GEMINI_MODEL, api_key=GEMINI_API_KEYS[_current_key_idx], temperature=0
+            model=GEMINI_MODEL,
+            api_key=GEMINI_API_KEYS[_current_key_idx],
+            temperature=0,
+            thinking_budget=0,  # simple JSON extraction; no reasoning needed, runs in background anyway
         )
         response = llm.invoke(
             [SystemMessage(content=FACTS_EXTRACTION_PROMPT), HumanMessage(content=prompt)]

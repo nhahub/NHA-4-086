@@ -1,13 +1,3 @@
-
-
-# .env
 .env
-
-# .vscode 
-.vscode/
-
-#databricks
-.databricks/
-
 *.db
 __pycache__/
